@@ -1,4 +1,4 @@
-<h1>Installation ⚒️</h1>h1>
+<h1>Installation ⚒️</h1>
 <p>Installing and running Materio is super easy, please Follow below steps and you will be ready to rock 🤘</p>
 
 <p>Open the terminal in your root directory of Materio Laravel.</p>
