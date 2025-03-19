@@ -9,7 +9,8 @@ $containerFooter = !empty($containerNav) ? $containerNav : 'container-fluid';
       <div class="text-body">
         © <script>
           document.write(new Date().getFullYear())
-        </script>, made with <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span> by Teddy Gwapo
+        </script>, made with <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span> by Teddy Gwapo Kaayo
+        <!-- gg -->
       </div>
       <!-- <div class="d-none d-lg-inline-block">
         <a href="{{ config('variables.licenseUrl') ? config('variables.licenseUrl') : '#' }}" class="footer-link me-4" target="_blank">License</a>
