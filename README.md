@@ -18,4 +18,8 @@ yarn</b>
 <b>php artisan migrate</b>
 
 =======
+<<<<<<< HEAD
 >>>>>>> d35859f (Update README.md)
+=======
+>>>>>>> hrLearningDev
+>>>>>>> 0ad607662d1c9e6ed874cacfe933db94320ec0ad
