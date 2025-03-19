@@ -115,33 +115,17 @@
     {
       "name": "Learning & Dev.",
       "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "pages",
+      "slug": "learning",
       "submenu": [
         {
-          "url": "layouts/without-menu",
-          "name": "Without menu",
-          "slug": "layouts-without-menu"
+          "url": "learning/listofEmployees",
+          "name": "List of Employee",
+          "slug": "listofEmployees"
         },
         {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
+          "url": "learning/listofTrainings",
+          "name": "List of Trainings",
+          "slug": "listofTrainings"
         }
       ]
     },

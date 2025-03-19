@@ -107,4 +107,5 @@ Route::get('/form/layouts-vertical', [VerticalForm::class, 'index'])->name('form
 Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
 
 // tables
-Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
+Route::get('/learning/listofEmployees', [TablesBasic::class, 'index'])->name('listofEmployees');
+Route::get('/learning/listofTrainings', [TablesBasic::class, 'index'])->name('listofTrainings');
