@@ -18,14 +18,15 @@
         <!-- Logo -->
         <div class="app-brand justify-content-center mt-5">
           <a href="{{url('/')}}" class="app-brand-link gap-3">
-            <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
-            <span class="app-brand-text demo text-heading fw-semibold">{{config('variables.templateName')}}</span>
+            <span class="app-brand-logo demo">
+              <img src="{{ asset('assets/img/logo-dswd.png') }}" alt="DSWD Logo" height="100" style="background: #fff;">
+            </span>
           </a>
         </div>
         <!-- /Logo -->
 
         <div class="card-body mt-1">
-          <h4 class="mb-1">Welcome to {{config('variables.templateName')}}! 👋🏻</h4>
+          <h4 class="mb-1">Welcome to HR PRIME 👋🏻</h4>
           <p class="mb-5">Please sign-in to your account and start the adventure</p>
 
           <form id="formAuthentication" class="mb-5" action="{{url('/')}}" method="GET">
