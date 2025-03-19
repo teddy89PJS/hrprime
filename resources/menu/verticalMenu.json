@@ -2,7 +2,7 @@
   "menu": [
     {
       "url": "/",
-      "name": "Dashboards",
+      "name": "Dashboard",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "dashboard",
       "submenu": [
@@ -10,39 +10,6 @@
           "url": "/",
           "name": "Analytics",
           "slug": "dashboard-analytics"
-        }
-      ]
-    },
-    {
-      "name": "Planning",
-      "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "layouts",
-      "submenu": [
-        {
-          "url": "layouts/without-menu",
-          "name": "List of Employee",
-          "slug": "layouts-without-menu"
-        },
-        {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
         }
       ]
     },
@@ -80,87 +47,16 @@
       ]
     },
     {
-      "name": "Welfare",
-      "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "ui",
-      "submenu": [
-        {
-          "url": "ui/carousel",
-          "name": "Dashboard",
-          "slug": "ui-carousel"
-        },
-        {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
-        }
-      ]
-    },
-    {
-      "name": "Learning & Dev.",
-      "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "pages",
-      "submenu": [
-        {
-          "url": "layouts/without-menu",
-          "name": "Without menu",
-          "slug": "layouts-without-menu"
-        },
-        {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
-        }
-      ]
-    },
-    {
       "menuHeader": "Misc"
     },
     {
-      "url": "https://github.com/themeselection/materio-bootstrap-html-laravel-admin-template-free/issues",
-      "icon": "menu-icon tf-icons ri-lifebuoy-line",
-      "name": "Support",
-      "slug": "support",
-      "target": "_blank"
+      "menuHeader": "SWCC"
     },
     {
-      "url": "https://themeselection.com/demo/materio-bootstrap-html-admin-template/documentation/laravel-introduction.html",
-      "icon": "menu-icon tf-icons ri-article-line",
-      "name": "Documentation",
-      "slug": "documentation",
-      "target": "_blank"
+      "menuHeader": "DEMPC"
+    },
+    {
+      "menuHeader": "DEWC"
     }
   ]
 }
