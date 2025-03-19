@@ -4,7 +4,7 @@
 
 @section('page-style')
 @vite([
-  'resources/assets/vendor/scss/pages/page-auth.scss'
+'resources/assets/vendor/scss/pages/page-auth.scss'
 ])
 @endsection
 
@@ -18,8 +18,7 @@
         <!-- Forgot Password -->
         <div class="app-brand justify-content-center mt-5">
           <a href="{{url('/')}}" class="app-brand-link gap-3">
-            <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20])</span>
-            <span class="app-brand-text demo text-heading fw-semibold">{{ config('variables.templateName') }}</span>
+            <img src="{{ asset('assets/img/logo-dswd.png') }}" alt="DSWD Logo" height="100" style="background: #fff;">
           </a>
         </div>
         <!-- /Logo -->
