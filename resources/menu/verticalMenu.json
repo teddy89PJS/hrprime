@@ -29,7 +29,32 @@
           "slug": "layouts-without-navbar",
           "submenu":[{
             "url": "layouts/without-navbar",
+            "name": "Import Payroll",
+            "slug": "layouts-without-navbar"
+          },{
+            "url": "layouts/without-navbar",
+            "name": "Summary of Lates",
+            "slug": "layouts-without-navbar"
+          },{
+            "url": "layouts/without-navbar",
             "name": "Payroll",
+            "slug": "layouts-without-navbar"
+          },{
+            "url": "layouts/without-navbar",
+            "name": "Tax",
+            "slug": "layouts-without-navbar"
+          },{
+            "url": "layouts/without-navbar",
+            "name": "Deductions",
+            "slug": "layouts-without-navbar"
+          }
+          ,{
+            "url": "layouts/without-navbar",
+            "name": "Leave Credits",
+            "slug": "layouts-without-navbar"
+          },{
+            "url": "layouts/without-navbar",
+            "name": "Reports",
             "slug": "layouts-without-navbar"
           }
         ]
@@ -40,7 +65,19 @@
           "slug": "layouts-without-navbar",
           "submenu":[{
             "url": "layouts/without-navbar",
-            "name": "Payroll",
+            "name": "Leave",
+            "slug": "layouts-without-navbar"
+          },{
+            "url": "layouts/without-navbar",
+            "name": "Outslip",
+            "slug": "layouts-without-navbar"
+          },{
+            "url": "layouts/without-navbar",
+            "name": "Payslip",
+            "slug": "layouts-without-navbar"
+          },{
+            "url": "layouts/without-navbar",
+            "name": "Certificates",
             "slug": "layouts-without-navbar"
           }
         ]
