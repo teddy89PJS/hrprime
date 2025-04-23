@@ -19,9 +19,9 @@
       "slug": "tables",
       "submenu": [
         {
-          "url": "layouts/hrpas_employee",
+          "url": "layouts/fluid",
           "name": "List of Employees",
-          "slug": "layouts-hrpas_employee"
+          "slug": "layouts-fluid"
         },
         {
           "url": "layouts/without-navbar",
