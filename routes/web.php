@@ -1,5 +1,14 @@
 <?php
 
+//New Routes
+use App\Http\Controllers\layouts\ImportPayroll;
+use App\Http\Controllers\layouts\SummaryofLates;
+use App\Http\Controllers\layouts\Payroll;
+use App\Http\Controllers\layouts\Tax;
+use App\Http\Controllers\layouts\Deductions;
+use App\Http\Controllers\layouts\LeaveCredits;
+use App\Http\Controllers\layouts\Reports;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
@@ -43,17 +52,37 @@ use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
+use App\Models\Employee;
 
 
-
-// Main Page Route
+// Main Page Route - Dashboard
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
+
+//New Routes
+
+Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+
+Route::get('/layouts/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
+Route::get('/layouts/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
+Route::get('/layouts/payroll', [Payroll::class, 'index'])->name('payroll');
+Route::get('/layouts/tax', [Tax::class, 'index'])->name('tax');
+Route::get('/layouts/deductions', [Deductions::class, 'index'])->name('deductions');
+Route::get('/layouts/leavecredits', [LeaveCredits ::class, 'index'])->name('leavecredits');
+Route::get('/layouts/reports', [Reports ::class, 'index'])->name('reports');
+
+
+
+
+
+
+
 
 //Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
-Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+
+
 Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
 Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 

@@ -36,6 +36,7 @@ $navbarDetached = ($navbarDetached ?? '');
         </a>
       </div>
       @endif
+      <!-- Hamburger Menu For Smaller Display -->
 
       <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <!-- Search -->

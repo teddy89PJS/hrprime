@@ -19,66 +19,67 @@
       "slug": "tables",
       "submenu": [
         {
-          "url": "layouts/fluid",
+          "url": "layouts/without-menu",
           "name": "List of Employees",
-          "slug": "layouts-fluid"
+          "slug": "layouts-without-menu"
         },
         {
-          "url": "layouts/without-navbar",
+          "url": "layouts/without-menu",
           "name": "Payroll",
-          "slug": "layouts-without-navbar",
+          "slug": "layouts-without-menu",
+
           "submenu":[{
-            "url": "layouts/without-navbar",
+            "url": "layouts/import_payroll",
             "name": "Import Payroll",
-            "slug": "layouts-without-navbar"
+            "slug": "import_payroll"
           },{
-            "url": "layouts/without-navbar",
+            "url": "layouts/summary_of_lates",
             "name": "Summary of Lates",
-            "slug": "layouts-without-navbar"
+            "slug": "summary_of_lates"
           },{
-            "url": "layouts/without-navbar",
+            "url": "layouts/payroll",
             "name": "Payroll",
-            "slug": "layouts-without-navbar"
+            "slug": "payroll"
           },{
-            "url": "layouts/without-navbar",
+            "url": "layouts/tax",
             "name": "Tax",
-            "slug": "layouts-without-navbar"
+            "slug": "tax"
           },{
-            "url": "layouts/without-navbar",
+            "url": "layouts/deductions",
             "name": "Deductions",
-            "slug": "layouts-without-navbar"
+            "slug": "deductions"
           }
           ,{
-            "url": "layouts/without-navbar",
+            "url": "layouts/leavecredits",
             "name": "Leave Credits",
-            "slug": "layouts-without-navbar"
+            "slug": "leavecredits"
           },{
-            "url": "layouts/without-navbar",
+            "url": "layouts/reports",
             "name": "Reports",
-            "slug": "layouts-without-navbar"
+            "slug": "reports"
           }
         ]
         },
         {
-          "url": "layouts/without-navbar",
+          "url": "layouts/without-menu",
           "name": "Requests",
-          "slug": "layouts-without-navbar",
+          "slug": "layouts-without-menu",
           "submenu":[{
-            "url": "layouts/without-navbar",
+            "url": "layouts/without-menu",
             "name": "Leave",
-            "slug": "layouts-without-navbar"
+            "slug": "layouts-without-menu"
           },{
-            "url": "layouts/without-navbar",
+            "url": "layouts/without-menu",
             "name": "Outslip",
-            "slug": "layouts-without-navbar"
+            "slug": "layouts-without-menu"
           },{
-            "url": "layouts/without-navbar",
+            "url": "layouts/without-menu",
             "name": "Payslip",
-            "slug": "layouts-without-navbar"
+            "slug": "layouts-without-menu"
           },{
-            "url": "layouts/without-navbar",
+            "url": "layouts/without-menu",
             "name": "Certificates",
-            "slug": "layouts-without-navbar"
+            "slug": "layouts-without-menu"
           }
         ]
         }
