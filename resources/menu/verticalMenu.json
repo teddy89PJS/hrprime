@@ -14,84 +14,18 @@
       ]
     },
     {
-      "name": "Planning",
-      "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "layouts",
-      "submenu": [
-        {
-          "url": "layouts/without-menu",
-          "name": "List of Employee",
-          "slug": "layouts-without-menu"
-        },
-        {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
-        }
-      ]
-    },
-    {
-      "name": "PAS",
-      "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "tables",
-      "submenu": [
-        {
-          "url": "layouts/without-menu",
-          "name": "Without menu",
-          "slug": "layouts-without-menu"
-        },
-        {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
-        }
-      ]
-    },
-    {
-      "name": "Welfare",
+      "name": "Welfare Ads",
       "icon": "menu-icon tf-icons ri-layout-2-line",
       "slug": "ui",
       "submenu": [
         {
           "url": "ui/carousel",
-          "name": "Dashboard",
+          "name": "List of Nomination",
           "slug": "ui-carousel"
         },
         {
           "url": "layouts/without-navbar",
-          "name": "Without navbar",
+          "name": "Praise Commitee Voting",
           "slug": "layouts-without-navbar"
         },
         {
@@ -112,51 +46,19 @@
         }
       ]
     },
+    
     {
-      "name": "Learning & Dev.",
-      "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "pages",
-      "submenu": [
-        {
-          "url": "layouts/without-menu",
-          "name": "Without menu",
-          "slug": "layouts-without-menu"
-        },
-        {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
-        }
-      ]
+      "menuHeader": "Time Flies like the gold"
     },
     {
-      "menuHeader": "Misc"
-    },
-    {
-      "url": "https://github.com/themeselection/materio-bootstrap-html-laravel-admin-template-free/issues",
+      "url": "https://fb.com/yhenavillamil",
       "icon": "menu-icon tf-icons ri-lifebuoy-line",
       "name": "Support",
       "slug": "support",
       "target": "_blank"
     },
     {
-      "url": "https://themeselection.com/demo/materio-bootstrap-html-admin-template/documentation/laravel-introduction.html",
+      "url": "https://gmail.com",
       "icon": "menu-icon tf-icons ri-article-line",
       "name": "Documentation",
       "slug": "documentation",

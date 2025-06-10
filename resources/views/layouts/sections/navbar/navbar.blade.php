@@ -70,8 +70,8 @@ $navbarDetached = ($navbarDetached ?? '');
                       </div>
                     </div>
                     <div class="flex-grow-1">
-                      <h6 class="mb-0 small">John Doe</h6>
-                      <small class="text-muted">Admin</small>
+                      <h6 class="mb-0 small">Teddygardo cutie Sakin ka na</h6>
+                      <small class="text-muted">Super Duper Admin User</small>
                     </div>
                   </div>
                 </a>
