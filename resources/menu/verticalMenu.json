@@ -132,37 +132,55 @@
       ]
     },
     {
-      "name": "Learning & Dev.",
+      "name": "Learning & Development",
       "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "pages",
+      "slug": "listofTrainings",
       "submenu": [
         {
-          "url": "layouts/without-menu",
-          "name": "Without menu",
-          "slug": "layouts-without-menu"
+          "url": "learning/listofTrainings",
+          "name": "List of Employee",
+          "slug": "listofTrainings"
         },
         {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
+          "url": "learning/trainings",
+          "name": "Courses",
+          "slug": "courses"
         },
         {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
+          "url": "learning/trainings",
+          "name": "Trainings",
+          "slug": "trainings"
         },
         {
           "url": "layouts/fluid",
-          "name": "Fluid",
+          "name": "Calendar",
           "slug": "layouts-fluid"
         },
         {
           "url": "layouts/blank",
-          "name": "Blank",
+          "name": "Scholarships",
+          "slug": "layouts-blank",
+          "target": "_blank"
+        },
+        {
+          "url": "layouts/blank",
+          "name": "Reports",
+          "slug": "layouts-blank",
+          "target": "_blank"
+        },
+        {
+          "url": "layouts/blank",
+          "name": "Users",
           "slug": "layouts-blank",
           "target": "_blank"
         }
       ]
+<<<<<<< HEAD
+=======
+    },
+    {
+      "menuHeader": "Version 1.0 (2025) "
+>>>>>>> c0c0d6cceadf477ddb38a8c593f784a000da895f
     }
   ]
 }
