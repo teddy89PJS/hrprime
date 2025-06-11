@@ -47,6 +47,10 @@ use App\Http\Controllers\learning\Trainings;
 use App\Http\Controllers\learning\CourseController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\learning\CalendarController;
+use App\Http\Controllers\learning\EventsController;
+use App\Http\Controllers\learning\ScholarshipController;
+
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -137,6 +141,17 @@ Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('
 // learnings
 Route::get('/learning/listofTrainings', [LearningDev::class, 'index'])->name('listofTrainings');
 Route::get('/learning/trainings', [Trainings::class, 'index'])->name('trainings');
+Route::get('/learning/calendar', [CalendarController::class, 'index'])->name('calendar'); // for calendar view
+Route::get('/learning/scholarship', [ScholarshipController::class, 'index'])->name('scholarship.index');
+Route::post('/learning/scholarship', [ScholarshipController::class, 'store'])->name('scholarships.store');
+Route::post('/scholarships/{id}/status', [ScholarshipController::class, 'updateStatus'])->name('scholarships.status');
+Route::get('/learning/events', [EventsController::class, 'index'])->name('events');       // for events list page
+Route::get('/calendar/events', [CalendarController::class, 'getEvents'])->name('calendar.events'); // JSON for FullCalendar
+Route::get('/calendar/events', [CalendarController::class, 'getEvents'])->name('learning.calendar.events');
+
+Route::post('/events', [EventsController::class, 'store'])->name('events.store'); // For form submission
+Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
+Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->name('events.updateStatus');
+Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
 Route::put('/courses/{course}', [CourseController::class, 'update']);
-Route::get('/learning/trainings', [CourseController::class, 'index']);
