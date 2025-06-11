@@ -62,20 +62,19 @@
           "slug": "courses"
         },
         {
-          "url": "learning/trainings",
-          "name": "Trainings",
-          "slug": "trainings"
+          "url": "learning/events",
+          "name": "Events",
+          "slug": "events"
         },
         {
-          "url": "layouts/fluid",
+          "url": "learning/calendar",
           "name": "Calendar",
-          "slug": "layouts-fluid"
+          "slug": "calendar"
         },
         {
-          "url": "layouts/blank",
+          "url": "learning/scholarship",
           "name": "Scholarships",
-          "slug": "layouts-blank",
-          "target": "_blank"
+          "slug": "scholarship"
         },
         {
           "url": "layouts/blank",
