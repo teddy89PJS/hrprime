@@ -46,23 +46,53 @@
         }
       ]
     },
-    
     {
-      "menuHeader": "Time Flies like the gold"
+      "name": "Learning & Development",
+      "icon": "menu-icon tf-icons ri-layout-2-line",
+      "slug": "listofTrainings",
+      "submenu": [
+        {
+          "url": "learning/listofTrainings",
+          "name": "List of Employee",
+          "slug": "listofTrainings"
+        },
+        {
+          "url": "learning/trainings",
+          "name": "Courses",
+          "slug": "courses"
+        },
+        {
+          "url": "learning/trainings",
+          "name": "Trainings",
+          "slug": "trainings"
+        },
+        {
+          "url": "layouts/fluid",
+          "name": "Calendar",
+          "slug": "layouts-fluid"
+        },
+        {
+          "url": "layouts/blank",
+          "name": "Scholarships",
+          "slug": "layouts-blank",
+          "target": "_blank"
+        },
+        {
+          "url": "layouts/blank",
+          "name": "Reports",
+          "slug": "layouts-blank",
+          "target": "_blank"
+        },
+        {
+          "url": "layouts/blank",
+          "name": "Users",
+          "slug": "layouts-blank",
+          "target": "_blank"
+        }
+      ]
     },
     {
-      "url": "https://fb.com/yhenavillamil",
-      "icon": "menu-icon tf-icons ri-lifebuoy-line",
-      "name": "Support",
-      "slug": "support",
-      "target": "_blank"
-    },
-    {
-      "url": "https://gmail.com",
-      "icon": "menu-icon tf-icons ri-article-line",
-      "name": "Documentation",
-      "slug": "documentation",
-      "target": "_blank"
+      "menuHeader": "Version 1.0 (2025) "
     }
   ]
 }
