@@ -9,6 +9,6 @@ class Payroll extends Controller
 {
   public function index()
   {
-    return view('content.layouts.payroll');
+    return view('content.pas.payroll');
   }
 }

@@ -21,4 +21,4 @@ $containerFooter = !empty($containerNav) ? $containerNav : 'container-fluid';
     </div>
   </div>
 </footer>
-<!--/ Footer -->
+<!-- Footer -->

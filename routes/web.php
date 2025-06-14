@@ -8,6 +8,9 @@ use App\Http\Controllers\layouts\Tax;
 use App\Http\Controllers\layouts\Deductions;
 use App\Http\Controllers\layouts\LeaveCredits;
 use App\Http\Controllers\layouts\Reports;
+use App\Http\Controllers\layouts\FundSource;
+
+use App\Http\Controllers\pas\FundSourceController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
@@ -51,31 +54,21 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
-use App\Http\Controllers\tables\Basic as TablesBasic;
-use App\Models\Employee;
+use App\Http\Controllers\learning\LearningDev;
+use App\Http\Controllers\learning\Trainings;
+use App\Http\Controllers\learning\CourseController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
+// Redirect root URL to login page
+Route::get('/', function () {
+  return redirect()->route('auth-login-basic');
+});
+// Login Page
+Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
 
-// Main Page Route - Dashboard
-Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
-
-//New Routes
-
-Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
-
-Route::get('/layouts/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
-Route::get('/layouts/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
-Route::get('/layouts/payroll', [Payroll::class, 'index'])->name('payroll');
-Route::get('/layouts/tax', [Tax::class, 'index'])->name('tax');
-Route::get('/layouts/deductions', [Deductions::class, 'index'])->name('deductions');
-Route::get('/layouts/leavecredits', [LeaveCredits ::class, 'index'])->name('leavecredits');
-Route::get('/layouts/reports', [Reports ::class, 'index'])->name('reports');
-
-
-
-
-
-
-
+// Dashboard (you can protect this later with auth middleware)
+Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
 //Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
 // layout
@@ -94,9 +87,29 @@ Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-e
 Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
 
 // authentication
-Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
 Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
-Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])->name('auth-reset-password-basic');
+Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])->name('auth-forgot-password-basic');
+Route::post('/auth/register-basic', [RegisterBasic::class, 'store'])->name('register.store');
+Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
+Route::post('/auth/login-basic', [LoginBasic::class, 'store'])->name('login.store');
+Route::get('/auth/otp', [LoginBasic::class, 'showOtpForm'])->name('otp.form');
+Route::post('/auth/otp', [LoginBasic::class, 'verifyOtp'])->name('otp.verify');
+
+
+// Forgot Password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Reset Password
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+Route::middleware(['auth'])->group(function () {
+  Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
+});
+
+
+
 
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
@@ -137,5 +150,24 @@ Route::get('/forms/input-groups', [InputGroups::class, 'index'])->name('forms-in
 Route::get('/form/layouts-vertical', [VerticalForm::class, 'index'])->name('form-layouts-vertical');
 Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
 
-// tables
-Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
+// learnings
+Route::get('/learning/listofTrainings', [LearningDev::class, 'index'])->name('listofTrainings');
+Route::get('/learning/trainings', [Trainings::class, 'index'])->name('trainings');
+Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
+Route::put('/courses/{course}', [CourseController::class, 'update']);
+Route::get('/learning/trainings', [CourseController::class, 'index']);
+
+
+//PAS
+
+Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+
+Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
+Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
+Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
+Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
+Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
+Route::get('/pas/leavecredits', [LeaveCredits ::class, 'index'])->name('leavecredits');
+Route::get('/pas/reports', [Reports ::class, 'index'])->name('reports');
+
+Route::resource('/pas/fundsource', FundSourceController::class);

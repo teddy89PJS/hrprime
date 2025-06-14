@@ -9,6 +9,6 @@ class LeaveCredits extends Controller
 {
   public function index()
   {
-    return view('content.layouts.leavecredits');
+    return view('content.pas.leavecredits');
   }
 }

@@ -9,6 +9,6 @@ class Tax extends Controller
 {
   public function index()
   {
-    return view('content.layouts.tax');
+    return view('content.pas.tax');
   }
 }

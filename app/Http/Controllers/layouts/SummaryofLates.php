@@ -9,6 +9,6 @@ class SummaryofLates extends Controller
 {
   public function index()
   {
-    return view('content.layouts.summary_of_lates');
+    return view('content.pas.summary_of_lates');
   }
 }
