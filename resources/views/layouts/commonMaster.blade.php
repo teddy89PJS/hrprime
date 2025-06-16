@@ -18,15 +18,15 @@
 </head>
 
 <body>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   @yield('layoutContent')
   {{-- This section MUST load jQuery and other core template libraries first. --}}
   @include('layouts/sections/scripts')
-  {{-- This section MUST load AFTER jQuery from your core scripts, but BEFORE your custom page scripts. --}}
-  @yield('vendor-script')
-  {{-- This section MUST load LAST, after all libraries are available. --}}
-  @yield('page-script')
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
 </body>
 
 </html>
