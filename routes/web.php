@@ -191,7 +191,7 @@ Route::get('/learning/trainings', [CourseController::class, 'index']);
 // Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
 // Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
 // Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
-Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
+// Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
 Route::prefix('pas')->group(function () {
   Route::resource('fundsource', FundSourceController::class);
