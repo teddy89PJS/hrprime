@@ -14,6 +14,58 @@
       ]
     },
     {
+      "name": "Planning",
+      "icon": "menu-icon tf-icons ri-layout-2-line",
+      "slug": "layouts",
+      "submenu": [
+        {
+          "url": "layouts/list-of-employee",
+          "name": "List of Employee",
+          "slug": "layouts-list-of-employee"
+        },
+        {
+          "url": "layouts/registration-form",
+          "name": "Registration Form",
+          "slug": "layouts-registration-form"
+        },
+        {
+          "url": "layouts/list-of-position",
+          "name": "List of Positions",
+          "slug": "layouts-list-of-position"
+        },
+        {
+          "url": "layouts/office-location",
+          "name": "Office Location",
+          "slug": "layouts-office-location"
+        },
+        {
+          "url": "layouts/division",
+          "name": "Division",
+          "slug": "layouts-division"
+        },
+        {
+          "url": "layouts/section",
+          "name": "Section",
+          "slug": "layouts-section"
+        },
+        {
+          "url": "layouts/employment-status",
+          "name": "Employment Status",
+          "slug": "layouts-employment-status"
+        },
+        {
+          "url": "layouts/salary-grade",
+          "name": "Salary Grade",
+          "slug": "layouts-salary-grade"
+        },
+        {
+          "url": "layouts/fund-source",
+          "name": "Fund Source",
+          "slug": "layouts-fund-source"
+        }
+      ]
+    },
+    {
       "name": "PAS",
       "icon": "menu-icon tf-icons ri-layout-2-line",
       "slug": "tables",
@@ -138,20 +190,19 @@
           "slug": "courses"
         },
         {
-          "url": "learning/trainings",
-          "name": "Trainings",
-          "slug": "trainings"
+          "url": "learning/events",
+          "name": "Events",
+          "slug": "events"
         },
         {
-          "url": "layouts/fluid",
+          "url": "learning/calendar",
           "name": "Calendar",
-          "slug": "layouts-fluid"
+          "slug": "calendar"
         },
         {
-          "url": "layouts/blank",
+          "url": "learning/scholarship",
           "name": "Scholarships",
-          "slug": "layouts-blank",
-          "target": "_blank"
+          "slug": "scholarship"
         },
         {
           "url": "layouts/blank",

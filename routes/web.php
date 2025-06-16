@@ -1,6 +1,6 @@
 <?php
 
-//New Routes
+//PAS Routes
 use App\Http\Controllers\layouts\ImportPayroll;
 use App\Http\Controllers\layouts\SummaryofLates;
 use App\Http\Controllers\layouts\Payroll;
@@ -8,17 +8,20 @@ use App\Http\Controllers\layouts\Tax;
 use App\Http\Controllers\layouts\Deductions;
 use App\Http\Controllers\layouts\LeaveCredits;
 use App\Http\Controllers\layouts\Reports;
-use App\Http\Controllers\layouts\FundSource;
-
 use App\Http\Controllers\pas\FundSourceController;
+
+use App\Http\Controllers\layouts\FundSource;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
-use App\Http\Controllers\layouts\WithoutMenu;
-use App\Http\Controllers\layouts\WithoutNavbar;
-use App\Http\Controllers\layouts\Fluid;
-use App\Http\Controllers\layouts\Container;
-use App\Http\Controllers\layouts\Blank;
+use App\Http\Controllers\layouts\ListofEmployee;
+use App\Http\Controllers\layouts\RegistrationForm;
+use App\Http\Controllers\layouts\ListofPosition;
+use App\Http\Controllers\layouts\OfficeLocation;
+use App\Http\Controllers\layouts\Division;
+use App\Http\Controllers\layouts\Section;
+use App\Http\Controllers\layouts\EmploymentStatus;
+use App\Http\Controllers\layouts\SalaryGrade;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\pages\AccountSettingsConnections;
@@ -59,6 +62,10 @@ use App\Http\Controllers\learning\Trainings;
 use App\Http\Controllers\learning\CourseController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\learning\CalendarController;
+use App\Http\Controllers\learning\EventsController;
+use App\Http\Controllers\learning\ScholarshipController;
+
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -70,14 +77,18 @@ Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
+// Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
 // layout
-Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
-Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
+Route::get('/layouts/list-of-employee', [ListofEmployee::class, 'index'])->name('layouts-list-of-employee');
+Route::get('/layouts/registration-form', [RegistrationForm::class, 'index'])->name('layouts-registration-form');
+Route::get('/layouts/list-of-position', [ListofPosition::class, 'index'])->name('layouts-list-of-position');
+Route::get('/layouts/office-location', [OfficeLocation::class, 'index'])->name('layouts-office-location');
+Route::get('/layouts/division', [Division::class, 'index'])->name('layouts-division');
+Route::get('/layouts/section', [Section::class, 'index'])->name('layouts-section');
+Route::get('/layouts/employment-status', [EmploymentStatus::class, 'index'])->name('layouts-employment-status');
+Route::get('/layouts/salary-grade', [SalaryGrade::class, 'index'])->name('layouts-salary-grade');
+Route::get('/layouts/fund-source', [FundSource::class, 'index'])->name('layouts-fund-source');
 
-
-Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
-Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
@@ -153,21 +164,21 @@ Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('
 // learnings
 Route::get('/learning/listofTrainings', [LearningDev::class, 'index'])->name('listofTrainings');
 Route::get('/learning/trainings', [Trainings::class, 'index'])->name('trainings');
+Route::get('/learning/calendar', [CalendarController::class, 'index'])->name('calendar'); // for calendar view
+Route::get('/learning/scholarship', [ScholarshipController::class, 'index'])->name('scholarship.index');
+Route::post('/learning/scholarship', [ScholarshipController::class, 'store'])->name('scholarships.store');
+Route::post('/scholarships/{id}/status', [ScholarshipController::class, 'updateStatus'])->name('scholarships.status');
+Route::get('/learning/events', [EventsController::class, 'index'])->name('events');       // for events list page
+Route::get('/calendar/events', [CalendarController::class, 'getEvents'])->name('calendar.events'); // JSON for FullCalendar
+Route::get('/calendar/events', [CalendarController::class, 'getEvents'])->name('learning.calendar.events');
+
+Route::post('/events', [EventsController::class, 'store'])->name('events.store'); // For form submission
+Route::post('/events/store', [EventsController::class, 'store'])->name('events.store');
+Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->name('events.updateStatus');
+Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
 Route::put('/courses/{course}', [CourseController::class, 'update']);
-Route::get('/learning/trainings', [CourseController::class, 'index']);
 
 
-//PAS
-
-Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
-
-Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
-Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
-Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
-Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
-Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
-Route::get('/pas/leavecredits', [LeaveCredits ::class, 'index'])->name('leavecredits');
-Route::get('/pas/reports', [Reports ::class, 'index'])->name('reports');
-
+//Pas Route
 Route::resource('/pas/fundsource', FundSourceController::class);
