@@ -8,21 +8,9 @@ use App\Http\Controllers\layouts\Tax;
 use App\Http\Controllers\layouts\Deductions;
 use App\Http\Controllers\layouts\LeaveCredits;
 use App\Http\Controllers\layouts\Reports;
-use App\Http\Controllers\layouts\FundSource;
-
 use App\Http\Controllers\pas\FundSourceController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
-use App\Http\Controllers\layouts\ListofEmployee;
-use App\Http\Controllers\layouts\RegistrationForm;
-use App\Http\Controllers\layouts\ListofPosition;
-use App\Http\Controllers\layouts\OfficeLocation;
-use App\Http\Controllers\layouts\Division;
-use App\Http\Controllers\layouts\Section;
-use App\Http\Controllers\layouts\EmploymentStatus;
-use App\Http\Controllers\layouts\SalaryGrade;
-use App\Http\Controllers\layouts\FundSource;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\pages\AccountSettingsConnections;
@@ -80,12 +68,12 @@ Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics
 
 // Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
 // layout
-Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
-Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
+// Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+// Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
 
 
-Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
-Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
+// Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
+// Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
@@ -180,7 +168,7 @@ Route::get('/learning/trainings', [CourseController::class, 'index']);
 
 //PAS
 
-Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 
 Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
 Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
