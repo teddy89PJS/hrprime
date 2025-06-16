@@ -32,7 +32,7 @@
               <form method="POST" action="{{ route('otp.verify') }}">
                 @csrf
                 <div class="form-floating form-floating-outline mb-4">
-                  <input type="text" class="form-control" name="otp" placeholder="Enter OTP" required>
+                  <input type="text" class="form-control" name="otp" placeholder="Enter 6-digits OTP" required>
                   <label for="otp">One-Time Password</label>
                 </div>
 

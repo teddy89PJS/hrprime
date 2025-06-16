@@ -50,6 +50,10 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
+use App\Http\Controllers\welfare\AwardController;
+
+
+
 
 
 // Redirect root URL to login page
@@ -98,6 +102,11 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 });
+
+
+// welfare
+Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
+
 
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');

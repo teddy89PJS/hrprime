@@ -41,7 +41,7 @@
               <span class="d-none d-sm-block">Reset</span>
             </button>
 
-            <div>Allowed JPG, GIF or PNG. Max size of 800K</div>
+            <div>Allowed JPG, GIF or PNG. Max size of 3MB</div>
           </div>
         </div>
       </div>
@@ -198,7 +198,7 @@
             <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
             <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
           </div>
-          <button type="submit" class="btn btn-danger deactivate-account" disabled="disabled">Deactivate Account</button>
+          <button type="submit" class="btn btn-danger deactivate-account" disabled="disabled">Delete Account</button>
         </form>
       </div>
     </div>
