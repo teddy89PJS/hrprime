@@ -19,49 +19,39 @@
       "slug": "layouts",
       "submenu": [
         {
-          "url": "layouts/list-of-employee",
+          "url": "hrplanning/list-of-employee",
           "name": "List of Employee",
           "slug": "layouts-list-of-employee"
         },
         {
-          "url": "layouts/registration-form",
+          "url": "hrplanning/registration-form",
           "name": "Registration Form",
           "slug": "layouts-registration-form"
         },
         {
-          "url": "layouts/list-of-position",
+          "url": "hrplanning/list-of-position",
           "name": "List of Positions",
           "slug": "layouts-list-of-position"
         },
         {
-          "url": "layouts/office-location",
+          "url": "hrplanning/office-location",
           "name": "Office Location",
           "slug": "layouts-office-location"
         },
         {
-          "url": "layouts/division",
+          "url": "hrplanning/division",
           "name": "Division",
           "slug": "layouts-division"
         },
         {
-          "url": "layouts/section",
+          "url": "hrplanning/section",
           "name": "Section",
           "slug": "layouts-section"
         },
         {
-          "url": "layouts/employment-status",
+          "url": "hrplanning/employment-status",
           "name": "Employment Status",
           "slug": "layouts-employment-status"
-        },
-        {
-          "url": "layouts/salary-grade",
-          "name": "Salary Grade",
-          "slug": "layouts-salary-grade"
-        },
-        {
-          "url": "layouts/fund-source",
-          "name": "Fund Source",
-          "slug": "layouts-fund-source"
         }
       ]
     },

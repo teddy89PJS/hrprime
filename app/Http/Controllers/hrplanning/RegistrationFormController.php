@@ -5,11 +5,11 @@ namespace App\Http\Controllers\layouts;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OfficeLocation extends Controller
+class RegistrationFormController extends Controller
 {
   public function index()
   {
 
-    return view('content.layouts-example.layouts-office-location');
+    return view('content.hrplanning.layouts-registration-form');
   }
 }

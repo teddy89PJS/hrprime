@@ -5,11 +5,11 @@ namespace App\Http\Controllers\layouts;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ListofEmployee extends Controller
+class ListofPositionController extends Controller
 {
   public function index()
   {
 
-    return view('content.layouts-example.layouts-list-of-employee');
+    return view('content.hrplanning.layouts-list-of-position');
   }
 }
