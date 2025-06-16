@@ -2,7 +2,7 @@
 
   <!-- ! Hide app brand if navbar-full -->
   <div class="app-brand demo">
-    <a href="{{url('/')}}" class="app-brand-link">
+    <a href="{{url('dashboard')}}" class="app-brand-link">
       <span class="app-brand-logo demo me-1">
 
         <img src="{{ asset('assets/img/logo-dswd.png') }}" alt="DSWD Logo" height="50" style="background: #fff;" />
