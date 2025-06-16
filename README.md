@@ -13,3 +13,13 @@ yarn</b>
 <p>To serve the application, you need to run the following command in the project directory</p>
 <b>php artisan serve</b>
 <p>Now navigate to the given address, and you will see your application is running.🥳</p>
+<<<<<<< HEAD
+<p>To create a database for the system,run</p>
+<b>php artisan migrate</b>
+
+=======
+<<<<<<< HEAD
+>>>>>>> d35859f (Update README.md)
+=======
+>>>>>>> hrLearningDev
+>>>>>>> 0ad607662d1c9e6ed874cacfe933db94320ec0ad

@@ -1,12 +1,13 @@
 {
   "menu": [
     {
-      "url": "/",
-      "name": "Dashboards",
+      "url": "/dashboard",
+      "name": "Dashboard",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "dashboard",
       "submenu": [
         {
+          "url": "dashboard",
           "url": "dashboard",
           "name": "Analytics",
           "slug": "dashboard-analytics"
@@ -95,9 +96,6 @@
           "target": "_blank"
         }
       ]
-    },
-    {
-      "menuHeader": "Version 1.0 (2025) "
     }
   ]
 }

@@ -1,12 +1,16 @@
 <?php
 
+//New Routes
+use App\Http\Controllers\layouts\ImportPayroll;
+use App\Http\Controllers\layouts\SummaryofLates;
+use App\Http\Controllers\layouts\Payroll;
+use App\Http\Controllers\layouts\Tax;
+use App\Http\Controllers\layouts\Deductions;
+use App\Http\Controllers\layouts\LeaveCredits;
+use App\Http\Controllers\layouts\Reports;
+use App\Http\Controllers\pas\FundSourceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
-use App\Http\Controllers\layouts\WithoutMenu;
-use App\Http\Controllers\layouts\WithoutNavbar;
-use App\Http\Controllers\layouts\Fluid;
-use App\Http\Controllers\layouts\Container;
-use App\Http\Controllers\layouts\Blank;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\pages\AccountSettingsConnections;
@@ -66,13 +70,14 @@ Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-//Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
+// Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
 // layout
-Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
-Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
-Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
-Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
-Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
+// Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+// Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
+
+
+// Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
+// Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
@@ -164,3 +169,21 @@ Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->n
 Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
 Route::put('/courses/{course}', [CourseController::class, 'update']);
+Route::get('/learning/trainings', [CourseController::class, 'index']);
+
+
+//PAS
+
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+
+Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
+Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
+Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
+Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
+Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
+Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
+Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
+
+Route::prefix('pas')->group(function () {
+  Route::resource('fundsource', FundSourceController::class);
+});
