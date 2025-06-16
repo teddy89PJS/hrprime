@@ -54,18 +54,15 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
-use App\Http\Controllers\welfare\AwardController;
-
-
-
+// use App\Http\Controllers\welfare\AwardController;
 
 use App\Http\Controllers\planning\ListofEmployee;
 use App\Http\Controllers\planning\RegistrationForm;
 use App\Http\Controllers\planning\ListofPosition;
 use App\Http\Controllers\planning\OfficeLocation;
-use App\Http\Controllers\planning\Division;
-use App\Http\Controllers\planning\Section;
-use App\Http\Controllers\planning\EmploymentStatus;
+use App\Http\Controllers\planning\DivisionController;
+use App\Http\Controllers\planning\SectionController;
+// use App\Http\Controllers\planning\EmploymentStatus;
 // use App\Http\Controllers\layouts\SalaryGrade;
 // use App\Http\Controllers\layouts\FundSource;
 
@@ -84,9 +81,20 @@ Route::get('/planning/list-of-employee', [ListofEmployee::class, 'index'])->name
 Route::get('/planning/registration-form', [RegistrationForm::class, 'index'])->name('registration-form');
 Route::get('/planning/list-of-position', [ListofPosition::class, 'index'])->name('list-of-position');
 Route::get('/planning/office-location', [OfficeLocation::class, 'index'])->name('office-location');
-Route::get('/planning/division', [Division::class, 'index'])->name('division');
-Route::get('/planning/section', [Section::class, 'index'])->name('section');
-Route::get('/planning/employment-status', [EmploymentStatus::class, 'index'])->name('employment-status');
+
+Route::prefix('/planning/division')->group(function () {
+  Route::get('/', [DivisionController::class, 'index'])->name('division.index');
+  Route::post('/store', [DivisionController::class, 'store'])->name('division.store');
+  Route::post('/{id}/update', [DivisionController::class, 'update'])->name('division.update');
+  Route::post('/{id}/delete', [DivisionController::class, 'destroy'])->name('division.delete');
+});
+
+Route::prefix('/planning/section')->group(function () {
+  Route::get('/', [SectionController::class, 'index'])->name('section.index');
+  Route::post('/store', [SectionController::class, 'store'])->name('section.store');
+  Route::post('/{id}/update', [SectionController::class, 'update'])->name('section.update');
+  Route::post('/{id}/delete', [SectionController::class, 'destroy'])->name('section.delete');
+});
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
@@ -177,8 +185,7 @@ Route::post('/events/store', [EventsController::class, 'store'])->name('events.s
 Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->name('events.updateStatus');
 Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
-Route::put('/courses/{course}', [CourseController::class, 'update']);
-Route::get('/learning/trainings', [CourseController::class, 'index']);
+Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
 
 
 //PAS
@@ -194,4 +201,4 @@ Route::get('/learning/trainings', [CourseController::class, 'index']);
 // Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
 // Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
-Route::resource('/pas/fundsource', FundSourceController::class);
+// Route::resource('/pas/fundsource', FundSourceController::class);

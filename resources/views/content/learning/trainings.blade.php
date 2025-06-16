@@ -4,8 +4,6 @@
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -264,7 +262,7 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <h3>Edit Course</h3>
-    <form id="editCourseForm" method="POST" action="{{ route('courses.update') }}" enctype="multipart/form-data">
+    <form id="editCourseForm" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="id" />
 
       <label>Course Title:</label>

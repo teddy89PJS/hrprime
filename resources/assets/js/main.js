@@ -160,6 +160,7 @@ let menu, animate;
   window.Helpers.setCollapsed(true, false);
 })();
 
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', function () {
   const viewModal = document.getElementById('viewModal');
 
@@ -177,6 +178,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('view-description').textContent = description;
   });
 });
+=======
+>>>>>>> f4deec61483308d09f59323edda09f89cd3a83df
 
 document.addEventListener('DOMContentLoaded', function () {
   const editModal = document.getElementById('editModal');
@@ -204,6 +207,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> f4deec61483308d09f59323edda09f89cd3a83df

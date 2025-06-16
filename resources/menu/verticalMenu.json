@@ -8,48 +8,169 @@
       "submenu": [
         {
           "url": "dashboard",
-          "url": "dashboard",
           "name": "Analytics",
           "slug": "dashboard-analytics"
         }
       ]
     },
     {
-      "name": " HR Welfare",
+      "name": "Planning",
+      "icon": "menu-icon tf-icons ri-layout-2-line",
+      "slug": "planning",
+      "submenu": [
+        {
+          "url": "planning/list-of-employee",
+          "name": "List of Employee",
+          "slug": "list-of-employee"
+        },
+        {
+          "url": "planning/registration-form",
+          "name": "Registration Form",
+          "slug": "registration-form"
+        },
+        {
+          "url": "planning/list-of-position",
+          "name": "List of Positions",
+          "slug": "list-of-position"
+        },
+        {
+          "url": "planning/office-location",
+          "name": "Office Location",
+          "slug": "office-location"
+        },
+        {
+          "url": "planning/division",
+          "name": "Division",
+          "slug": "division"
+        },
+        {
+          "url": "planning/section",
+          "name": "Section",
+          "slug": "section"
+        },
+        {
+          "url": "planning/employment-status",
+          "name": "Employment Status",
+          "slug": "employment-status"
+        }
+      ]
+    },
+    {
+      "name": "PAS",
+      "icon": "menu-icon tf-icons ri-layout-2-line",
+      "slug": "tables",
+      "submenu": [
+        {
+          "url": "layouts/without-menu",
+          "name": "List of Employees",
+          "slug": "without-menu"
+        },
+        {
+          "url": "layouts/without-menu",
+          "name": "Payroll",
+          "slug": "without-menu",
+          "submenu": [
+            {
+              "url": "pas/import_payroll",
+              "name": "Import Payroll",
+              "slug": "import_payroll"
+            },
+            {
+              "url": "pas/summary_of_lates",
+              "name": "Summary of Lates",
+              "slug": "summary_of_lates"
+            },
+            {
+              "url": "pas/payroll",
+              "name": "Payroll",
+              "slug": "payroll"
+            },
+            {
+              "url": "pas/tax",
+              "name": "Tax",
+              "slug": "tax"
+            },
+            {
+              "url": "pas/deductions",
+              "name": "Deductions",
+              "slug": "deductions"
+            },
+            {
+              "url": "pas/leavecredits",
+              "name": "Leave Credits",
+              "slug": "leavecredits"
+            },
+            {
+              "url": "pas/fundsource",
+              "name": "Fund Source",
+              "slug": "fundsource"
+            },
+            {
+              "url": "pas/reports",
+              "name": "Reports",
+              "slug": "reports"
+            }
+          ]
+        },
+        {
+          "url": "layouts/without-menu",
+          "name": "Requests",
+          "slug": "without-menu",
+          "submenu": [
+            {
+              "url": "layouts/without-menu",
+              "name": "Leave",
+              "slug": "without-menu"
+            },
+            {
+              "url": "layouts/without-menu",
+              "name": "Outslip",
+              "slug": "without-menu"
+            },
+            {
+              "url": "layouts/without-menu",
+              "name": "Payslip",
+              "slug": "without-menu"
+            },
+            {
+              "url": "layouts/without-menu",
+              "name": "Certificates",
+              "slug": "without-menu"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Welfare",
       "icon": "menu-icon tf-icons ri-layout-2-line",
       "slug": "ui",
       "submenu": [
         {
-          "url": "welfare/listofnomination",
-          "name": "List of Nomination",
-          "slug": "listofnimation"
+          "url": "ui/carousel",
+          "name": "Dashboard",
+          "slug": "ui-carousel"
         },
         {
           "url": "layouts/without-navbar",
-          "name": "Praise Commitee Voting",
-          "slug": "layouts-without-navbar"
+          "name": "Without navbar",
+          "slug": "without-navbar"
         },
         {
           "url": "layouts/container",
           "name": "Container",
-          "slug": "layouts-container"
+          "slug": "container"
         },
         {
           "url": "layouts/fluid",
-          "name": "Usersnimo",
-          "slug": "layouts-fluid"
+          "name": "Fluid",
+          "slug": "fluid"
         },
         {
           "url": "layouts/blank",
           "name": "Blank",
-          "slug": "layouts-blank",
+          "slug": "blank",
           "target": "_blank"
-        },
-        {
-          "url": "/awards/create",
-          "name": "New Nomination",
-          "slug": "create",
-          "target": "_self"
         }
       ]
     },
@@ -86,16 +207,19 @@
         {
           "url": "layouts/blank",
           "name": "Reports",
-          "slug": "layouts-blank",
+          "slug": "blank",
           "target": "_blank"
         },
         {
           "url": "layouts/blank",
           "name": "Users",
-          "slug": "layouts-blank",
+          "slug": "blank",
           "target": "_blank"
         }
       ]
+    },
+    {
+      "menuHeader": "Version 1.0 (2025) "
     }
   ]
 }
