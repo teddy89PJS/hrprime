@@ -9,7 +9,7 @@ $containerFooter = !empty($containerNav) ? $containerNav : 'container-fluid';
       <div class="text-body">
         © <script>
           document.write(new Date().getFullYear())
-        </script>, made with <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span> by Teddy Gwapo Kaayo
+        </script>, made with <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span> by Teddy Gwapo Kaayo, WEH???>
         <!-- gg -->
       </div>
       <!-- <div class="d-none d-lg-inline-block">

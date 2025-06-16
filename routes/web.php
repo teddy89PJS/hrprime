@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
-use App\Http\Controllers\layouts\WithoutMenu;
-use App\Http\Controllers\layouts\WithoutNavbar;
-use App\Http\Controllers\layouts\Fluid;
-use App\Http\Controllers\layouts\Container;
-use App\Http\Controllers\layouts\Blank;
+use App\Http\Controllers\layouts\ListofEmployee;
+use App\Http\Controllers\layouts\RegistrationForm;
+use App\Http\Controllers\layouts\ListofPosition;
+use App\Http\Controllers\layouts\OfficeLocation;
+use App\Http\Controllers\layouts\Division;
+use App\Http\Controllers\layouts\Section;
+use App\Http\Controllers\layouts\EmploymentStatus;
+use App\Http\Controllers\layouts\SalaryGrade;
+use App\Http\Controllers\layouts\FundSource;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\pages\AccountSettingsConnections;
@@ -62,13 +66,18 @@ Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-//Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
+// Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
 // layout
-Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
-Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
-Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
-Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
-Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
+Route::get('/layouts/list-of-employee', [ListofEmployee::class, 'index'])->name('layouts-list-of-employee');
+Route::get('/layouts/registration-form', [RegistrationForm::class, 'index'])->name('layouts-registration-form');
+Route::get('/layouts/list-of-position', [ListofPosition::class, 'index'])->name('layouts-list-of-position');
+Route::get('/layouts/office-location', [OfficeLocation::class, 'index'])->name('layouts-office-location');
+Route::get('/layouts/division', [Division::class, 'index'])->name('layouts-division');
+Route::get('/layouts/section', [Section::class, 'index'])->name('layouts-section');
+Route::get('/layouts/employment-status', [EmploymentStatus::class, 'index'])->name('layouts-employment-status');
+Route::get('/layouts/salary-grade', [SalaryGrade::class, 'index'])->name('layouts-salary-grade');
+Route::get('/layouts/fund-source', [FundSource::class, 'index'])->name('layouts-fund-source');
+
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');

@@ -19,30 +19,49 @@
       "slug": "layouts",
       "submenu": [
         {
-          "url": "layouts/without-menu",
+          "url": "layouts/list-of-employee",
           "name": "List of Employee",
-          "slug": "layouts-without-menu"
+          "slug": "layouts-list-of-employee"
         },
         {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
+          "url": "layouts/registration-form",
+          "name": "Registration Form",
+          "slug": "layouts-registration-form"
         },
         {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
+          "url": "layouts/list-of-position",
+          "name": "List of Positions",
+          "slug": "layouts-list-of-position"
         },
         {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
+          "url": "layouts/office-location",
+          "name": "Office Location",
+          "slug": "layouts-office-location"
         },
         {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
+          "url": "layouts/division",
+          "name": "Division",
+          "slug": "layouts-division"
+        },
+        {
+          "url": "layouts/section",
+          "name": "Section",
+          "slug": "layouts-section"
+        },
+        {
+          "url": "layouts/employment-status",
+          "name": "Employement Status",
+          "slug": "layouts-employment-status"
+        },
+        {
+          "url": "layouts/salary-grade",
+          "name": "Salary Grade",
+          "slug": "layouts-salary-grade"
+        },
+        {
+          "url": "layouts/fund-source",
+          "name": "Fund Source",
+          "slug": "layouts-fund-source"
         }
       ]
     },
@@ -155,9 +174,6 @@
           "target": "_blank"
         }
       ]
-    },
-    {
-      "menuHeader": "Version 1.0 (2025) "
     }
   ]
 }
