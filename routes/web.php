@@ -54,6 +54,10 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
+use App\Http\Controllers\welfare\AwardController;
+
+
+
 
 use App\Http\Controllers\planning\ListofEmployee;
 use App\Http\Controllers\planning\RegistrationForm;
@@ -114,6 +118,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+// welfare
+Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
 
 
 // cards
