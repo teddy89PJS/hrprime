@@ -109,10 +109,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-// welfare
-Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
-
-
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
 
@@ -187,3 +183,7 @@ Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 Route::prefix('pas')->group(function () {
   Route::resource('fundsource', FundSourceController::class);
 });
+
+
+// HR WELFAREEEE - FRANS
+Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
