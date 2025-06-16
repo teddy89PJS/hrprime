@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\layouts;
+namespace App\Http\Controllers\planning;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,6 +10,6 @@ class Section extends Controller
   public function index()
   {
 
-    return view('content.layouts-example.layouts-section');
+    return view('content.planning.section');
   }
 }
