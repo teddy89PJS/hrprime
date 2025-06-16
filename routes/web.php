@@ -1,12 +1,12 @@
 <?php
 
 //New Routes
-use App\Http\Controllers\layouts\ImportPayroll;
-use App\Http\Controllers\layouts\SummaryofLates;
-use App\Http\Controllers\layouts\Payroll;
-use App\Http\Controllers\layouts\Tax;
-use App\Http\Controllers\layouts\Deductions;
-use App\Http\Controllers\layouts\LeaveCredits;
+// use App\Http\Controllers\planning\Division;
+// use App\Http\Controllers\layouts\SummaryofLates;
+// use App\Http\Controllers\layouts\Payroll;
+// use App\Http\Controllers\layouts\Tax;
+// use App\Http\Controllers\layouts\Deductions;
+// use App\Http\Controllers\layouts\LeaveCredits;
 use App\Http\Controllers\layouts\Reports;
 use App\Http\Controllers\pas\FundSourceController;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +55,16 @@ use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
 
+use App\Http\Controllers\planning\ListofEmployee;
+use App\Http\Controllers\planning\RegistrationForm;
+use App\Http\Controllers\planning\ListofPosition;
+use App\Http\Controllers\planning\OfficeLocation;
+use App\Http\Controllers\planning\Division;
+use App\Http\Controllers\planning\Section;
+use App\Http\Controllers\planning\EmploymentStatus;
+// use App\Http\Controllers\layouts\SalaryGrade;
+// use App\Http\Controllers\layouts\FundSource;
+
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -66,14 +76,13 @@ Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-// Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
-// layout
-// Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
-// Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
-
-
-// Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
-// Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
+Route::get('/planning/list-of-employee', [ListofEmployee::class, 'index'])->name('list-of-employee');
+Route::get('/planning/registration-form', [RegistrationForm::class, 'index'])->name('registration-form');
+Route::get('/planning/list-of-position', [ListofPosition::class, 'index'])->name('list-of-position');
+Route::get('/planning/office-location', [OfficeLocation::class, 'index'])->name('office-location');
+Route::get('/planning/division', [Division::class, 'index'])->name('division');
+Route::get('/planning/section', [Section::class, 'index'])->name('section');
+Route::get('/planning/employment-status', [EmploymentStatus::class, 'index'])->name('employment-status');
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
@@ -170,12 +179,12 @@ Route::get('/learning/trainings', [CourseController::class, 'index']);
 
 // Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 
-Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
-Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
-Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
-Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
-Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
-Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
+// Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
+// Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
+// Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
+// Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
+// Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
+// Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
 Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
 Route::prefix('pas')->group(function () {
