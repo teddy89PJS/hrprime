@@ -159,3 +159,31 @@ let menu, animate;
   // Auto update menu collapsed/expanded based on the themeConfig
   window.Helpers.setCollapsed(true, false);
 })();
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const editModal = document.getElementById('editModal');
+  editModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+
+    const id = button.getAttribute('data-id');
+    const fund_source = button.getAttribute('data-fund_source');
+    const description = button.getAttribute('data-description');
+
+    document.getElementById('edit-id').value = id;
+    document.getElementById('edit-fund_source').value = fund_source;
+    document.getElementById('edit-description').value = description;
+
+    // Dynamically set form action to /fundsource/{id}
+    const form = document.getElementById('editForm');
+    form.action = `/fundsource/${id}`;
+  });
+});
+
+
+
+
+
+
+
+

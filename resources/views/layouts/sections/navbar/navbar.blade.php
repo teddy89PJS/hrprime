@@ -18,7 +18,7 @@ $navbarDetached = ($navbarDetached ?? '');
       <!--  Brand demo (display only for navbar-full and hide on below xl) -->
       @if(isset($navbarFull))
       <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-6">
-        <a href="{{url('/')}}" class="app-brand-link gap-2">
+        <a href="{{url('dashboard')}}" class="app-brand-link gap-2">
           <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20])</span>
           <span class="app-brand-text demo menu-text fw-semibold ms-1">{{config('variables.templateName')}}</span>
         </a>
@@ -36,6 +36,7 @@ $navbarDetached = ($navbarDetached ?? '');
         </a>
       </div>
       @endif
+      <!-- Hamburger Menu For Smaller Display -->
 
       <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <!-- Search -->

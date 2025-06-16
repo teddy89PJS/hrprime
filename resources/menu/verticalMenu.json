@@ -1,13 +1,13 @@
 {
   "menu": [
     {
-      "url": "/",
-      "name": "Dashboards",
+      "url": "/dashboard",
+      "name": "Dashboard",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "dashboard",
       "submenu": [
         {
-          "url": "/",
+          "url": "dashboard",
           "name": "Analytics",
           "slug": "dashboard-analytics"
         }
@@ -72,29 +72,72 @@
       "submenu": [
         {
           "url": "layouts/without-menu",
-          "name": "Without menu",
+          "name": "List of Employees",
           "slug": "layouts-without-menu"
         },
-        {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
+ {
+          "url": "layouts/without-menu",
+          "name": "Payroll",
+          "slug": "layouts-without-menu",
+
+          "submenu":[{
+            "url": "pas/import_payroll",
+            "name": "Import Payroll",
+            "slug": "import_payroll"
+          },{
+            "url": "pas/summary_of_lates",
+            "name": "Summary of Lates",
+            "slug": "summary_of_lates"
+          },{
+            "url": "pas/payroll",
+            "name": "Payroll",
+            "slug": "payroll"
+          },{
+            "url": "pas/tax",
+            "name": "Tax",
+            "slug": "tax"
+          },{
+            "url": "pas/deductions",
+            "name": "Deductions",
+            "slug": "deductions"
+          }
+          ,{
+            "url": "pas/leavecredits",
+            "name": "Leave Credits",
+            "slug": "leavecredits"
+          },{
+            "url": "pas/fundsource",
+            "name": "Fund Source",
+            "slug": "fundsource"
+          },{
+            "url": "pas/reports",
+            "name": "Reports",
+            "slug": "reports"
+          }
+        ]
         },
         {
-          "url": "layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
+          "url": "layouts/without-menu",
+          "name": "Requests",
+          "slug": "layouts-without-menu",
+          "submenu":[{
+            "url": "layouts/without-menu",
+            "name": "Leave",
+            "slug": "layouts-without-menu"
+          },{
+            "url": "layouts/without-menu",
+            "name": "Outslip",
+            "slug": "layouts-without-menu"
+          },{
+            "url": "layouts/without-menu",
+            "name": "Payslip",
+            "slug": "layouts-without-menu"
+          },{
+            "url": "layouts/without-menu",
+            "name": "Certificates",
+            "slug": "layouts-without-menu"
+          }
+        ]
         }
       ]
     },
@@ -174,6 +217,9 @@
           "target": "_blank"
         }
       ]
+    },
+    {
+      "menuHeader": "Version 1.0 (2025) "
     }
   ]
 }
