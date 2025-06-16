@@ -70,7 +70,7 @@ Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-//Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
+Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
