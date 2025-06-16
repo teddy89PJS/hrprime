@@ -155,3 +155,5 @@ Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->n
 Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
 Route::put('/courses/{course}', [CourseController::class, 'update']);
+Route::post('/courses/update', [CourseController::class, 'updateCourse'])->name('courses.update');
+Route::post('/courses/{id}', [CourseController::class, 'update']);
