@@ -184,6 +184,7 @@ Route::get('/learning/trainings', [CourseController::class, 'index']);
 //PAS
 
 // Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 
 // Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
 // Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
@@ -193,6 +194,4 @@ Route::get('/learning/trainings', [CourseController::class, 'index']);
 // Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
 // Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
-Route::prefix('pas')->group(function () {
-  Route::resource('fundsource', FundSourceController::class);
-});
+Route::resource('/pas/fundsource', FundSourceController::class);
