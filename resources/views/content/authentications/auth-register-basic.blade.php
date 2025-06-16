@@ -1,6 +1,6 @@
 @extends('layouts/blankLayout')
 
-@section('title', 'Register Basic - Pages')
+@section('title', 'Register Account')
 
 @section('page-style')
 @vite([
@@ -53,7 +53,7 @@
                 <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" required>
                 <label class="form-check-label" for="terms-conditions">
                   I agree to
-                  <a href="#">privacy policy & terms</a>
+                  <a href="#">Privacy Policy & Terms</a>
                 </label>
               </div>
             </div>

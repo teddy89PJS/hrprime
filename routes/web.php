@@ -54,6 +54,10 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
+use App\Http\Controllers\welfare\AwardController;
+
+
+
 
 
 // Redirect root URL to login page
@@ -70,8 +74,12 @@ Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics
 // layout
 // Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
 // Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
+// Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+// Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
 
 
+// Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
+// Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 // Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
 // Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 
@@ -105,6 +113,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+// welfare
+Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
 
 
 // cards
@@ -169,12 +179,15 @@ Route::get('/learning/trainings', [CourseController::class, 'index']);
 //PAS
 
 // Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 
 Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
 Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
 Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
 Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
 Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
+Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
+Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
 Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
