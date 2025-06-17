@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\layouts;
+namespace App\Http\Controllers\pas;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Payroll extends Controller
+class PayrollController extends Controller
 {
   public function index()
   {

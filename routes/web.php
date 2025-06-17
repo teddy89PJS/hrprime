@@ -3,12 +3,12 @@
 //PAS Routes
 use App\Http\Controllers\layouts\ImportPayroll;
 use App\Http\Controllers\layouts\SummaryofLates;
-use App\Http\Controllers\layouts\Payroll;
 use App\Http\Controllers\layouts\Tax;
 use App\Http\Controllers\layouts\Deductions;
 use App\Http\Controllers\layouts\LeaveCredits;
 use App\Http\Controllers\layouts\Reports;
 use App\Http\Controllers\pas\FundSourceController;
+use App\Http\Controllers\pas\PayrollController;
 
 use App\Http\Controllers\layouts\FundSource;
 
@@ -65,7 +65,6 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
-
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -182,3 +181,5 @@ Route::put('/courses/{course}', [CourseController::class, 'update']);
 
 //Pas Route
 Route::resource('/pas/fundsource', FundSourceController::class);
+Route::get('/pas/payroll', [PayrollController::class, 'index'])->name('payroll');
+

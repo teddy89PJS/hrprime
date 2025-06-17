@@ -49,13 +49,13 @@ $container = ($container ?? 'container-xxl');
             @yield('content')
 
           </div>
-          <!-- / Content -->
 
-          <!-- Footer -->
-          <!-- @if ($isFooter)
+
+
+          @if ($isFooter)
           @include('layouts/sections/footer/footer')
-          @endif -->
-          <!-- / Footer -->
+          @endif
+
 
 
           <div class="content-backdrop fade"></div>

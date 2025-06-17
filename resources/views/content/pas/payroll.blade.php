@@ -12,39 +12,41 @@ $containerNav = 'container-fluid';
 
 @section('content')
 <!-- Basic Bootstrap Table -->
-<div class="card">
-  asdas
-  asdas
-  <br>
+<div class="container-fluid p-2">
 
 
-  asdas
-  <br>
-  asdas
-  <br>
+<div class="container text-center">
 
-  asdas
-  <br>
+<div class="container text-center">
+  <div class="row row-cols-lg-7 ">
+        <div class="col-md-4">
+         <label for="fundsource" class="float-start form-label fw-semibold">Fund Source</label>
+        <select class="form-select form-select-sm" aria-label="Small select example">
+          <option selected disabled>Select Fund Source</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        </div>
+        <div class="col-md-4">
+         <label for="tranche" class="float-start form-label fw-semibold">Tranche</label>
+        <select class="form-select form-select-sm" aria-label="Small select example">
+          <option selected disabled>Select Tranche</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        </div>
 
-  asdas
-  <br>
-  asdas
-  <br>
-  asdas
-  <br>
-  asdas
-  <br>
-  asdas
-  asdas
+        <div class="col-md-4">
+          <label for="selectmonth" class="float-start form-label fw-semibold">Select Month</label>
+          <input type="month" id="bdaymonth" name="bdaymonth" class="form-control form-control-sm">
+        </div>
 
-  asdas
-  <br>
-  asdas
-  asdas
-  asdas
-<br>
+</div>
 
-  asdas
+</div>
+
 </div>
 
 </>@endsection
