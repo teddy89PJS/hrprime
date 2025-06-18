@@ -54,7 +54,6 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
-// use App\Http\Controllers\welfare\AwardController;
 
 use App\Http\Controllers\planning\ListofEmployee;
 use App\Http\Controllers\planning\RegistrationForm;
@@ -239,7 +238,6 @@ Route::put('/courses/{course}', [CourseController::class, 'update'])->name('cour
 // Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
 // Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
-<<<<<<< HEAD
 Route::prefix('pas')->group(function () {
   Route::resource('fundsource', FundSourceController::class);
 });
@@ -247,6 +245,3 @@ Route::prefix('pas')->group(function () {
 
 // HR WELFAREEEE - FRANS
 Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
-=======
-Route::resource('/pas/fundsource', FundSourceController::class);
->>>>>>> 68b2ba6ba2d4e9d534653915fcb8bc83d9fbe6a5
