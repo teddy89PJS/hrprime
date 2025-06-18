@@ -69,6 +69,7 @@ use App\Http\Controllers\Planning\UserController;
 //PAS
 use App\Http\Controllers\pas\FundSourceController;
 use App\Http\Controllers\pas\PayrollController;
+use App\Http\Controllers\pas\TaxController;
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -148,6 +149,15 @@ Route::post('/store', [FundSourceController::class, 'store'])->name('fundsource.
 Route::post('/{id}/update', [FundSourceController::class, 'update'])->name('fundsource.update');
 Route::post('/{id}/delete', [FundSourceController::class, 'destroy'])->name('fundsource.delete');
 });
+
+Route::prefix('/pas/tax')->group(function () {
+Route::get('/', [TaxController::class, 'index'])->name('tax.index');
+Route::post('/store', [TaxController::class, 'store'])->name('tax.store');
+Route::post('/{id}/update', [TaxController::class, 'update'])->name('tax.update');
+Route::post('/{id}/delete', [TaxController::class, 'destroy'])->name('tax.delete');
+});
+
+Route::resource('/pas/payroll', PayrollController::class);
 
 
 
@@ -251,17 +261,6 @@ Route::post('/courses/store', [CourseController::class, 'store'])->name('courses
 Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
 
 
-//PAS
 
-// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
-// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 
-// Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
-// Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
-// Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
-// Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
-// Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
-// Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
-// Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
-Route::resource('/pas/payroll', PayrollController::class);

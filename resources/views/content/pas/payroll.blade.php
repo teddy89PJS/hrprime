@@ -19,7 +19,7 @@ $containerNav = 'container-fluid';
 
 <div class="container text-center">
 
-<div class="container text-center">
+<div class="card px-3 py-2 container text-center">
   <div class="row row-cols-lg-7 ">
         <div class="col-md-4">
          <label for="fundsource" class="float-start form-label fw-semibold">Fund Source</label>
