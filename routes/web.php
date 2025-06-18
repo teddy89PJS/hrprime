@@ -68,6 +68,7 @@ use App\Http\Controllers\Planning\SalaryGradeController;
 use App\Http\Controllers\Planning\PositionTitleController;
 use App\Http\Controllers\Planning\ParentheticalTitleController;
 use App\Http\Controllers\Planning\UserController;
+use App\Http\Controllers\Planning\UnitController;
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -153,6 +154,14 @@ Route::prefix('/planning/list-of-employee')->name('employee.')->group(function (
   Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
 });
 
+Route::prefix('planning')->group(function () {
+  Route::get('/unit', [UnitController::class, 'index'])->name('unit');
+  Route::get('/unit/sections/by-division/{id}', [UnitController::class, 'getSectionsByDivision']);
+  Route::post('/unit', [UnitController::class, 'store'])->name('unit.store');
+  Route::put('/unit/{id}', [UnitController::class, 'update'])->name('unit.update');
+  Route::delete('/unit/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
+});
+
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
 Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
@@ -185,6 +194,8 @@ Route::middleware(['auth'])->group(function () {
 
 // welfare
 Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
+
+Route::get('/portfolio', [Analytics::class, 'index'])->name('portfolio');
 
 
 // cards
