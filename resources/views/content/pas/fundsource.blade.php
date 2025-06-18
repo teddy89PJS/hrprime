@@ -48,13 +48,7 @@
                 <td>{{ $fundsource_item->fund_source }}</td>
                 <td>{{ $fundsource_item->description }}</td>
                 <td>
-                    <a href="{{route('fundsource.show',$fundsource_item->fund_source)}}"    class="btn btn-sm btn-info mx-2 my-2"
-                    data-bs-toggle="modal"
-                    data-bs-target="#viewModal"
-                    data-fund_source="{{ $fundsource_item->fund_source }}"
-                    data-description="{{ $fundsource_item->description }}">
-                    View
-                  </a>
+
                   <a href="{{route('fundsource.edit',$fundsource_item->fund_source)}}" class="btn btn-sm btn-warning mx-2 my-2 "
                     data-bs-toggle="modal"
                     data-bs-target="#editModal"
@@ -142,29 +136,7 @@
     </div>
   </div>
 
-
-  {{-- VIEW MODAL --}}
-  <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-header">
-          <h5 class="modal-title" id="viewModalLabel"> Fund Source Information</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="id" id="view-id">
-          <div class="mb-3">
-          <div class="mb-3">
-                    <p><strong>Fund Source:</strong> <span id="view-fund_source">{{ $fundsource_item->fund_source }}</span></p>
-          <p><strong>Description:</strong> <span id="view-description">{{ $fundsource_item->description }}</span></p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-warning">Update</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
+</div>
 
 
 

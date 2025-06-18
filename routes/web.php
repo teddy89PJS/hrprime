@@ -181,5 +181,5 @@ Route::put('/courses/{course}', [CourseController::class, 'update']);
 
 //Pas Route
 Route::resource('/pas/fundsource', FundSourceController::class);
-Route::get('/pas/payroll', [PayrollController::class, 'index'])->name('payroll');
+// Route::get('/pas/payroll', [PayrollController::class, 'index'])->name('payroll');
 
