@@ -68,7 +68,7 @@ use App\Http\Controllers\Planning\UserController;
 
 //PAS
 use App\Http\Controllers\pas\FundSourceController;
-
+use App\Http\Controllers\pas\PayrollController;
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -264,4 +264,4 @@ Route::put('/courses/{course}', [CourseController::class, 'update'])->name('cour
 // Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
 // Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
-Route::resource('/pas/fundsource', FundSourceController::class);
+Route::resource('/pas/payroll', PayrollController::class);

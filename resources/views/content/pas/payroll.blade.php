@@ -9,6 +9,8 @@ $containerNav = 'container-fluid';
 @section('title', 'Tables - Basic Tables')
 
 
+@section('title', 'Payroll')
+
 
 @section('content')
 <!-- Basic Bootstrap Table -->
