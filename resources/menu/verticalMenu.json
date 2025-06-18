@@ -57,6 +57,16 @@
           "url": "planning/salary-grade",
           "name": "Salary Grade",
           "slug": "salary-grade"
+        },
+        {
+          "url": "planning/position-title",
+          "name": "Position Title",
+          "slug": "position-title"
+        },
+        {
+          "url": "planning/parenthetical-title",
+          "name": "Parenthetical Title",
+          "slug": "parenthetical-title"
         }
       ]
     },

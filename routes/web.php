@@ -65,6 +65,8 @@ use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\SalaryGradeController;
+use App\Http\Controllers\Planning\PositionTitleController;
+use App\Http\Controllers\Planning\ParentheticalTitleController;
 use App\Http\Controllers\Planning\UserController;
 
 // Redirect root URL to login page
@@ -124,6 +126,19 @@ Route::prefix('planning/position')->group(function () {
   Route::post('/{id}/delete', [App\Http\Controllers\Planning\PositionController::class, 'destroy'])->name('position.delete');
 });
 
+Route::prefix('/planning/position-title')->group(function () {
+  Route::get('/', [PositionTitleController::class, 'index'])->name('position-title.index');
+  Route::post('/store', [PositionTitleController::class, 'store'])->name('position-title.store');
+  Route::post('/{id}/update', [PositionTitleController::class, 'update'])->name('position-title.update');
+  Route::post('/{id}/delete', [PositionTitleController::class, 'destroy'])->name('position-title.delete');
+});
+
+Route::prefix('/planning/parenthetical-title')->group(function () {
+  Route::get('/', [ParentheticalTitleController::class, 'index'])->name('parenthetical-title.index');
+  Route::post('/store', [ParentheticalTitleController::class, 'store'])->name('parenthetical-title.store');
+  Route::post('/{id}/update', [ParentheticalTitleController::class, 'update'])->name('parenthetical-title.update');
+  Route::post('/{id}/delete', [ParentheticalTitleController::class, 'destroy'])->name('parenthetical-title.delete');
+});
 
 Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
   Route::get('/', [UserController::class, 'create'])->name('registration-form');
