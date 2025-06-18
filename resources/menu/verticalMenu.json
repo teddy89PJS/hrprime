@@ -8,7 +8,6 @@
       "submenu": [
         {
           "url": "dashboard",
-          "url": "dashboard",
           "name": "Analytics",
           "slug": "dashboard-analytics"
         }
