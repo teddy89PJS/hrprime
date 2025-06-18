@@ -622,7 +622,7 @@
               <td class="text-truncate">
                 <div class="d-flex align-items-center">
                   <i class="ri-vip-crown-line ri-22px text-primary me-2"></i>
-                  <span>Admin</span>
+                  <span>User</span>
                 </div>
               </td>
               <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>

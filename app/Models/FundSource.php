@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class FundSource extends Model
 {
-    use HasFactory;
-    protected $table =  'fund_sources';
-    protected $fillable = ['fund_source', 'description'];
-
+  use HasFactory;
+  protected $fillable = [
+    'fund_source',
+    'description'
+  ];
 }
+

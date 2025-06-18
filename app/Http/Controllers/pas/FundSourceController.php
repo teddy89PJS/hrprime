@@ -12,65 +12,57 @@ use Illuminate\Http\Request;
 class FundSourceController extends Controller
 {
 
-public function index(Request $request)
-{
-
-    $sort = $request->get('sort', 'fund_source'); // Default sort by 'fund_source'
-    $direction = $request->get('direction', 'asc'); // Default sort direction
-
-    $fundsource = FundSource::orderBy($sort, $direction)->get();
-
-
-    $fundsource = FundSource::orderBy($sort, $direction)->paginate(10)->appends(request()->query());
-    return view('content.pas.fundsource', compact('fundsource', 'sort', 'direction'));
-}
-
-
-
-// Store Data Functions
-    public function store(Request $request)
-    {
-    $request->validate([
-      'fund_source' => 'required|string|max:255',
-      'description' => 'required|string|max:255',
-    ]);
-// Create Data
-    FundSource::create([
-      'fund_source' => $request->fund_source,
-      'description' => $request->description,
-    ]);
-    return redirect('/pas/fundsource')->with ('status','Fund Source Created Succesfully');
+public function index()
+  {
+    $fundsources = FundSource::all();
+    return view('content.pas.fundsource', compact('fundsources'));
   }
 
-    public function show(FundSource $fundsource)
-    {
-        return view('fundsource.show', compact('fundsource'));
-    }
-
-    public function edit(FundSource $fundsource)
-    {
-        return view('fundsource.edit', compact('fundsource'));
-    }
-
-
-    public function update(Request $request, FundSource $fundsource)
-    {
-      $request->validate([
-      'fund_source' => 'required|string|max:255',
-      'description' => 'required|string|max:255',
+  public function store(Request $request)
+  {
+    $validated = $request->validate([
+      'fund_source' => 'required|string|max:50',
+      'description' => 'required|string|max:255'
     ]);
-// Update Data
-    $fundsource->update([
-      'fund_source' => $request->fund_source,
-      'description' => $request->description,
-    ]);
-    return redirect('/pas/fundsource')->with ('status','Fund Source Updated Succesfully');
-    }
 
-      public function destroy(FundSource $fundsource)
-    {
-      $fundsource->delete();
-      return redirect('/pas/fundsource')->with('status','Fund Source Deleted Successfully');
-    }
+    $fundsource = FundSource::create($validated);
+
+    return response()->json([
+      'success' => true,
+      'fundsource' => $fundsource
+    ]);
+  }
+
+  public function update(Request $request, $id)
+  {
+    $fundsource = FundSource::findOrFail($id);
+
+    $validated = $request->validate([
+      'fund_source' => 'required|string|max:50',
+      'description' => 'required|string|max:255'
+    ]);
+
+    $fundsource->update($validated);
+
+    return response()->json(['success' => true]);
+  }
+
+  public function destroy($id)
+  {
+    $fundsource = FundSource::findOrFail($id);
+    $fundsource->delete();
+
+    return response()->json(['success' => true]);
+  }
+
+
+
 }
+
+
+
+
+
+
+
 

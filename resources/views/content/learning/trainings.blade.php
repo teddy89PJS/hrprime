@@ -4,8 +4,6 @@
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -160,7 +158,9 @@
     margin: auto;
     padding: 20px;
     border-radius: 8px;
-    width: 400px;
+    width: 90%;
+    max-width: 900px;
+    /* You can adjust this max value */
     position: relative;
   }
 
@@ -248,8 +248,7 @@
             data-code="{{ $course->code }}"
             data-type="{{ $course->type }}"
             data-duration="{{ $course->duration }}"
-            data-date="{{ $course->date }}"
-            data-price="{{ $course->price }}">
+            data-date="{{ $course->date }}">
             View Course
           </button>
         </div>
@@ -263,7 +262,7 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <h3>Edit Course</h3>
-    <form id="editCourseForm">
+    <form id="editCourseForm" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="id" />
 
       <label>Course Title:</label>
@@ -273,7 +272,7 @@
       <input type="text" name="code" required />
 
       <label>Type:</label>
-      <select name="type">
+      <select name="type" required>
         <option value="Technical">Technical</option>
         <option value="Leadership">Leadership</option>
         <option value="Onboarding">Onboarding</option>
@@ -281,14 +280,25 @@
       </select>
 
       <label>Duration:</label>
-      <input type="text" name="duration" required />
+      <input type="date" name="duration" required />
 
       <label>Date Range:</label>
-      <input type="text" name="date" required />
+      <input type="date" name="date" required />
 
+      <label>Upload File:</label>
+      <input type="file" name="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.mp4,.mov,.avi" />
 
       <button type="submit">Save Changes</button>
+      <button type="button"
+        onclick="window.open('{{ asset('storage/' . $course->file) }}', '_blank')"
+        @if(!$course->file) disabled @endif>
+        View File
+      </button>
+
     </form>
+    <div id="filePreviewContainer" style="display:none; margin-top: 1rem;">
+      <iframe id="filePreviewIframe" width="100%" height="500px" frameborder="0"></iframe>
+    </div>
   </div>
 </div>
 <div id="addCourseModal" class="modal">
@@ -451,39 +461,27 @@
   // Handle form submit to send update request
   document.getElementById('editCourseForm').addEventListener('submit', function(e) {
     e.preventDefault();
-
     const form = e.target;
-    const modal = document.getElementById('editCourseModal'); // Define modal here
-
-    const courseData = {
-      title: form.title.value.trim(),
-      code: form.code.value.trim(),
-      type: form.type.value,
-      duration: form.duration.value.trim(),
-      date: form.date.value.trim(),
-      // price: parseFloat(form.price.value), // only if price input exists
-    };
-
-    const courseId = form.id.value;
+    const formData = new FormData(form);
+    const courseId = formData.get('id');
 
     fetch(`/courses/${courseId}`, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          'Accept': 'application/json',
         },
-        body: JSON.stringify(courseData),
+        body: formData,
       })
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to update course.');
-        return response.json();
-      })
+      .then(res => res.json())
       .then(data => {
-        alert(data.message || 'Course updated successfully!');
-        modal.style.display = 'none'; // now modal is defined here, no error
-        window.location.reload(); // refresh to show updated course info
+        alert(data.message);
+        location.reload();
       })
-      .catch(error => alert(error.message));
+      .catch(err => {
+        console.error(err);
+        alert('Error updating course.');
+      });
   });
 </script>
 <script>
@@ -557,6 +555,48 @@
           alert('Unexpected error occurred: ' + error.message);
         }
       });
+  });
+</script>
+<!-- Script -->
+<script>
+  const courseContainer = document.getElementById('courseContainer');
+
+  courseContainer.addEventListener('click', (e) => {
+    const btn = e.target.closest('.view-course-btn');
+    if (!btn) return;
+
+    const modal = document.getElementById('editCourseModal');
+    const editForm = document.getElementById('editCourseForm');
+
+    editForm.id.value = btn.dataset.id;
+    editForm.title.value = btn.dataset.title;
+    editForm.code.value = btn.dataset.code;
+    editForm.type.value = btn.dataset.type;
+    editForm.duration.value = btn.dataset.duration;
+    editForm.date.value = btn.dataset.date;
+
+    const filePreview = document.getElementById('filePreview');
+    const fileUrl = btn.dataset.file;
+    filePreview.innerHTML = ''; // Clear previous
+
+    if (fileUrl) {
+      const ext = fileUrl.split('.').pop().toLowerCase();
+
+      if (['mp4', 'mov', 'avi'].includes(ext)) {
+        filePreview.innerHTML = `
+          <video width="100%" height="auto" controls>
+            <source src="${fileUrl}" type="video/${ext}">
+            Your browser does not support the video tag.
+          </video>`;
+      } else if (ext === 'pdf') {
+        filePreview.innerHTML = `
+          <embed src="${fileUrl}" type="application/pdf" width="100%" height="400px"/>`;
+      } else {
+        filePreview.innerHTML = `<a href="${fileUrl}" target="_blank">Download File</a>`;
+      }
+    }
+
+    modal.style.display = 'block';
   });
 </script>
 @endsection

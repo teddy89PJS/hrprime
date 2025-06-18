@@ -12,5 +12,6 @@ class Course extends Model
     'type',
     'duration',
     'date',
+    'file_path'
   ];
 }
