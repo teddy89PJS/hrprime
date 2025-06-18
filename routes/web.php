@@ -201,4 +201,4 @@ Route::put('/courses/{course}', [CourseController::class, 'update'])->name('cour
 // Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
 // Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
-// Route::resource('/pas/fundsource', FundSourceController::class);
+Route::resource('/pas/fundsource', FundSourceController::class);

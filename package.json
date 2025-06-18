@@ -29,11 +29,7 @@
     "prop-types": "15.8.1",
     "resolve-url-loader": "5.0.0",
     "sass-loader": "14.0.0",
-<<<<<<< HEAD
-    "vite": "^5.4.14"
-=======
     "vite": "^6.3.5"
->>>>>>> f4deec61483308d09f59323edda09f89cd3a83df
   },
   "overrides": {
     "prop-types": "15.8.1",
@@ -90,11 +86,7 @@
     "glob": "^7.2.3",
     "highlight.js": "~11.9.0",
     "jquery": "~3.7.1",
-<<<<<<< HEAD
-    "laravel-vite-plugin": "1.0.5",
-=======
     "laravel-vite-plugin": "^1.3.0",
->>>>>>> f4deec61483308d09f59323edda09f89cd3a83df
     "masonry-layout": "~4.2.2",
     "node-waves": "~0.7.6",
     "perfect-scrollbar": "~1.5.5",
