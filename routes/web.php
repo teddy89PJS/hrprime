@@ -62,10 +62,10 @@ use App\Http\Controllers\planning\ListofPosition;
 use App\Http\Controllers\planning\OfficeLocation;
 use App\Http\Controllers\planning\DivisionController;
 use App\Http\Controllers\planning\SectionController;
-// use App\Http\Controllers\planning\EmploymentStatus;
-// use App\Http\Controllers\layouts\SalaryGrade;
-// use App\Http\Controllers\layouts\FundSource;
-
+use App\Http\Controllers\Planning\EmploymentStatusController;
+use App\Http\Controllers\Planning\OfficeLocationController;
+use App\Http\Controllers\Planning\SalaryGradeController;
+use App\Http\Controllers\Planning\UserController;
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -94,6 +94,48 @@ Route::prefix('/planning/section')->group(function () {
   Route::post('/store', [SectionController::class, 'store'])->name('section.store');
   Route::post('/{id}/update', [SectionController::class, 'update'])->name('section.update');
   Route::post('/{id}/delete', [SectionController::class, 'destroy'])->name('section.delete');
+});
+
+Route::prefix('/planning/employment-status')->group(function () {
+  Route::get('/', [EmploymentStatusController::class, 'index'])->name('employment-status.index');
+  Route::post('/store', [EmploymentStatusController::class, 'store'])->name('employment-status.store');
+  Route::post('/{id}/update', [EmploymentStatusController::class, 'update'])->name('employment-status.update');
+  Route::post('/{id}/delete', [EmploymentStatusController::class, 'destroy'])->name('employment-status.delete');
+});
+
+Route::prefix('/planning/office-location')->group(function () {
+  Route::get('/', [OfficeLocationController::class, 'index'])->name('office-location.index');
+  Route::post('/store', [OfficeLocationController::class, 'store'])->name('office-location.store');
+  Route::post('/{id}/update', [OfficeLocationController::class, 'update'])->name('office-location.update');
+  Route::post('/{id}/delete', [OfficeLocationController::class, 'destroy'])->name('office-location.delete');
+});
+
+Route::prefix('/planning/salary-grade')->group(function () {
+  Route::get('/', [SalaryGradeController::class, 'index'])->name('salary-grade.index');
+  Route::post('/store', [SalaryGradeController::class, 'store'])->name('salary-grade.store');
+  Route::post('/{id}/update', [SalaryGradeController::class, 'update'])->name('salary-grade.update');
+  Route::post('/{id}/delete', [SalaryGradeController::class, 'destroy'])->name('salary-grade.delete');
+});
+
+Route::prefix('planning/position')->group(function () {
+  Route::get('/', [App\Http\Controllers\Planning\PositionController::class, 'index'])->name('position.index');
+  Route::post('/store', [App\Http\Controllers\Planning\PositionController::class, 'store'])->name('position.store');
+  Route::post('/{id}/update', [App\Http\Controllers\Planning\PositionController::class, 'update'])->name('position.update');
+  Route::post('/{id}/delete', [App\Http\Controllers\Planning\PositionController::class, 'destroy'])->name('position.delete');
+});
+
+
+Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
+  Route::get('/', [UserController::class, 'create'])->name('registration-form');
+  Route::post('/store', [UserController::class, 'store'])->name('store');
+  Route::get('/get-sections', [UserController::class, 'getSections'])->name('sections');
+});
+Route::prefix('/planning/list-of-employee')->name('employee.')->group(function () {
+  Route::get('/', [UserController::class, 'index'])->name('list-of-employee');
+  Route::get('/{id}', [UserController::class, 'show'])->name('view');
+  Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
+  Route::put('/{id}', [UserController::class, 'update'])->name('update');
+  Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
 });
 
 // pages
