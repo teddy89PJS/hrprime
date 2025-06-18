@@ -16,52 +16,47 @@
     {
       "name": "Planning",
       "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "layouts",
+      "slug": "planning",
       "submenu": [
         {
-          "url": "layouts/list-of-employee",
+          "url": "planning/list-of-employee",
           "name": "List of Employee",
-          "slug": "layouts-list-of-employee"
+          "slug": "list-of-employee"
         },
         {
-          "url": "layouts/registration-form",
+          "url": "planning/registration-form",
           "name": "Registration Form",
-          "slug": "layouts-registration-form"
+          "slug": "registration-form"
         },
         {
-          "url": "layouts/list-of-position",
+          "url": "planning/position",
           "name": "List of Positions",
-          "slug": "layouts-list-of-position"
+          "slug": "position"
         },
         {
-          "url": "layouts/office-location",
+          "url": "planning/office-location",
           "name": "Office Location",
-          "slug": "layouts-office-location"
+          "slug": "office-location"
         },
         {
-          "url": "layouts/division",
+          "url": "planning/division",
           "name": "Division",
-          "slug": "layouts-division"
+          "slug": "division"
         },
         {
-          "url": "layouts/section",
+          "url": "planning/section",
           "name": "Section",
-          "slug": "layouts-section"
+          "slug": "section"
         },
         {
-          "url": "layouts/employment-status",
-          "name": "Employement Status",
-          "slug": "layouts-employment-status"
+          "url": "planning/employment-status",
+          "name": "Employment Status",
+          "slug": "employment-status"
         },
         {
-          "url": "layouts/salary-grade",
+          "url": "planning/salary-grade",
           "name": "Salary Grade",
-          "slug": "layouts-salary-grade"
-        },
-        {
-          "url": "layouts/fund-source",
-          "name": "Fund Source",
-          "slug": "layouts-fund-source"
+          "slug": "salary-grade"
         }
       ]
     },
@@ -73,71 +68,81 @@
         {
           "url": "layouts/without-menu",
           "name": "List of Employees",
-          "slug": "layouts-without-menu"
+          "slug": "without-menu"
         },
- {
+        {
           "url": "layouts/without-menu",
           "name": "Payroll",
-          "slug": "layouts-without-menu",
-
-          "submenu":[{
-            "url": "pas/import_payroll",
-            "name": "Import Payroll",
-            "slug": "import_payroll"
-          },{
-            "url": "pas/summary_of_lates",
-            "name": "Summary of Lates",
-            "slug": "summary_of_lates"
-          },{
-            "url": "pas/payroll",
-            "name": "Payroll",
-            "slug": "payroll"
-          },{
-            "url": "pas/tax",
-            "name": "Tax",
-            "slug": "tax"
-          },{
-            "url": "pas/deductions",
-            "name": "Deductions",
-            "slug": "deductions"
-          }
-          ,{
-            "url": "pas/leavecredits",
-            "name": "Leave Credits",
-            "slug": "leavecredits"
-          },{
-            "url": "pas/fundsource",
-            "name": "Fund Source",
-            "slug": "fundsource"
-          },{
-            "url": "pas/reports",
-            "name": "Reports",
-            "slug": "reports"
-          }
-        ]
+          "slug": "without-menu",
+          "submenu": [
+            {
+              "url": "pas/import_payroll",
+              "name": "Import Payroll",
+              "slug": "import_payroll"
+            },
+            {
+              "url": "pas/summary_of_lates",
+              "name": "Summary of Lates",
+              "slug": "summary_of_lates"
+            },
+            {
+              "url": "pas/payroll",
+              "name": "Payroll",
+              "slug": "payroll"
+            },
+            {
+              "url": "pas/tax",
+              "name": "Tax",
+              "slug": "tax"
+            },
+            {
+              "url": "pas/deductions",
+              "name": "Deductions",
+              "slug": "deductions"
+            },
+            {
+              "url": "pas/leavecredits",
+              "name": "Leave Credits",
+              "slug": "leavecredits"
+            },
+            {
+              "url": "pas/fundsource",
+              "name": "Fund Source",
+              "slug": "fundsource"
+            },
+            {
+              "url": "pas/reports",
+              "name": "Reports",
+              "slug": "reports"
+            }
+          ]
         },
         {
           "url": "layouts/without-menu",
           "name": "Requests",
-          "slug": "layouts-without-menu",
-          "submenu":[{
-            "url": "layouts/without-menu",
-            "name": "Leave",
-            "slug": "layouts-without-menu"
-          },{
-            "url": "layouts/without-menu",
-            "name": "Outslip",
-            "slug": "layouts-without-menu"
-          },{
-            "url": "layouts/without-menu",
-            "name": "Payslip",
-            "slug": "layouts-without-menu"
-          },{
-            "url": "layouts/without-menu",
-            "name": "Certificates",
-            "slug": "layouts-without-menu"
-          }
-        ]
+          "slug": "without-menu",
+          "submenu": [
+            {
+              "url": "layouts/without-menu",
+              "name": "Leave",
+              "slug": "without-menu"
+            },
+            {
+              "url": "layouts/without-menu",
+              "name": "Outslip",
+              "slug": "without-menu"
+            },
+            {
+              "url": "layouts/without-menu",
+              "name": "Payslip",
+              "slug": "without-menu"
+            },
+            {
+              "url": "layouts/without-menu",
+              "name": "Certificates",
+              "slug": "without-menu"
+            }
+          ]
         }
       ]
     },
@@ -147,36 +152,30 @@
       "slug": "ui",
       "submenu": [
         {
-          "url": "welfare/listofnomination",
-          "name": "List of Nomination",
-          "slug": "listofnimation"
+          "url": "ui/carousel",
+          "name": "Dashboard",
+          "slug": "ui-carousel"
         },
         {
           "url": "layouts/without-navbar",
-          "name": "Praise Commitee Voting",
-          "slug": "layouts-without-navbar"
+          "name": "Without navbar",
+          "slug": "without-navbar"
         },
         {
           "url": "layouts/container",
           "name": "Container",
-          "slug": "layouts-container"
+          "slug": "container"
         },
         {
           "url": "layouts/fluid",
-          "name": "Usersnimo",
-          "slug": "layouts-fluid"
+          "name": "Fluid",
+          "slug": "fluid"
         },
         {
           "url": "layouts/blank",
           "name": "Blank",
-          "slug": "layouts-blank",
+          "slug": "blank",
           "target": "_blank"
-        },
-        {
-          "url": "/awards/create",
-          "name": "New Nomination",
-          "slug": "create",
-          "target": "_self"
         }
       ]
     },
@@ -213,29 +212,19 @@
         {
           "url": "layouts/blank",
           "name": "Reports",
-          "slug": "layouts-blank",
+          "slug": "blank",
           "target": "_blank"
         },
         {
           "url": "layouts/blank",
           "name": "Users",
-          "slug": "layouts-blank",
+          "slug": "blank",
           "target": "_blank"
         }
       ]
     },
     {
-      "menuHeader": "Misc"
-    },
-    {
-      "menuHeader": "SWCC"
-    },
-    {
-      "menuHeader": "DEMPC"
-    },
-    {
-      "menuHeader": "DEWC"
+      "menuHeader": "Version 1.0 (2025) "
     }
-
   ]
 }

@@ -13,6 +13,7 @@ class CourseController extends Controller
     $courses = Course::all();
     return view('content.learning.trainings', compact('courses'));
   }
+
   public function store(Request $request)
   {
     $validated = $request->validate([
@@ -30,6 +31,7 @@ class CourseController extends Controller
       'course' => $course
     ]);
   }
+
   public function update(Request $request, Course $course)
   {
     $validated = $request->validate([
@@ -38,10 +40,20 @@ class CourseController extends Controller
       'type' => 'required|string',
       'duration' => 'required|string',
       'date' => 'required|string',
+      'file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,mp4,mov,avi|max:51200',
     ]);
 
-    $course->update($validated);
+    $course->fill($validated);
 
-    return response()->json(['message' => 'Course updated successfully']);
+    if ($request->hasFile('file')) {
+      $file = $request->file('file');
+      $filename = time() . '_' . $file->getClientOriginalName();
+      $file->storeAs('courses', $filename, 'public');
+      $course->file = 'courses/' . $filename;
+    }
+
+    $course->save();
+
+    return response()->json(['message' => 'Course updated successfully.']);
   }
 }

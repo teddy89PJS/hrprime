@@ -160,23 +160,6 @@ let menu, animate;
   window.Helpers.setCollapsed(true, false);
 })();
 
-document.addEventListener('DOMContentLoaded', function () {
-  const viewModal = document.getElementById('viewModal');
-
-  viewModal.addEventListener('show.bs.modal', function (event) {
-    const button = event.relatedTarget;
-
-    // Get data-* attributes from the clicked button
-    const id = button.getAttribute('data-id');
-    const fund_source = button.getAttribute('data-fund_source');
-    const description = button.getAttribute('data-description');
-
-    // Fill in modal fields
-    document.getElementById('view-id').textContent = id;
-    document.getElementById('view-fund_source').textContent = fund_source;
-    document.getElementById('view-description').textContent = description;
-  });
-});
 
 document.addEventListener('DOMContentLoaded', function () {
   const editModal = document.getElementById('editModal');

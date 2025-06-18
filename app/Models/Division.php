@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FundSource extends Model
+class Division extends Model
 {
   use HasFactory;
-  protected $table =  'fund_sources';
-  protected $fillable = ['fund_source', 'description'];
+
+  protected $fillable = [
+    'name',
+    'abbreviation'
+  ];
 }

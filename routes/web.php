@@ -1,12 +1,12 @@
 <?php
 
 //New Routes
-use App\Http\Controllers\layouts\ImportPayroll;
-use App\Http\Controllers\layouts\SummaryofLates;
-use App\Http\Controllers\layouts\Payroll;
-use App\Http\Controllers\layouts\Tax;
-use App\Http\Controllers\layouts\Deductions;
-use App\Http\Controllers\layouts\LeaveCredits;
+// use App\Http\Controllers\planning\Division;
+// use App\Http\Controllers\layouts\SummaryofLates;
+// use App\Http\Controllers\layouts\Payroll;
+// use App\Http\Controllers\layouts\Tax;
+// use App\Http\Controllers\layouts\Deductions;
+// use App\Http\Controllers\layouts\LeaveCredits;
 use App\Http\Controllers\layouts\Reports;
 use App\Http\Controllers\pas\FundSourceController;
 use Illuminate\Support\Facades\Route;
@@ -54,11 +54,18 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
-use App\Http\Controllers\welfare\AwardController;
+// use App\Http\Controllers\welfare\AwardController;
 
-
-
-
+use App\Http\Controllers\planning\ListofEmployee;
+use App\Http\Controllers\planning\RegistrationForm;
+use App\Http\Controllers\planning\ListofPosition;
+use App\Http\Controllers\planning\OfficeLocation;
+use App\Http\Controllers\planning\DivisionController;
+use App\Http\Controllers\planning\SectionController;
+use App\Http\Controllers\Planning\EmploymentStatusController;
+use App\Http\Controllers\Planning\OfficeLocationController;
+use App\Http\Controllers\Planning\SalaryGradeController;
+use App\Http\Controllers\Planning\UserController;
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -70,14 +77,66 @@ Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-// Route::get('/', [LoginBasic::class, 'index'])->name('auth-login-basic');
-// layout
-// Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
-// Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
+Route::get('/planning/list-of-employee', [ListofEmployee::class, 'index'])->name('list-of-employee');
+Route::get('/planning/registration-form', [RegistrationForm::class, 'index'])->name('registration-form');
+Route::get('/planning/list-of-position', [ListofPosition::class, 'index'])->name('list-of-position');
+Route::get('/planning/office-location', [OfficeLocation::class, 'index'])->name('office-location');
+
+Route::prefix('/planning/division')->group(function () {
+  Route::get('/', [DivisionController::class, 'index'])->name('division.index');
+  Route::post('/store', [DivisionController::class, 'store'])->name('division.store');
+  Route::post('/{id}/update', [DivisionController::class, 'update'])->name('division.update');
+  Route::post('/{id}/delete', [DivisionController::class, 'destroy'])->name('division.delete');
+});
+
+Route::prefix('/planning/section')->group(function () {
+  Route::get('/', [SectionController::class, 'index'])->name('section.index');
+  Route::post('/store', [SectionController::class, 'store'])->name('section.store');
+  Route::post('/{id}/update', [SectionController::class, 'update'])->name('section.update');
+  Route::post('/{id}/delete', [SectionController::class, 'destroy'])->name('section.delete');
+});
+
+Route::prefix('/planning/employment-status')->group(function () {
+  Route::get('/', [EmploymentStatusController::class, 'index'])->name('employment-status.index');
+  Route::post('/store', [EmploymentStatusController::class, 'store'])->name('employment-status.store');
+  Route::post('/{id}/update', [EmploymentStatusController::class, 'update'])->name('employment-status.update');
+  Route::post('/{id}/delete', [EmploymentStatusController::class, 'destroy'])->name('employment-status.delete');
+});
+
+Route::prefix('/planning/office-location')->group(function () {
+  Route::get('/', [OfficeLocationController::class, 'index'])->name('office-location.index');
+  Route::post('/store', [OfficeLocationController::class, 'store'])->name('office-location.store');
+  Route::post('/{id}/update', [OfficeLocationController::class, 'update'])->name('office-location.update');
+  Route::post('/{id}/delete', [OfficeLocationController::class, 'destroy'])->name('office-location.delete');
+});
+
+Route::prefix('/planning/salary-grade')->group(function () {
+  Route::get('/', [SalaryGradeController::class, 'index'])->name('salary-grade.index');
+  Route::post('/store', [SalaryGradeController::class, 'store'])->name('salary-grade.store');
+  Route::post('/{id}/update', [SalaryGradeController::class, 'update'])->name('salary-grade.update');
+  Route::post('/{id}/delete', [SalaryGradeController::class, 'destroy'])->name('salary-grade.delete');
+});
+
+Route::prefix('planning/position')->group(function () {
+  Route::get('/', [App\Http\Controllers\Planning\PositionController::class, 'index'])->name('position.index');
+  Route::post('/store', [App\Http\Controllers\Planning\PositionController::class, 'store'])->name('position.store');
+  Route::post('/{id}/update', [App\Http\Controllers\Planning\PositionController::class, 'update'])->name('position.update');
+  Route::post('/{id}/delete', [App\Http\Controllers\Planning\PositionController::class, 'destroy'])->name('position.delete');
+});
 
 
-// Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
-// Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
+Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
+  Route::get('/', [UserController::class, 'create'])->name('registration-form');
+  Route::post('/store', [UserController::class, 'store'])->name('store');
+  Route::get('/get-sections', [UserController::class, 'getSections'])->name('sections');
+});
+Route::prefix('/planning/list-of-employee')->name('employee.')->group(function () {
+  Route::get('/', [UserController::class, 'index'])->name('list-of-employee');
+  Route::get('/{id}', [UserController::class, 'show'])->name('view');
+  Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
+  Route::put('/{id}', [UserController::class, 'update'])->name('update');
+  Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
+});
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
@@ -164,22 +223,23 @@ Route::post('/events/store', [EventsController::class, 'store'])->name('events.s
 Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->name('events.updateStatus');
 Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
-Route::put('/courses/{course}', [CourseController::class, 'update']);
-Route::get('/learning/trainings', [CourseController::class, 'index']);
+Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
 
 
 //PAS
 
 // Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 
-Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
-Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
-Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
-Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
-Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
-Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
-Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
+// Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
+// Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
+// Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
+// Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
+// Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
+// Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
+// Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
 
+<<<<<<< HEAD
 Route::prefix('pas')->group(function () {
   Route::resource('fundsource', FundSourceController::class);
 });
@@ -187,3 +247,6 @@ Route::prefix('pas')->group(function () {
 
 // HR WELFAREEEE - FRANS
 Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
+=======
+Route::resource('/pas/fundsource', FundSourceController::class);
+>>>>>>> 68b2ba6ba2d4e9d534653915fcb8bc83d9fbe6a5
