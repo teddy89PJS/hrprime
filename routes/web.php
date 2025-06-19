@@ -53,13 +53,13 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
-// use App\Http\Controllers\welfare\AwardController;
 
 use App\Http\Controllers\planning\ListofEmployee;
 use App\Http\Controllers\planning\RegistrationForm;
 use App\Http\Controllers\planning\ListofPosition;
 use App\Http\Controllers\planning\OfficeLocation;
 use App\Http\Controllers\planning\DivisionController;
+use App\Http\Controllers\planning\UnitController;
 use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
@@ -106,6 +106,13 @@ Route::prefix('/planning/section')->group(function () {
   Route::post('/store', [SectionController::class, 'store'])->name('section.store');
   Route::post('/{id}/update', [SectionController::class, 'update'])->name('section.update');
   Route::post('/{id}/delete', [SectionController::class, 'destroy'])->name('section.delete');
+});
+
+Route::prefix('/planning/unit')->group(function () {
+  Route::get('/', [UnitController::class, 'index'])->name('unit.index');
+  Route::post('/store', [UnitController::class, 'store'])->name('unit.store');
+  Route::post('/{id}/update', [UnitController::class, 'update'])->name('unit.update');
+  Route::post('/{id}/delete', [UnitController::class, 'destroy'])->name('unit.delete');
 });
 
 Route::prefix('/planning/employment-status')->group(function () {
@@ -216,16 +223,6 @@ Route::prefix('/pas/tax')->group(function () {
 
 Route::resource('/pas/payroll', PayrollController::class);
 
-
-
-
-
-
-
-
-
-
-
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
 Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
@@ -250,9 +247,9 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-
-// welfare
-Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
+Route::middleware(['auth'])->group(function () {
+  Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
+});
 
 Route::get('/portfolio', [Analytics::class, 'index'])->name('portfolio');
 
@@ -312,3 +309,25 @@ Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->n
 Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
 Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+
+
+//PAS
+
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+
+// Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
+// Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
+// Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
+// Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
+// Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
+// Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
+// Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
+
+Route::prefix('pas')->group(function () {
+  Route::resource('fundsource', FundSourceController::class);
+});
+
+
+// HR WELFAREEEE - FRANS
+Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');

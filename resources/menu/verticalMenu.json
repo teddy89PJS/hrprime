@@ -182,24 +182,28 @@
         },
         {
           "url": "layouts/without-navbar",
-          "name": "Without navbar",
+          "name": "Archive of Memorandum",
           "slug": "without-navbar"
         },
         {
           "url": "layouts/container",
-          "name": "Container",
+          "name": "Hall of Awardees",
           "slug": "container"
         },
         {
           "url": "layouts/fluid",
-          "name": "Fluid",
+          "name": "Rewards Program Overview and Committee",
           "slug": "fluid"
         },
         {
           "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "blank",
-          "target": "_blank"
+          "name": "Character Building Program",
+          "slug": "blank"
+        },
+        {
+          "url": "layouts/fluid",
+          "name": "Monitoring and evaluation of the awardee",
+          "slug": "fluid"
         }
       ]
     },
