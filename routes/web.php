@@ -64,6 +64,8 @@ use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\SalaryGradeController;
+use App\Http\Controllers\Planning\PositionTitleController;
+use App\Http\Controllers\Planning\ParentheticalTitleController;
 //PAS
 use App\Http\Controllers\pas\FundSourceController;
 use App\Http\Controllers\pas\PayrollController;
@@ -152,11 +154,23 @@ Route::prefix('/planning/registration-form')->name('employee.')->group(function 
   Route::get('/get-sections', [UserController::class, 'getSections'])->name('sections');
 });
 
+
+// ✅ This should be above any wildcard routes like /{id}
+Route::get('/planning/list-of-employee', [UserController::class, 'bladeIndex'])->name('employee.view-blade');
+
+// 👇 Move this BELOW to avoid catching the above route
+Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])->name('employee.view');
+
+// For the Blade view
+Route::get('/planning/list-of-employee/{id}/view', [UserController::class, 'showEmployeeView'])
+  ->name('employee.show-view');
+
+// For raw JSON (AJAX/API)
+Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])
+  ->name('employee.view');
+
+Route::get('/employee/{id}/edit', [UserController::class, 'edit'])->name('employee.edit');
 Route::prefix('/planning/list-of-employee')->name('employee.')->group(function () {
-  Route::get('/', [UserController::class, 'index'])->name('list-of-employee');
-  Route::get('/{id}', [UserController::class, 'show'])->name('view');
-  Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
-  Route::put('/{id}', [UserController::class, 'update'])->name('update');
   Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
 });
 

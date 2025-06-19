@@ -5,7 +5,7 @@
 @section('content')
 <div class="container py-4">
 
-  <a href="{{ route('employee.list') }}" class="btn btn-secondary mb-3">
+  <a href="{{ route('employee.view-blade') }}" class="btn btn-secondary mb-3">
     ← Back to Employee List
   </a>
 

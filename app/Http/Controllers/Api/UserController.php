@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\EmploymentStatus;
+use App\Models\Division;
+use App\Models\Section;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -31,23 +34,35 @@ class UserController extends Controller
 
   public function store(Request $request)
   {
-    $data = $request->validate([
-      'employee_id' => 'required|unique:users',
+    $request->validate([
+      'employee_id' => 'required|unique:users,employee_id',
       'first_name' => 'required',
-      'middle_name' => 'nullable',
       'last_name' => 'required',
-      'extension_name' => 'nullable',
-      'username' => 'required|unique:users',
-      'password' => 'required|min:6',
-      'employment_status_id' => 'nullable|exists:employment_statuses,id',
-      'division_id' => 'nullable|exists:divisions,id',
-      'section_id' => 'nullable|exists:sections,id',
+      'employment_status' => 'required|exists:employment_statuses,id',
+      'division' => 'required|exists:divisions,id',
+      'section' => 'required|exists:sections,id',
+      'password' => 'required|confirmed|min:6',
     ]);
 
-    $data['password'] = Hash::make($data['password']);
-    $user = User::create($data);
+    $middleInitial = substr($request->middle_name, 0, 1);
+    $empIdLast4 = substr($request->employee_id, -4);
+    $username = strtolower(substr($request->first_name, 0, 1) . $middleInitial . $request->last_name . $empIdLast4);
 
-    return response()->json($user, 201);
+    User::create([
+      'employee_id' => $request->employee_id,
+      'first_name' => $request->first_name,
+      'middle_name' => $request->middle_name,
+      'last_name' => $request->last_name,
+      'extension_name' => $request->extension_name,
+      'employment_status_id' => $request->employment_status,
+      'division_id' => $request->division,
+      'section_id' => $request->section,
+      'username' => $username,
+      'email' => $request->email,
+      'password' => Hash::make($request->password),
+    ]);
+
+    return redirect()->route('employee.registration-form')->with('success', 'Employee registered successfully!');
   }
 
   public function show($id)
@@ -122,5 +137,20 @@ class UserController extends Controller
   {
     $employee = User::with(['division', 'section', 'employmentStatus'])->findOrFail($id);
     return view('content.planning.edit-employee', compact('employee'));
+  }
+
+  public function create()
+  {
+    $employmentStatuses = EmploymentStatus::all();
+    $divisions = Division::all();
+
+    return view('content.planning.registration-form', compact('employmentStatuses', 'divisions'));
+  }
+  public function getSections(Request $request)
+  {
+    $divisionId = $request->division_id;
+    $sections = Section::where('division_id', $divisionId)->get();
+
+    return response()->json($sections);
   }
 }

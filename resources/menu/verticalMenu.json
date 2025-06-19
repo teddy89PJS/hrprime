@@ -28,11 +28,6 @@
           "slug": "registration-form"
         },
         {
-          "url": "planning/position",
-          "name": "List of Positions",
-          "slug": "position"
-        },
-        {
           "url": "planning/office-location",
           "name": "Office Location",
           "slug": "office-location"
@@ -61,6 +56,11 @@
           "url": "planning/salary-grade",
           "name": "Salary Grade",
           "slug": "salary-grade"
+        },
+        {
+          "url": "planning/position",
+          "name": "List of Positions",
+          "slug": "position"
         },
         {
           "url": "planning/position-title",

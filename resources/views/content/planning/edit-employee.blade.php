@@ -81,7 +81,7 @@
 
       <div class="mt-3">
         <button type="submit" class="btn btn-success">Save Changes</button>
-        <a href="{{ route('employee.list') }}" class="btn btn-secondary">Cancel</a>
+        <a href="{{ route('employee.view-blade') }}" class="btn btn-secondary">Cancel</a>
       </div>
     </form>
   </div>

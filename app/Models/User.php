@@ -19,6 +19,7 @@ class User extends Authenticatable
     'division_id',
     'section_id',
     'username',
+    'email',
     'password',
   ];
 
