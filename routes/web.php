@@ -113,6 +113,8 @@ Route::prefix('/planning/unit')->group(function () {
   Route::post('/store', [UnitController::class, 'store'])->name('unit.store');
   Route::post('/{id}/update', [UnitController::class, 'update'])->name('unit.update');
   Route::post('/{id}/delete', [UnitController::class, 'destroy'])->name('unit.delete');
+
+  Route::get('/sections/by-division/{id}', [UnitController::class, 'getSectionsByDivision']);
 });
 
 Route::prefix('/planning/employment-status')->group(function () {
@@ -142,6 +144,7 @@ Route::prefix('planning/position')->group(function () {
   Route::post('/{id}/update', [App\Http\Controllers\Planning\PositionController::class, 'update'])->name('position.update');
   Route::post('/{id}/delete', [App\Http\Controllers\Planning\PositionController::class, 'destroy'])->name('position.delete');
 });
+
 
 Route::prefix('/planning/position-title')->group(function () {
   Route::get('/', [PositionTitleController::class, 'index'])->name('position-title.index');

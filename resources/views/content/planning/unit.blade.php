@@ -320,5 +320,30 @@
     }
   });
 </script>
+<script>
+  $('#division_id').on('change', function() {
+    const divisionId = $(this).val();
+    const sectionSelect = $('#section_id');
 
+    sectionSelect.html('<option value="">Loading...</option>');
+
+    if (divisionId) {
+      $.ajax({
+        url: `/sections/by-division/${divisionId}`,
+        type: 'GET',
+        success: function(sections) {
+          sectionSelect.html('<option value="">Select Section</option>');
+          sections.forEach(function(section) {
+            sectionSelect.append(`<option value="${section.id}">${section.name}</option>`);
+          });
+        },
+        error: function() {
+          sectionSelect.html('<option value="">Error loading sections</option>');
+        }
+      });
+    } else {
+      sectionSelect.html('<option value="">Select Section</option>');
+    }
+  });
+</script>
 @endpush

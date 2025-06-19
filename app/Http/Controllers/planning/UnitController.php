@@ -8,7 +8,6 @@ use App\Models\Unit;
 use App\Models\Section;
 use App\Models\Division;
 
-
 class UnitController extends Controller
 {
   public function getSectionsByDivision($id)
@@ -55,6 +54,7 @@ class UnitController extends Controller
     if (!$unit) {
       return response()->json(['success' => false, 'message' => 'Unit not found.'], 404);
     }
+
 
     $unit->update([
       'name' => $validated['name'],
