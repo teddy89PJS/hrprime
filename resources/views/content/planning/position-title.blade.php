@@ -130,12 +130,75 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+  $('#positionTitleTable').DataTable();
+
   $('#openModalBtn').click(function() {
     $('#positionTitleForm')[0].reset();
-    var modal = new bootstrap.Modal(document.getElementById('positionTitleModal'));
-    modal.show();
+    new bootstrap.Modal(document.getElementById('positionTitleModal')).show();
   });
 
-  // Continue your AJAX for add/edit/delete here
+  $('#positionTitleForm').submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: '{{ route("position-title.store") }}',
+      method: 'POST',
+      data: $(this).serialize(),
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function(response) {
+        toastr.success('Position Title added successfully!');
+        bootstrap.Modal.getInstance(document.getElementById('positionTitleModal')).hide();
+        setTimeout(() => location.reload(), 500);
+      }
+    });
+  });
+
+  $(document).on('click', '.edit-btn', function() {
+    const data = $(this).data();
+    $('#editPositionTitleId').val(data.id);
+    $('#editPositionTitleName').val(data.position_name);
+    $('#editPositionTitleAbbreviation').val(data.abbreviation);
+    new bootstrap.Modal(document.getElementById('editPositionTitleModal')).show();
+  });
+
+  $('#editPositionTitleForm').submit(function(e) {
+    e.preventDefault();
+    const id = $('#editPositionTitleId').val();
+    $.ajax({
+      url: `/planning/position-title/${id}/update`,
+      method: 'POST',
+      data: $(this).serialize(),
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function(response) {
+        toastr.success('Position Title updated successfully!');
+        bootstrap.Modal.getInstance(document.getElementById('editPositionTitleModal')).hide();
+        setTimeout(() => location.reload(), 500);
+      }
+    });
+  });
+
+  let deleteId = null;
+  $(document).on('click', '.delete-btn', function() {
+    deleteId = $(this).data('id');
+    new bootstrap.Modal(document.getElementById('confirmDeleteModal')).show();
+  });
+
+  $('#confirmDeleteBtn').click(function() {
+    $.ajax({
+      url: `/planning/position-title/${deleteId}/delete`,
+      method: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function(response) {
+        toastr.success('Deleted successfully!');
+        bootstrap.Modal.getInstance(document.getElementById('confirmDeleteModal')).hide();
+        setTimeout(() => location.reload(), 500);
+      }
+    });
+  });
 </script>
 @endpush

@@ -86,15 +86,17 @@
               <option value="">Choose division first...</option>
             </select>
           </div>
-
+        <div class="col-md-4">
+          <label>Email Address</label>
+          <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+        </div>
+   </div>
+    <div class="row mb-3">
           <div class="col-md-4">
             <label>Password</label>
             <input type="password" class="form-control" name="password" required>
             <small>Min: 6 characters</small>
           </div>
-        </div>
-
-        <div class="row mb-3">
           <div class="col-md-4">
             <label>Confirm Password</label>
             <input type="password" class="form-control" name="password_confirmation" required>

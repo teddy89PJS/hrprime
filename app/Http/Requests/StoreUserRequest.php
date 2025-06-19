@@ -22,6 +22,7 @@ class StoreUserRequest extends FormRequest
       'employment_status' => 'required|exists:employment_statuses,id',
       'division' => 'required|exists:divisions,id',
       'section' => 'required|exists:sections,id',
+      'email' => 'required|unique:users,email',
       'password' => 'required|string|min:6|confirmed',
     ];
   }

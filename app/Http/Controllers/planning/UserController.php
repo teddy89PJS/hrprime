@@ -60,6 +60,7 @@ class UserController extends Controller
       'division_id' => $request->division,
       'section_id' => $request->section,
       'username' => $username,
+      'email' => $request->email, 
       'password' => Hash::make($request->password),
     ]);
 
