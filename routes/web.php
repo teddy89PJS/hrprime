@@ -67,6 +67,7 @@ use App\Http\Controllers\Planning\SalaryGradeController;
 use App\Http\Controllers\Planning\PositionTitleController;
 use App\Http\Controllers\Planning\ParentheticalTitleController;
 use App\Http\Controllers\Planning\ReportController;
+use App\Http\Controllers\Planning\JoRequestController;
 //PAS
 use App\Http\Controllers\pas\FundSourceController;
 use App\Http\Controllers\pas\PayrollController;
@@ -186,6 +187,16 @@ Route::get('/reports/export', [ReportController::class, 'export'])->name('planni
 
 Route::get('/planning/reports', [ReportController::class, 'index'])
   ->name('planning.reports');
+
+Route::prefix('planning')->name('planning.')->group(function () {
+  Route::get('jo-requests', [JoRequestController::class, 'index'])->name('jo-requests.index');
+  Route::post('jo-requests', [JoRequestController::class, 'store'])->name('jo-requests.store');
+  Route::get('jo-requests/{joRequest}/edit', [JoRequestController::class, 'edit'])->name('jo-requests.edit');
+  Route::patch('jo-requests/{joRequest}', [JoRequestController::class, 'update'])->name('jo-requests.update');
+  Route::patch('jo-requests/{joRequest}/approve', [JoRequestController::class, 'approve'])->name('jo-requests.approve');
+  Route::patch('jo-requests/{joRequest}/disapprove', [JoRequestController::class, 'disapprove'])->name('jo-requests.disapprove');
+  Route::get('jo-requests/{joRequest}/print', [JoRequestController::class, 'print'])->name('jo-requests.print');
+});
 
 
 //PAS

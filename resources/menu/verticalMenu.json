@@ -73,6 +73,11 @@
           "slug": "parenthetical-title"
         },
         {
+          "url": "planning/jo-requests",
+          "name": "Requests",
+          "slug": "jo_requests"
+        },
+        {
           "url": "planning/report",
           "name": "Reports",
           "slug": "report"

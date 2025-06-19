@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\Section;
 use App\Models\EmploymentStatus;
 use Illuminate\Support\Facades\DB;
+use App\Models\Position;
+use App\Models\JoRequest;
 
 class ReportController extends Controller
 {
@@ -53,9 +55,13 @@ class ReportController extends Controller
         return view('content.planning.report', compact('reportView', 'employees'));
 
       case 'vacant-positions':
-        $employees = User::with(['employmentStatus', 'division', 'section'])->get();
+        $positions = Position::with(['salaryGrade', 'employmentStatus', 'section'])
+          ->where('status', 'inactive')
+          ->get();
+
         $reportView = 'content.planning.reports.vacant-positions';
-        return view('content.planning.report', compact('reportView', 'employees'));
+
+        return view('content.planning.report', compact('reportView', 'positions'));
 
       case 'issued-appointments':
         $employees = User::with(['employmentStatus', 'division', 'section'])->get();
@@ -68,7 +74,10 @@ class ReportController extends Controller
         return view('content.planning.report', compact('reportView', 'employees'));
 
       case 'database-creations':
-        $employees = User::with(['employmentStatus', 'division', 'section'])->get();
+        $employees = JoRequest::with(['section', 'fundSource'])
+          ->where('status', 'approved')
+          ->latest()
+          ->get();
         $reportView = 'content.planning.reports.database-creations';
         return view('content.planning.report', compact('reportView', 'employees'));
 

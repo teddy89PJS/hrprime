@@ -1,27 +1,39 @@
 <h5 class="mb-3">TEMPLATE I - DATABASE OF APPROVED REQUESTS FOR CREATION, EXTENSION AND ABOLITION OF COS AND JO POSITIONS</h5>
+
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Employee ID</th>
-      <th>Full Name</th>
-      <th>Status</th>
-      <th>Division</th>
+      <th>ID</th>
+      <th>Subject</th>
+      <th>Position</th>
       <th>Section</th>
+      <th>Fund Source</th>
+      <th>No. of Positions</th>
+      <th>Effectivity Date</th>
+      <th>Remarks</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
-    @foreach($employees ?? [] as $employee)
+    @forelse($employees as $req)
     <tr>
-      <td>{{ $employee->employee_id }}</td>
-      <td>{{ $employee->first_name }} {{ $employee->middle_name }} {{ $employee->last_name }} {{ $employee->extension_name }}</td>
-      <td>{{ $employee->employmentStatus->name ?? '-' }}</td>
-      <td>{{ $employee->division->name ?? '-' }}</td>
-      <td>{{ $employee->section->name ?? '-' }}</td>
+      <td>{{ $req->id }}</td>
+      <td>{{ $req->subject }}</td>
+      <td>{{ $req->position_name }}</td>
+      <td>{{ $req->section->name ?? 'N/A' }}</td>
+      <td>{{ $req->fundSource->fund_source ?? 'N/A' }}</td>
+      <td>{{ $req->no_of_position }}</td>
+      <td>{{ \Carbon\Carbon::parse($req->effectivity_of_position)->format('Y-m-d') }}</td>
+      <td>{{ $req->remarks }}</td>
+      <td><span class="badge bg-success">{{ ucfirst($req->status) }}</span></td>
     </tr>
-    @endforeach
+    @empty
+    <tr>
+      <td colspan="9" class="text-center">No approved JO requests found.</td>
+    </tr>
+    @endforelse
   </tbody>
 </table>
-
-@if(!empty($employees))
-<a href="{{ route('planning.reports.export', ['type' => 'personnel-status']) }}" class="btn btn-outline-primary mt-3">Export to Excel</a>
+@if($employees->count())
+<a href="{{ route('planning.reports.export', ['type' => 'database-creations']) }}" class="btn btn-outline-primary mt-3">Export to Excel</a>
 @endif

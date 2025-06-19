@@ -1,27 +1,41 @@
-<h5 class="mb-3">TEMPLATE B - COMPLEMENT PER STATUS OF EMPLOYMENT AND PER PROGRAM, ACTIVITY, PROJECT (ACTUAL POSITIONS IN YOUR REGION)</h5>
-<table class="table table-bordered">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<h5 class="mb-3">TEMPLATE B - VACANT POSITIONS (INACTIVE STATUS)</h5>
+
+<table id="positionTable" class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Employee ID</th>
-      <th>Full Name</th>
-      <th>Status</th>
-      <th>Division</th>
-      <th>Section</th>
+      <th>Position Title</th>
+      <th>Item No.</th>
+      <th>Salary Grade</th>
+      <th>Employment Status</th>
     </tr>
   </thead>
   <tbody>
-    @foreach($employees ?? [] as $employee)
+    @forelse($positions as $position)
     <tr>
-      <td>{{ $employee->employee_id }}</td>
-      <td>{{ $employee->first_name }} {{ $employee->middle_name }} {{ $employee->last_name }} {{ $employee->extension_name }}</td>
-      <td>{{ $employee->employmentStatus->name ?? '-' }}</td>
-      <td>{{ $employee->division->name ?? '-' }}</td>
-      <td>{{ $employee->section->name ?? '-' }}</td>
+      <td>{{ $position->position_name }}</td>
+      <td>{{ $position->item_no }}</td>
+      <td>{{ $position->salaryGrade->sg_num ?? '-' }}</td>
+      <td>{{ $position->employmentStatus->name ?? '-' }}</td>
     </tr>
-    @endforeach
+    @empty
+    <tr>
+      <td colspan="5" class="text-center text-muted">No vacant positions found.</td>
+    </tr>
+    @endforelse
   </tbody>
 </table>
 
-@if(!empty($employees))
-<a href="{{ route('planning.reports.export', ['type' => 'personnel-status']) }}" class="btn btn-outline-primary mt-3">Export to Excel</a>
+@if(!empty($positions))
+<a href="{{ route('planning.reports.export', ['type' => 'vacant-positions']) }}" class="btn btn-outline-primary mt-3">Export to Excel</a>
 @endif
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+  $('#positionTable').DataTable();
+</script>
+@endpush
