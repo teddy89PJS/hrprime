@@ -54,8 +54,6 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
-// use App\Http\Controllers\welfare\AwardController;
-
 use App\Http\Controllers\planning\ListofEmployee;
 use App\Http\Controllers\planning\RegistrationForm;
 use App\Http\Controllers\planning\ListofPosition;
@@ -65,7 +63,7 @@ use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\SalaryGradeController;
-use App\Http\Controllers\Planning\PositionTitleController;
+use App\Http\Controllers\Planning\PositionLevelController;
 use App\Http\Controllers\Planning\ParentheticalTitleController;
 use App\Http\Controllers\Planning\UserController;
 use App\Http\Controllers\Planning\UnitController;
@@ -127,11 +125,12 @@ Route::prefix('planning/position')->group(function () {
   Route::post('/{id}/delete', [App\Http\Controllers\Planning\PositionController::class, 'destroy'])->name('position.delete');
 });
 
-Route::prefix('/planning/position-title')->group(function () {
-  Route::get('/', [PositionTitleController::class, 'index'])->name('position-title.index');
-  Route::post('/store', [PositionTitleController::class, 'store'])->name('position-title.store');
-  Route::post('/{id}/update', [PositionTitleController::class, 'update'])->name('position-title.update');
-  Route::post('/{id}/delete', [PositionTitleController::class, 'destroy'])->name('position-title.delete');
+Route::prefix('/planning/position-level')->group(function () {
+  Route::get('/', [PositionLevelController::class, 'index'])->name('position-level.index');
+  Route::post('/store', [PositionLevelController::class, 'store'])->name('position-level.store');
+  Route::post('/{id}/update', [PositionLevelController::class, 'update'])->name('position-level.update');
+  Route::post('/{id}/delete', [PositionLevelController::class, 'destroy'])->name('position-level.delete');
+  
 });
 
 Route::prefix('/planning/parenthetical-title')->group(function () {

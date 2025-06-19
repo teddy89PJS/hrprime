@@ -64,9 +64,9 @@
           "slug": "position"
         },
         {
-          "url": "planning/position-title",
-          "name": "Position Title",
-          "slug": "position-title"
+          "url": "planning/position-level",
+          "name": "Position Level",
+          "slug": "position-level"
         },
         {
           "url": "planning/parenthetical-title",

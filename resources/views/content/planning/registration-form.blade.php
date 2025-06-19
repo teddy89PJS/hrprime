@@ -104,7 +104,7 @@
         </div>
 
         <div class="d-flex justify-content-end">
-          <button type="submit" class="btn btn-primary">Register Employee</button>
+          <button type="submit" class="btn btn-success">Register Employee</button>
         </div>
       </form>
     </div>
