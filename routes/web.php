@@ -1,13 +1,5 @@
 <?php
 
-//New Routes
-// use App\Http\Controllers\planning\Division;
-// use App\Http\Controllers\layouts\SummaryofLates;
-// use App\Http\Controllers\layouts\Payroll;
-// use App\Http\Controllers\layouts\Tax;
-// use App\Http\Controllers\layouts\Deductions;
-// use App\Http\Controllers\layouts\LeaveCredits;
-use App\Http\Controllers\layouts\Reports;
 use App\Http\Controllers\pas\FundSourceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
@@ -65,18 +57,25 @@ use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\SalaryGradeController;
-use App\Http\Controllers\Planning\UserController;
+use App\Http\Controllers\Planning\PositionTitleController;
+use App\Http\Controllers\Planning\ParentheticalTitleController;
 use App\Http\Controllers\Planning\UnitController;
 
+use App\Http\Controllers\Api\UserController;
+use App\Models\Section;
+// Login Page
 // Redirect root URL to login page
 Route::get('/', function () {
   return redirect()->route('auth-login-basic');
 });
-// Login Page
+
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
 
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
+
+// Dashboard (you can protect this later with auth middleware)
+Route::get('/dashboard/dashboards-analytics', [Analytics::class, 'index'])->name('dashboards-analytics');
 
 Route::get('/planning/list-of-employee', [ListofEmployee::class, 'index'])->name('list-of-employee');
 Route::get('/planning/registration-form', [RegistrationForm::class, 'index'])->name('registration-form');
@@ -125,18 +124,58 @@ Route::prefix('planning/position')->group(function () {
   Route::post('/{id}/delete', [App\Http\Controllers\Planning\PositionController::class, 'destroy'])->name('position.delete');
 });
 
+Route::prefix('/planning/position-title')->group(function () {
+  Route::get('/', [PositionTitleController::class, 'index'])->name('position-title.index');
+  Route::post('/store', [PositionTitleController::class, 'store'])->name('position-title.store');
+  Route::post('/{id}/update', [PositionTitleController::class, 'update'])->name('position-title.update');
+  Route::post('/{id}/delete', [PositionTitleController::class, 'destroy'])->name('position-title.delete');
+});
+
+Route::prefix('/planning/parenthetical-title')->group(function () {
+  Route::get('/', [ParentheticalTitleController::class, 'index'])->name('parenthetical-title.index');
+  Route::post('/store', [ParentheticalTitleController::class, 'store'])->name('parenthetical-title.store');
+  Route::post('/{id}/update', [ParentheticalTitleController::class, 'update'])->name('parenthetical-title.update');
+  Route::post('/{id}/delete', [ParentheticalTitleController::class, 'destroy'])->name('parenthetical-title.delete');
+});
 
 Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
   Route::get('/', [UserController::class, 'create'])->name('registration-form');
   Route::post('/store', [UserController::class, 'store'])->name('store');
   Route::get('/get-sections', [UserController::class, 'getSections'])->name('sections');
 });
+
 Route::prefix('/planning/list-of-employee')->name('employee.')->group(function () {
   Route::get('/', [UserController::class, 'index'])->name('list-of-employee');
   Route::get('/{id}', [UserController::class, 'show'])->name('view');
   Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
   Route::put('/{id}', [UserController::class, 'update'])->name('update');
   Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
+});
+
+// Display employee list in Blade view
+Route::get('/planning/list-of-employee', [UserController::class, 'bladeIndex'])
+  ->name('employee.list');
+Route::get('/api/employees', [UserController::class, 'index']);
+Route::get('/employee/view/{id}', [UserController::class, 'showEmployeeView'])->name('employee.view');
+// Display form to edit employee
+Route::get('/employee/{id}/edit', [UserController::class, 'edit'])->name('employee.edit');
+
+// Update employee data
+Route::put('/employee/{id}', [UserController::class, 'update'])->name('employee.update');
+
+
+
+Route::get('/division/{id}/sections', function ($id) {
+  return Section::where('division_id', $id)->get(['id', 'name']);
+});
+
+// API routes for User CRUD
+Route::prefix('users')->group(function () {
+  Route::get('/', [UserController::class, 'index']);           // Get all users or search
+  Route::post('/', [UserController::class, 'store']);          // Add a new user
+  Route::get('{id}', [UserController::class, 'show']);         // Get a single user by ID
+  Route::put('{id}', [UserController::class, 'update']);       // Update a user
+  Route::delete('{id}', [UserController::class, 'destroy']);   // Delete a user
 });
 
 Route::prefix('planning')->group(function () {
@@ -163,7 +202,6 @@ Route::post('/auth/login-basic', [LoginBasic::class, 'store'])->name('login.stor
 Route::get('/auth/otp', [LoginBasic::class, 'showOtpForm'])->name('otp.form');
 Route::post('/auth/otp', [LoginBasic::class, 'verifyOtp'])->name('otp.verify');
 
-
 // Forgot Password
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -172,40 +210,35 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-Route::middleware(['auth'])->group(function () {
-  Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
-});
-
 
 // welfare
 Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
 
 Route::get('/portfolio', [Analytics::class, 'index'])->name('portfolio');
 
-
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
 
 // User Interface
-Route::get('/ui/accordion', [Accordion::class, 'index'])->name('ui-accordion');
-Route::get('/ui/alerts', [Alerts::class, 'index'])->name('ui-alerts');
-Route::get('/ui/badges', [Badges::class, 'index'])->name('ui-badges');
-Route::get('/ui/buttons', [Buttons::class, 'index'])->name('ui-buttons');
-Route::get('/ui/carousel', [Carousel::class, 'index'])->name('ui-carousel');
-Route::get('/ui/collapse', [Collapse::class, 'index'])->name('ui-collapse');
-Route::get('/ui/dropdowns', [Dropdowns::class, 'index'])->name('ui-dropdowns');
-Route::get('/ui/footer', [Footer::class, 'index'])->name('ui-footer');
-Route::get('/ui/list-groups', [ListGroups::class, 'index'])->name('ui-list-groups');
-Route::get('/ui/modals', [Modals::class, 'index'])->name('ui-modals');
-Route::get('/ui/navbar', [Navbar::class, 'index'])->name('ui-navbar');
-Route::get('/ui/offcanvas', [Offcanvas::class, 'index'])->name('ui-offcanvas');
-Route::get('/ui/pagination-breadcrumbs', [PaginationBreadcrumbs::class, 'index'])->name('ui-pagination-breadcrumbs');
-Route::get('/ui/progress', [Progress::class, 'index'])->name('ui-progress');
-Route::get('/ui/spinners', [Spinners::class, 'index'])->name('ui-spinners');
-Route::get('/ui/tabs-pills', [TabsPills::class, 'index'])->name('ui-tabs-pills');
-Route::get('/ui/toasts', [Toasts::class, 'index'])->name('ui-toasts');
-Route::get('/ui/tooltips-popovers', [TooltipsPopovers::class, 'index'])->name('ui-tooltips-popovers');
-Route::get('/ui/typography', [Typography::class, 'index'])->name('ui-typography');
+// Route::get('/ui/accordion', [Accordion::class, 'index'])->name('ui-accordion');
+// Route::get('/ui/alerts', [Alerts::class, 'index'])->name('ui-alerts');
+// Route::get('/ui/badges', [Badges::class, 'index'])->name('ui-badges');
+// Route::get('/ui/buttons', [Buttons::class, 'index'])->name('ui-buttons');
+// Route::get('/ui/carousel', [Carousel::class, 'index'])->name('ui-carousel');
+// Route::get('/ui/collapse', [Collapse::class, 'index'])->name('ui-collapse');
+// Route::get('/ui/dropdowns', [Dropdowns::class, 'index'])->name('ui-dropdowns');
+// Route::get('/ui/footer', [Footer::class, 'index'])->name('ui-footer');
+// Route::get('/ui/list-groups', [ListGroups::class, 'index'])->name('ui-list-groups');
+// Route::get('/ui/modals', [Modals::class, 'index'])->name('ui-modals');
+// Route::get('/ui/navbar', [Navbar::class, 'index'])->name('ui-navbar');
+// Route::get('/ui/offcanvas', [Offcanvas::class, 'index'])->name('ui-offcanvas');
+// Route::get('/ui/pagination-breadcrumbs', [PaginationBreadcrumbs::class, 'index'])->name('ui-pagination-breadcrumbs');
+// Route::get('/ui/progress', [Progress::class, 'index'])->name('ui-progress');
+// Route::get('/ui/spinners', [Spinners::class, 'index'])->name('ui-spinners');
+// Route::get('/ui/tabs-pills', [TabsPills::class, 'index'])->name('ui-tabs-pills');
+// Route::get('/ui/toasts', [Toasts::class, 'index'])->name('ui-toasts');
+// Route::get('/ui/tooltips-popovers', [TooltipsPopovers::class, 'index'])->name('ui-tooltips-popovers');
+// Route::get('/ui/typography', [Typography::class, 'index'])->name('ui-typography');
 
 // extended ui
 Route::get('/extended/ui-perfect-scrollbar', [PerfectScrollbar::class, 'index'])->name('extended-ui-perfect-scrollbar');

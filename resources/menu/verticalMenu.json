@@ -1,15 +1,14 @@
 {
   "menu": [
     {
-      "url": "/dashboard",
       "name": "Dashboard",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "dashboard",
       "submenu": [
         {
-          "url": "dashboard",
+          "url": "/dashboard/dashboards-analytics",
           "name": "Analytics",
-          "slug": "dashboard-analytics"
+          "slug": "dashboards-analytics"
         }
       ]
     },
@@ -62,6 +61,16 @@
           "url": "planning/salary-grade",
           "name": "Salary Grade",
           "slug": "salary-grade"
+        },
+        {
+          "url": "planning/position-title",
+          "name": "Position Title",
+          "slug": "position-title"
+        },
+        {
+          "url": "planning/parenthetical-title",
+          "name": "Parenthetical Title",
+          "slug": "parenthetical-title"
         }
       ]
     },
