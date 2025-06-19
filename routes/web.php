@@ -66,6 +66,7 @@ use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\SalaryGradeController;
 use App\Http\Controllers\Planning\PositionTitleController;
 use App\Http\Controllers\Planning\ParentheticalTitleController;
+use App\Http\Controllers\Planning\ReportController;
 //PAS
 use App\Http\Controllers\pas\FundSourceController;
 use App\Http\Controllers\pas\PayrollController;
@@ -169,10 +170,23 @@ Route::get('/planning/list-of-employee/{id}/view', [UserController::class, 'show
 Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])
   ->name('employee.view');
 
+Route::get('/division/{id}/sections', [DivisionController::class, 'getSections']);
+
+
 Route::get('/employee/{id}/edit', [UserController::class, 'edit'])->name('employee.edit');
 Route::prefix('/planning/list-of-employee')->name('employee.')->group(function () {
   Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
 });
+
+//Report Generation
+Route::prefix('planning')->group(function () {
+  Route::get('/report', [ReportController::class, 'index'])->name('planning.reports');
+});
+Route::get('/reports/export', [ReportController::class, 'export'])->name('planning.reports.export');
+
+Route::get('/planning/reports', [ReportController::class, 'index'])
+  ->name('planning.reports');
+
 
 //PAS
 Route::prefix('/pas/fundsource')->group(function () {

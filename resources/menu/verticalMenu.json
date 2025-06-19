@@ -71,6 +71,11 @@
           "url": "planning/parenthetical-title",
           "name": "Parenthetical Title",
           "slug": "parenthetical-title"
+        },
+        {
+          "url": "planning/report",
+          "name": "Reports",
+          "slug": "report"
         }
       ]
     },
