@@ -28,12 +28,12 @@ class User extends Authenticatable
   ];
   public function division()
   {
-    return $this->belongsTo(Division::class, 'division_id');
+    return $this->belongsTo(Division::class);
   }
 
   public function section()
   {
-    return $this->belongsTo(Section::class, 'section_id');
+    return $this->belongsTo(Section::class);
   }
 
   public function employmentStatus()

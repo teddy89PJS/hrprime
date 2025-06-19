@@ -44,7 +44,7 @@
             <td>{{ Str::lower($employee->username) }}</td>
 
             <td>
-              <a href="{{ route('employee.view', $employee->id) }}" class="btn btn-sm btn-primary">View</a>
+              <a href="{{ route('employee.show-view', $employee->id) }}" class="btn btn-sm btn-primary">View</a>
               <form action="{{ route('employee.delete', $employee->id) }}" method="POST" style="display:inline-block;">
                 @csrf
                 @method('DELETE')

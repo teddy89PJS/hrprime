@@ -1,15 +1,14 @@
 {
   "menu": [
     {
-      "url": "/dashboard",
       "name": "Dashboard",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "dashboard",
       "submenu": [
         {
-          "url": "dashboard",
+          "url": "/dashboard/dashboards-analytics",
           "name": "Analytics",
-          "slug": "dashboard-analytics"
+          "slug": "dashboards-analytics"
         }
       ]
     },
@@ -72,6 +71,16 @@
           "url": "planning/parenthetical-title",
           "name": "Parenthetical Title",
           "slug": "parenthetical-title"
+        },
+        {
+          "url": "planning/jo-requests",
+          "name": "Requests",
+          "slug": "jo_requests"
+        },
+        {
+          "url": "planning/report",
+          "name": "Reports",
+          "slug": "report"
         }
       ]
     },

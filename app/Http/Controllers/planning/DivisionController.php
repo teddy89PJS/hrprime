@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Planning;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Division;
+use App\Models\Section;
 
 class DivisionController extends Controller
 {
@@ -50,5 +51,11 @@ class DivisionController extends Controller
     $division->delete();
 
     return response()->json(['success' => true]);
+  }
+
+  public function getSections($id)
+  {
+    $sections = Section::where('division_id', $id)->get(['id', 'name']);
+    return response()->json($sections);
   }
 }

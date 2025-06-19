@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FundSource extends Model
+class Tax extends Model
 {
   use HasFactory;
-  protected $fillable = [
-    'fund_source',
-    'description'
-  ];
-}
 
+  protected $fillable = [
+    'salary_grade',
+    'tax'
+  ];
+
+}

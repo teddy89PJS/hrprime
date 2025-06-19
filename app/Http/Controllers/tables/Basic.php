@@ -9,6 +9,6 @@ class Basic extends Controller
 {
   public function index()
   {
-    return view('content.tables.tables-basic');
+    return view('content.learning.listofEmployees');
   }
 }
