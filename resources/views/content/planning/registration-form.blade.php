@@ -3,10 +3,10 @@
 @section('title', 'Employee Registration')
 
 @section('content')
-<div class="container mb-4">
-  <div class="card">
-    <div class="card-header">
-      <h5 class="mb-0">Employee Details</h5>
+<div class="card">
+  <div class="container py-4">
+   <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="mb-0">Employee Details</h4>
     </div>
     <div class="card-body">
 
