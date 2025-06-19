@@ -6,42 +6,63 @@ use App\Http\Controllers\Controller;
 use App\Models\FundSource;
 use Illuminate\Http\Request;
 
+
+
+
 class FundSourceController extends Controller
 {
-  public function index(Request $request)
-  {
-    $sort = $request->get('sort', 'fund_source');
-    $direction = $request->get('direction', 'asc');
 
-    $fundsource = FundSource::orderBy($sort, $direction)->paginate(10)->appends(request()->query());
-    return view('content.pas.fundsource', compact('fundsource', 'sort', 'direction'));
+public function index()
+  {
+    $fundsources = FundSource::all();
+    return view('content.pas.fundsource', compact('fundsources'));
   }
 
   public function store(Request $request)
   {
-    $request->validate([
-      'fund_source' => 'required|string|max:255',
-      'description' => 'required|string|max:255',
+    $validated = $request->validate([
+      'fund_source' => 'required|string|max:50',
+      'description' => 'required|string|max:255'
     ]);
 
-    FundSource::create($request->only(['fund_source', 'description']));
-    return redirect()->route('fundsource.index')->with('status', 'Fund Source Created Successfully');
+    $fundsource = FundSource::create($validated);
+
+    return response()->json([
+      'success' => true,
+      'fundsource' => $fundsource
+    ]);
   }
 
-  public function update(Request $request, FundSource $fundsource)
+  public function update(Request $request, $id)
   {
-    $request->validate([
-      'fund_source' => 'required|string|max:255',
-      'description' => 'required|string|max:255',
+    $fundsource = FundSource::findOrFail($id);
+
+    $validated = $request->validate([
+      'fund_source' => 'required|string|max:50',
+      'description' => 'required|string|max:255'
     ]);
 
-    $fundsource->update($request->only(['fund_source', 'description']));
-    return redirect()->route('fundsource.index')->with('status', 'Fund Source Updated Successfully');
+    $fundsource->update($validated);
+
+    return response()->json(['success' => true]);
   }
 
-  public function destroy(FundSource $fundsource)
+  public function destroy($id)
   {
+    $fundsource = FundSource::findOrFail($id);
     $fundsource->delete();
-    return redirect()->route('fundsource.index')->with('status', 'Fund Source Deleted Successfully');
+
+    return response()->json(['success' => true]);
   }
+
+
+
 }
+
+
+
+
+
+
+
+

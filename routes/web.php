@@ -1,6 +1,13 @@
 <?php
 
-use App\Http\Controllers\pas\FundSourceController;
+//New Routes
+// use App\Http\Controllers\planning\Division;
+// use App\Http\Controllers\layouts\SummaryofLates;
+// use App\Http\Controllers\layouts\Payroll;
+// use App\Http\Controllers\layouts\Tax;
+// use App\Http\Controllers\layouts\Deductions;
+// use App\Http\Controllers\layouts\LeaveCredits;
+use App\Http\Controllers\layouts\Reports;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\pages\AccountSettingsAccount;
@@ -57,9 +64,10 @@ use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\SalaryGradeController;
-use App\Http\Controllers\Planning\PositionTitleController;
-use App\Http\Controllers\Planning\ParentheticalTitleController;
-use App\Http\Controllers\Planning\UnitController;
+//PAS
+use App\Http\Controllers\pas\FundSourceController;
+use App\Http\Controllers\pas\PayrollController;
+use App\Http\Controllers\pas\TaxController;
 
 use App\Http\Controllers\Api\UserController;
 use App\Models\Section;
@@ -152,39 +160,32 @@ Route::prefix('/planning/list-of-employee')->name('employee.')->group(function (
   Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
 });
 
-// Display employee list in Blade view
-Route::get('/planning/list-of-employee', [UserController::class, 'bladeIndex'])
-  ->name('employee.list');
-Route::get('/api/employees', [UserController::class, 'index']);
-Route::get('/employee/view/{id}', [UserController::class, 'showEmployeeView'])->name('employee.view');
-// Display form to edit employee
-Route::get('/employee/{id}/edit', [UserController::class, 'edit'])->name('employee.edit');
-
-// Update employee data
-Route::put('/employee/{id}', [UserController::class, 'update'])->name('employee.update');
-
-
-
-Route::get('/division/{id}/sections', function ($id) {
-  return Section::where('division_id', $id)->get(['id', 'name']);
+//PAS
+Route::prefix('/pas/fundsource')->group(function () {
+  Route::get('/', [FundSourceController::class, 'index'])->name('fundsource.index');
+  Route::post('/store', [FundSourceController::class, 'store'])->name('fundsource.store');
+  Route::post('/{id}/update', [FundSourceController::class, 'update'])->name('fundsource.update');
+  Route::post('/{id}/delete', [FundSourceController::class, 'destroy'])->name('fundsource.delete');
 });
 
-// API routes for User CRUD
-Route::prefix('users')->group(function () {
-  Route::get('/', [UserController::class, 'index']);           // Get all users or search
-  Route::post('/', [UserController::class, 'store']);          // Add a new user
-  Route::get('{id}', [UserController::class, 'show']);         // Get a single user by ID
-  Route::put('{id}', [UserController::class, 'update']);       // Update a user
-  Route::delete('{id}', [UserController::class, 'destroy']);   // Delete a user
+Route::prefix('/pas/tax')->group(function () {
+  Route::get('/', [TaxController::class, 'index'])->name('tax.index');
+  Route::post('/store', [TaxController::class, 'store'])->name('tax.store');
+  Route::post('/{id}/update', [TaxController::class, 'update'])->name('tax.update');
+  Route::post('/{id}/delete', [TaxController::class, 'destroy'])->name('tax.delete');
 });
 
-Route::prefix('planning')->group(function () {
-  Route::get('/unit', [UnitController::class, 'index'])->name('unit');
-  Route::get('/unit/sections/by-division/{id}', [UnitController::class, 'getSectionsByDivision']);
-  Route::post('/unit', [UnitController::class, 'store'])->name('unit.store');
-  Route::put('/unit/{id}', [UnitController::class, 'update'])->name('unit.update');
-  Route::delete('/unit/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
-});
+Route::resource('/pas/payroll', PayrollController::class);
+
+
+
+
+
+
+
+
+
+
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
@@ -272,19 +273,3 @@ Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->n
 Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
 Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
-
-
-//PAS
-
-// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
-// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
-
-// Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
-// Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
-// Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
-// Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
-// Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
-// Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
-// Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
-
-Route::resource('/pas/fundsource', FundSourceController::class);
