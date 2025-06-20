@@ -19,32 +19,27 @@
       "submenu": [
         {
           "url": "planning/list-of-employee",
-          "name": "List of Employee",
+          "name": "Employees",
           "slug": "list-of-employee"
         },
         {
-          "url": "planning/registration-form",
-          "name": "Registration Form",
-          "slug": "registration-form"
-        },
-        {
           "url": "planning/office-location",
-          "name": "Office Location",
+          "name": "Office Locations",
           "slug": "office-location"
         },
         {
           "url": "planning/division",
-          "name": "Division",
+          "name": "Divisions",
           "slug": "division"
         },
         {
           "url": "planning/section",
-          "name": "Section",
+          "name": "Sections",
           "slug": "section"
         },
         {
           "url": "planning/unit",
-          "name": "Unit",
+          "name": "Units",
           "slug": "unit"
         },
         {
@@ -59,17 +54,17 @@
         },
         {
           "url": "planning/position",
-          "name": "List of Positions",
+          "name": "Positions",
           "slug": "position"
         },
         {
           "url": "planning/position-level",
-          "name": "Position Level",
+          "name": "Position Levels",
           "slug": "position-level"
         },
         {
           "url": "planning/parenthetical-title",
-          "name": "Parenthetical Title",
+          "name": "Parenthetical Titles",
           "slug": "parenthetical-title"
         },
         {

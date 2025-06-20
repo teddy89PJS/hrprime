@@ -58,10 +58,15 @@
       <h5 class="modal-title m-3">Add New Position Level</h5>
       <form id="positionLevelForm">
         <div class="modal-body">
-          <div class="mb-3">
-            <label>Level Name</label>
-            <input type="text" name="level_name" class="form-control" required>
-          </div>
+              <div class="mb-3">
+                <label>Position Level</label>
+                <select name="position_level_id" class="form-control" required>
+                  <option value="">-- Select Position Level --</option>
+                  @foreach($positionLevels as $level)
+                    <option value="{{ $level->id }}">{{ $level->level_name }}</option>
+                  @endforeach
+                </select>
+              </div>
           <div class="mb-3">
             <label>Abbreviation</label>
             <input type="text" name="abbreviation" class="form-control">
@@ -141,6 +146,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+  $('#edit_position_level_id').val(data.position_level_id);
   $('#positionLevelTable').DataTable();
 
   $('#openModalBtn').click(function () {

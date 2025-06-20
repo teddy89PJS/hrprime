@@ -5,13 +5,14 @@ namespace App\Http\Controllers\planning;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PositionLevel;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PositionLevelController extends Controller
 {
-    // Show the view with all position levels
+    // Show all position levels
     public function index()
     {
-        $positionLevels = PositionLevel::all();
+        $positionLevels = PositionLevel::orderBy('level_rank')->get();
         return view('content.planning.position-level', compact('positionLevels'));
     }
 
@@ -21,14 +22,10 @@ class PositionLevelController extends Controller
         $request->validate([
             'level_name'    => 'required|string|max:255',
             'abbreviation'  => 'nullable|string|max:50',
-            'level_rank'    => 'nullable|integer',
+            'level_rank'    => 'nullable|integer|min:1',
         ]);
 
-        PositionLevel::create([
-            'level_name'    => $request->level_name,
-            'abbreviation'  => $request->abbreviation,
-            'level_rank'    => $request->level_rank,
-        ]);
+        PositionLevel::create($request->only(['level_name', 'abbreviation', 'level_rank']));
 
         return response()->json(['message' => 'Position Level created successfully']);
     }
@@ -39,15 +36,12 @@ class PositionLevelController extends Controller
         $request->validate([
             'level_name'    => 'required|string|max:255',
             'abbreviation'  => 'nullable|string|max:50',
-            'level_rank'    => 'nullable|integer',
+            'level_rank'    => 'nullable|integer|min:1',
         ]);
 
         $positionLevel = PositionLevel::findOrFail($id);
-        $positionLevel->update([
-            'level_name'    => $request->level_name,
-            'abbreviation'  => $request->abbreviation,
-            'level_rank'    => $request->level_rank,
-        ]);
+
+        $positionLevel->update($request->only(['level_name', 'abbreviation', 'level_rank']));
 
         return response()->json(['message' => 'Position Level updated successfully']);
     }
@@ -55,9 +49,22 @@ class PositionLevelController extends Controller
     // Delete a position level
     public function destroy($id)
     {
-        $positionLevel = PositionLevel::findOrFail($id);
-        $positionLevel->delete();
+        try {
+            $positionLevel = PositionLevel::findOrFail($id);
 
-        return response()->json(['message' => 'Position Level deleted successfully']);
+            // Optional: Check if this level is used by any position before deleting
+            if ($positionLevel->positions()->exists()) {
+                return response()->json([
+                    'message' => 'Cannot delete. This level is assigned to one or more positions.'
+                ], 400);
+            }
+
+            $positionLevel->delete();
+
+            return response()->json(['message' => 'Position Level deleted successfully']);
+
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Position Level not found'], 404);
+        }
     }
 }

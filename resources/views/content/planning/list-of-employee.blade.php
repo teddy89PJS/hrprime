@@ -17,44 +17,47 @@
     </div>
     <div class="table-responsive">
       <table id="empTable" class="table">
-        <thead class="table-light">
-          <tr>
-            <th>ID No.</th>
-            <th>Employee Name</th>
-            <th>Employment Status</th>
-            <th>Section</th>
-            <th>Division</th>
-            <th>Username</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($employees as $employee)
-          <tr>
-            <td>{{ $employee->employee_id }}</td>
-            <td>
-              {{ Str::title($employee->first_name) }}
-              {{ Str::title($employee->middle_name) }}
-              {{ Str::title($employee->last_name) }}
-              {{ Str::title($employee->extension_name) }}
-            </td>
-            <td>{{ Str::upper($employee->employmentStatus->abbreviation ?? '') }}</td>
-            <td>{{ Str::upper($employee->section->abbreviation ?? '') }}</td>
-            <td>{{ Str::upper($employee->division->abbreviation ?? '') }}</td>
-            <td>{{ Str::lower($employee->username) }}</td>
-
-            <td>
+      <thead class="table-light">
+        <tr>
+          <th style="width: 0;">ID No.</th>
+          <th>Employee Name</th>
+          <th>Email</th> <!-- NEW -->
+          <th>Employment Status</th>
+          <th>Section</th>
+          <th>Division</th>
+          <th>Username</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($employees as $employee)
+        <tr>
+          <td>{{ $employee->employee_id }}</td>
+          <td>
+            {{ Str::upper($employee->first_name) }}
+            {{ Str::upper($employee->middle_name) }}
+            {{ Str::upper($employee->last_name) }}
+            {{ Str::upper($employee->extension_name) }}
+          </td>
+          <td>{{ $employee->email }}</td> <!-- NEW -->
+          <td>{{ Str::upper($employee->employmentStatus->abbreviation ?? '') }}</td>
+          <td>{{ Str::upper($employee->section->abbreviation ?? '') }}</td>
+          <td>{{ Str::upper($employee->division->abbreviation ?? '') }}</td>
+          <td>{{ Str::lower($employee->username) }}</td>
+          <td>
+            <div class="d-flex gap-1">
               <a href="{{ route('employee.show-view', $employee->id) }}" class="btn btn-sm btn-primary">View</a>
-              <form action="{{ route('employee.delete', $employee->id) }}" method="POST" style="display:inline-block;">
+              <form action="{{ route('employee.delete', $employee->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
               </form>
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
+            </div>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
     </div>
   </div>
 </div>
@@ -68,6 +71,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
-  $('#empTable').DataTable();
+  $('#empTable').DataTable({
+  columnDefs: [
+    { targets: 0, width: "50px", visible: true, searchable: false }
+  ]
+});
 </script>
 @endpush

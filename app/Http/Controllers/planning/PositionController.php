@@ -30,6 +30,12 @@ class PositionController extends Controller
       'status' => 'required|in:active,inactive',
     ]);
 
+
+  $validated['position_name'] = strtoupper($validated['position_name']);
+  $validated['abbreviation'] = strtoupper($validated['abbreviation']);
+  $validated['item_no'] = strtoupper($validated['item_no']);
+
+
     Position::create($validated);
     return response()->json(['success' => true]);
   }
@@ -44,7 +50,13 @@ class PositionController extends Controller
       'employment_status_id' => 'required|exists:employment_statuses,id',
       'status' => 'required|in:active,inactive',
     ]);
+      $validated['position_name'] = strtoupper($validated['position_name']);
+      $validated['abbreviation'] = strtoupper($validated['abbreviation']);
+      $validated['item_no'] = strtoupper($validated['item_no']);
 
+      $position = Position::findOrFail($id);
+      $position->update($validated);
+    
     $position = Position::findOrFail($id);
     $position->update($validated);
 
@@ -58,4 +70,5 @@ class PositionController extends Controller
 
     return response()->json(['success' => true]);
   }
+    
 }

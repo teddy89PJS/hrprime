@@ -5,7 +5,7 @@
 @section('content')
 <div class="card">
   <div class="container py-4">
-   <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="mb-0">Employee Details</h4>
     </div>
     <div class="card-body">
@@ -30,22 +30,22 @@
         <div class="row mb-3">
           <div class="col-md-4">
             <label>Employee ID</label>
-            <input type="text" class="form-control" name="employee_id" value="{{ old('employee_id') }}" required>
+            <input type="text" class="form-control" name="employee_id" value="{{ old('employee_id') }}" required style="text-transform: uppercase;">
           </div>
           <div class="col-md-4">
             <label>First Name</label>
-            <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required>
+            <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required style="text-transform: uppercase;">
           </div>
           <div class="col-md-4">
             <label>Middle Name</label>
-            <input type="text" class="form-control" name="middle_name" value="{{ old('middle_name') }}">
+            <input type="text" class="form-control" name="middle_name" value="{{ old('middle_name') }}" style="text-transform: uppercase;">
           </div>
         </div>
 
         <div class="row mb-3">
           <div class="col-md-4">
             <label>Last Name</label>
-            <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required>
+            <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required style="text-transform: uppercase;">
           </div>
           <div class="col-md-4">
             <label>Extension Name</label>
@@ -86,12 +86,13 @@
               <option value="">Choose division first...</option>
             </select>
           </div>
-        <div class="col-md-4">
-          <label>Email Address</label>
-          <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+          <div class="col-md-4">
+            <label>Email Address</label>
+            <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+          </div>
         </div>
-   </div>
-    <div class="row mb-3">
+
+        <div class="row mb-3">
           <div class="col-md-4">
             <label>Password</label>
             <input type="password" class="form-control" name="password" required>

@@ -35,37 +35,46 @@ class UserController extends Controller
   }
 
   public function store(Request $request)
-  {
-    $request->validate([
-      'employee_id' => 'required|unique:users,employee_id',
-      'first_name' => 'required',
-      'last_name' => 'required',
-      'employment_status' => 'required|exists:employment_statuses,id',
-      'division' => 'required|exists:divisions,id',
-      'section' => 'required|exists:sections,id',
-      'password' => 'required|confirmed|min:6',
-    ]);
+{
+  $request->validate([
+    'employee_id' => 'required|unique:users,employee_id',
+    'first_name' => 'required',
+    'last_name' => 'required',
+    'employment_status' => 'required|exists:employment_statuses,id',
+    'division' => 'required|exists:divisions,id',
+    'section' => 'required|exists:sections,id',
+    'password' => 'required|confirmed|min:6',
+  ]);
 
-    $middleInitial = substr($request->middle_name, 0, 1);
-    $empIdLast4 = substr($request->employee_id, -4);
-    $username = strtolower(substr($request->first_name, 0, 1) . $middleInitial . $request->last_name . $empIdLast4);
+  // Capitalize inputs
+  $firstName = ucwords(strtolower(trim($request->first_name)));
+  $middleName = ucwords(strtolower(trim($request->middle_name)));
+  $lastName = ucwords(strtolower(trim($request->last_name)));
+  $extensionName = ucwords(strtolower(trim($request->extension_name)));
 
-    User::create([
-      'employee_id' => $request->employee_id,
-      'first_name' => $request->first_name,
-      'middle_name' => $request->middle_name,
-      'last_name' => $request->last_name,
-      'extension_name' => $request->extension_name,
-      'employment_status_id' => $request->employment_status,
-      'division_id' => $request->division,
-      'section_id' => $request->section,
-      'username' => $username,
-      'email' => $request->email, 
-      'password' => Hash::make($request->password),
-    ]);
+  // Username generation
+  $middleInitial = substr($middleName, 0, 1);
+  $empIdLast4 = substr($request->employee_id, -4);
+  $username = strtolower(substr($firstName, 0, 1) . $middleInitial . $lastName . $empIdLast4);
 
-    return redirect()->route('employee.registration-form')->with('success', 'Employee registered successfully!');
-  }
+  // Create the user with capitalized fields
+  User::create([
+    'employee_id' => $request->employee_id,
+    'first_name' => $firstName,
+    'middle_name' => $middleName,
+    'last_name' => $lastName,
+    'extension_name' => $extensionName,
+    'employment_status_id' => $request->employment_status,
+    'division_id' => $request->division,
+    'section_id' => $request->section,
+    'username' => $username,
+    'email' => strtolower($request->email),
+    'password' => Hash::make($request->password),
+  ]);
+
+  return redirect()->route('employee.registration-form')->with('success', 'Employee registered successfully!');
+}
+
   public function show($id)
   {
     $employee = User::with(['division', 'section', 'employmentStatus'])->findOrFail($id);
@@ -80,50 +89,57 @@ class UserController extends Controller
 
     return view('content.planning.employee-edit', compact('employee', 'divisions', 'sections', 'employmentStatuses'));
   }
-  public function update(Request $request, $id)
-  {
-    $employee = User::findOrFail($id);
+ public function update(Request $request, $id)
+{
+  $employee = User::findOrFail($id);
 
-    // Validate input
-    $request->validate([
-      'employee_id' => 'required|unique:users,employee_id,' . $employee->id,
-      'first_name' => 'required',
-      'last_name' => 'required',
-      'employment_status' => 'required',
-      'division' => 'required',
-      'section' => 'required',
-      'password' => 'nullable|min:6',
-    ]);
+  $request->validate([
+    'employee_id' => 'required|unique:users,employee_id,' . $employee->id,
+    'first_name' => 'required',
+    'last_name' => 'required',
+    'employment_status' => 'required',
+    'division' => 'required',
+    'section' => 'required',
+    'password' => 'nullable|min:6',
+  ]);
 
-    // Generate username (only if employee_id changed)
-    if ($employee->employee_id != $request->employee_id) {
-      $middleInitial = substr($request->middle_name, 0, 1);
-      $empIdLast4 = substr($request->employee_id, -4);
-      $username = strtolower(substr($request->first_name, 0, 1) . $middleInitial . $request->last_name . $empIdLast4);
-    } else {
-      $username = $employee->username; // preserve existing username
-    }
+  // Capitalize inputs
+  $firstName = ucwords(strtolower(trim($request->first_name)));
+  $middleName = ucwords(strtolower(trim($request->middle_name)));
+  $lastName = ucwords(strtolower(trim($request->last_name)));
+  $extensionName = ucwords(strtolower(trim($request->extension_name)));
 
-    // Update fields
-    $employee->update([
-      'employee_id' => $request->employee_id,
-      'first_name' => $request->first_name,
-      'middle_name' => $request->middle_name,
-      'last_name' => $request->last_name,
-      'extension_name' => $request->extension_name,
-      'employment_status_id' => $request->employment_status,
-      'division_id' => $request->division,
-      'section_id' => $request->section,
-      'username' => $username,
-    ]);
-
-    // Update password only if provided
-    if (!empty($request->password)) {
-      $employee->update([
-        'password' => Hash::make($request->password)
-      ]);
-    }
-
-    return redirect()->route('employee.list-of-employee')->with('success', 'Employee updated successfully!');
+  // Regenerate username if employee_id changed
+  if ($employee->employee_id != $request->employee_id) {
+    $middleInitial = substr($middleName, 0, 1);
+    $empIdLast4 = substr($request->employee_id, -4);
+    $username = strtolower(substr($firstName, 0, 1) . $middleInitial . $lastName . $empIdLast4);
+  } else {
+    $username = $employee->username;
   }
+
+  // Update the user with capitalized values
+  $employee->update([
+    'employee_id' => $request->employee_id,
+    'first_name' => $firstName,
+    'middle_name' => $middleName,
+    'last_name' => $lastName,
+    'extension_name' => $extensionName,
+    'employment_status_id' => $request->employment_status,
+    'division_id' => $request->division,
+    'section_id' => $request->section,
+    'username' => $username,
+    'email' => strtolower($request->email),
+  ]);
+
+  if (!empty($request->password)) {
+    $employee->update([
+      'password' => Hash::make($request->password)
+    ]);
+  }
+
+  return redirect()->route('employee.list-of-employee')->with('success', 'Employee updated successfully!');
+}
+
+
 }

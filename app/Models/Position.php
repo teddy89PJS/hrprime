@@ -37,4 +37,8 @@ class Position extends Model
   {
     return $this->belongsTo(EmploymentStatus::class, 'employment_status_id');
   }
+  public function positionLevel()
+{
+    return $this->belongsTo(PositionLevel::class);
+}
 }

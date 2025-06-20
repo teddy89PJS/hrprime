@@ -29,8 +29,8 @@
           @foreach($employmentStatuses as $index => $status)
           <tr data-id="{{ $status->id }}">
             <td>{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td>
-            <td>{{ $status->name }}</td>
-            <td>{{ $status->abbreviation }}</td>
+            <td>{{ Str::upper($status->name) }}</td>
+            <td>{{ Str::upper($status->abbreviation) }}</td>
             <td>
               <button class="btn btn-sm btn-primary edit-btn"
                 data-id="{{ $status->id }}"
@@ -55,11 +55,11 @@
         <div class="modal-body">
           <div class="mb-3">
             <label>Status Name</label>
-            <input type="text" name="name" class="form-control" required>
+            <input type="text" name="name" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Abbreviation</label>
-            <input type="text" name="abbreviation" class="form-control">
+            <input type="text" name="abbreviation" class="form-control text-uppercase" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -84,11 +84,11 @@
           <input type="hidden" name="id" id="editEmploymentId">
           <div class="mb-3">
             <label>Status Name</label>
-            <input type="text" name="name" id="editEmploymentName" class="form-control" required>
+            <input type="text" name="name" id="editEmploymentName" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Abbreviation</label>
-            <input type="text" name="abbreviation" id="editEmploymentAbbreviation" class="form-control">
+            <input type="text" name="abbreviation" id="editEmploymentAbbreviation" class="form-control text-uppercase" required>
           </div>
         </div>
         <div class="modal-footer">
