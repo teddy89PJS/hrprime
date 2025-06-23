@@ -152,14 +152,14 @@
       "slug": "ui",
       "submenu": [
         {
-          "url": "ui/carousel",
+          "url": "welfare/dashboardwelfare",
           "name": "Dashboard",
           "slug": "ui-carousel"
         },
         {
-          "url": "layouts/without-navbar",
+          "url": "welfare/memorandum",
           "name": "Archive of Memorandum",
-          "slug": "without-navbar"
+          "slug": "memorandum"
         },
         {
           "url": "layouts/container",
@@ -168,7 +168,7 @@
         },
         {
           "url": "layouts/fluid",
-          "name": "Rewards Program Overview and Committee",
+          "name": "DSWD Rewards Program Overview and Committee",
           "slug": "fluid"
         },
         {
@@ -178,7 +178,7 @@
         },
         {
           "url": "layouts/fluid",
-          "name": "Monitoring and evaluation of the awardee",
+          "name": "Monitoring and Evaluation of the Awardee",
           "slug": "fluid"
         }
       ]

@@ -66,6 +66,9 @@ use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\SalaryGradeController;
 use App\Http\Controllers\Planning\UserController;
 
+//Welfare
+
+
 // Redirect root URL to login page
 Route::get('/', function () {
   return redirect()->route('auth-login-basic');
@@ -244,4 +247,12 @@ Route::prefix('pas')->group(function () {
 
 
 // HR WELFAREEEE - FRANS
-Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
+Route::prefix('welfare')->group(function () {
+    Route::view('/dashboard', 'content.welfare.dashboardwelfare')->name('welfare.dashboard');
+    Route::view('/memorandum', 'content.welfare.memorandum')->name('welfare.memorandum');
+    Route::view('/awardees', 'content.welfare.awardees')->name('welfare.awardees');
+    Route::view('/overview', 'content.welfare.overview')->name('welfare.overview');
+    Route::view('/character-program', 'content.welfare.character')->name('welfare.character');
+    Route::view('/monitoring', 'content.welfare.monitoring')->name('welfare.monitoring');
+});
+
