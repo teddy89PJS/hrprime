@@ -39,4 +39,11 @@ class User extends Authenticatable
   {
     return $this->belongsTo(EmploymentStatus::class, 'employment_status_id');
   }
+
+  public function employeesList()
+{
+    return $this->belongsTo(EmployeesList::class, 'employee_id');
+}
+
+
 }

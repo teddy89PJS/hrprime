@@ -53,6 +53,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
+use App\Http\Controllers\pas\EmployeesListController;
 // use App\Http\Controllers\welfare\AwardController;
 
 use App\Http\Controllers\planning\ListofEmployee;
@@ -70,6 +71,7 @@ use App\Http\Controllers\Planning\UserController;
 use App\Http\Controllers\pas\FundSourceController;
 use App\Http\Controllers\pas\PayrollController;
 use App\Http\Controllers\pas\TaxController;
+use App\Models\EmployeesList;
 
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -158,6 +160,8 @@ Route::post('/{id}/delete', [TaxController::class, 'destroy'])->name('tax.delete
 });
 
 Route::resource('/pas/payroll', PayrollController::class);
+Route::resource('/pas/employeeslist', EmployeesListController::class);
+Route::resource('/pas/leavecredits', PayrollController::class);
 
 
 

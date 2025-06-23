@@ -66,9 +66,9 @@
       "slug": "tables",
       "submenu": [
         {
-          "url": "layouts/without-menu",
+          "url": "pas/employeeslist",
           "name": "List of Employees",
-          "slug": "without-menu"
+          "slug": "employeeslist"
         },
         {
           "url": "layouts/without-menu",
