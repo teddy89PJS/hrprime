@@ -87,10 +87,11 @@ Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard/dashboards-analytics', [Analytics::class, 'index'])->name('dashboards-analytics');
 
-Route::get('/planning/list-of-employee', [ListofEmployee::class, 'index'])->name('list-of-employee');
-Route::get('/planning/registration-form', [RegistrationForm::class, 'index'])->name('registration-form');
-Route::get('/planning/list-of-position', [ListofPosition::class, 'index'])->name('list-of-position');
-Route::get('/planning/office-location', [OfficeLocation::class, 'index'])->name('office-location');
+Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Planning\UserController::class, 'create'])->name('registration-form');
+    Route::post('/store', [\App\Http\Controllers\Planning\UserController::class, 'store'])->name('store');
+    Route::get('/get-sections', [\App\Http\Controllers\Planning\UserController::class, 'getSections'])->name('sections');
+});
 
 Route::prefix('/planning/division')->group(function () {
   Route::get('/', [DivisionController::class, 'index'])->name('division.index');
@@ -147,12 +148,6 @@ Route::prefix('/planning/parenthetical-title')->group(function () {
   Route::post('/store', [ParentheticalTitleController::class, 'store'])->name('parenthetical-title.store');
   Route::post('/{id}/update', [ParentheticalTitleController::class, 'update'])->name('parenthetical-title.update');
   Route::post('/{id}/delete', [ParentheticalTitleController::class, 'destroy'])->name('parenthetical-title.delete');
-});
-
-Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
-  Route::get('/', [UserController::class, 'create'])->name('registration-form');
-  Route::post('/store', [UserController::class, 'store'])->name('store');
-  Route::get('/get-sections', [UserController::class, 'getSections'])->name('sections');
 });
 
 

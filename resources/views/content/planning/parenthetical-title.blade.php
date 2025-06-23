@@ -29,8 +29,8 @@
           @foreach($parentheticalTitles as $index => $parentheticalTitle)
           <tr data-id="{{ $parentheticalTitle->id }}">
             <td>{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td>
-            <td>{{ $parentheticalTitle->position_name }}</td>
-            <td>{{ $parentheticalTitle->abbreviation }}</td>
+            <td>{{ strtoupper($parentheticalTitle->position_name) }}</td>
+            <td>{{ strtoupper($parentheticalTitle->abbreviation) }}</td>
             <td>
               <button class="btn btn-sm btn-primary edit-btn"
                 data-id="{{ $parentheticalTitle->id }}"
@@ -57,11 +57,11 @@
         <div class="modal-body">
           <div class="mb-3">
             <label>Parenthetical Title</label>
-            <input type="text" name="position_name" class="form-control" required>
+            <input type="text" name="position_name" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Abbreviation</label>
-            <input type="text" name="abbreviation" class="form-control" required>
+            <input type="text" name="abbreviation" class="form-control text-uppercase" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -86,11 +86,11 @@
           <input type="hidden" name="id" id="editParentheticalTitleId">
           <div class="mb-3">
             <label>Parenthetical Title</label>
-            <input type="text" name="position_name" id="editParentheticalTitleName" class="form-control" required>
+            <input type="text" name="position_name" id="editParentheticalTitleName" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Abbreviation</label>
-            <input type="text" name="abbreviation" id="editParentheticalTitleAbbreviation" class="form-control" required>
+            <input type="text" name="abbreviation" id="editParentheticalTitleAbbreviation" class="form-control text-uppercase" required>
           </div>
         </div>
         <div class="modal-footer">

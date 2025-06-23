@@ -39,7 +39,7 @@ class ParentheticalTitleController extends Controller
             'abbreviation' => 'required|string|max:50',
         ]);
 
-        $parentheticalTitles = parentheticalTitles::findOrFail($id);
+        $parentheticalTitles = ParentheticalTitle::findOrFail($id);
         $parentheticalTitles->update([
             'position_name' => $request->position_name,
             'abbreviation' => $request->abbreviation,

@@ -30,18 +30,20 @@
           @foreach($positionLevels as $index => $level)
           <tr data-id="{{ $level->id }}">
             <td>{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td>
-            <td>{{ $level->level_name }}</td>
-            <td>{{ $level->abbreviation }}</td>
+            <td>{{ Str::upper($level->level_name) }}</td>
+            <td>{{ Str::upper($level->abbreviation) }}</td>
             <td>{{ $level->level_rank }}</td>
             <td>
-              <button class="btn btn-sm btn-primary edit-btn"
-                data-id="{{ $level->id }}"
-                data-level_name="{{ $level->level_name }}"
-                data-abbreviation="{{ $level->abbreviation }}"
-                data-level_rank="{{ $level->level_rank }}">
-                Edit
-              </button>
-              <button class="btn btn-sm btn-danger delete-btn" data-id="{{ $level->id }}">Delete</button>
+              <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-primary edit-btn"
+                  data-id="{{ $level->id }}"
+                  data-level_name="{{ $level->level_name }}"
+                  data-abbreviation="{{ $level->abbreviation }}"
+                  data-level_rank="{{ $level->level_rank }}">
+                  Edit
+                </button>
+                <button class="btn btn-sm btn-danger delete-btn" data-id="{{ $level->id }}">Delete</button>
+              </div>
             </td>
           </tr>
           @endforeach
@@ -58,22 +60,17 @@
       <h5 class="modal-title m-3">Add New Position Level</h5>
       <form id="positionLevelForm">
         <div class="modal-body">
-              <div class="mb-3">
-                <label>Position Level</label>
-                <select name="position_level_id" class="form-control" required>
-                  <option value="">-- Select Position Level --</option>
-                  @foreach($positionLevels as $level)
-                    <option value="{{ $level->id }}">{{ $level->level_name }}</option>
-                  @endforeach
-                </select>
-              </div>
+          <div class="mb-3">
+            <label>Level Name</label>
+            <input type="text" name="level_name" class="form-control text-uppercase" required>
+          </div>
           <div class="mb-3">
             <label>Abbreviation</label>
-            <input type="text" name="abbreviation" class="form-control">
+            <input type="text" name="abbreviation" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Level Rank</label>
-            <input type="number" name="level_rank" class="form-control">
+            <input type="number" name="level_rank" class="form-control text-uppercase" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -98,15 +95,15 @@
           <input type="hidden" name="id" id="editPositionLevelId">
           <div class="mb-3">
             <label>Level Name</label>
-            <input type="text" name="level_name" id="editPositionLevelName" class="form-control" required>
+            <input type="text" name="level_name" id="editPositionLevelName" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Abbreviation</label>
-            <input type="text" name="abbreviation" id="editPositionLevelAbbreviation" class="form-control">
+            <input type="text" name="abbreviation" id="editPositionLevelAbbreviation" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Level Rank</label>
-            <input type="number" name="level_rank" id="editPositionLevelRank" class="form-control">
+            <input type="number" name="level_rank" id="editPositionLevelRank" class="form-control text-uppercase" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -146,7 +143,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  $('#edit_position_level_id').val(data.position_level_id);
   $('#positionLevelTable').DataTable();
 
   $('#openModalBtn').click(function () {

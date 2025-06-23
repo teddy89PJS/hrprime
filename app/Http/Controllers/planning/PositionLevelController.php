@@ -25,7 +25,11 @@ class PositionLevelController extends Controller
             'level_rank'    => 'nullable|integer|min:1',
         ]);
 
-        PositionLevel::create($request->only(['level_name', 'abbreviation', 'level_rank']));
+        PositionLevel::create([
+            'level_name'   => strtoupper(trim($request->level_name)),
+            'abbreviation' => strtoupper(trim($request->abbreviation ?? '')),
+            'level_rank'   => $request->level_rank,
+        ]);
 
         return response()->json(['message' => 'Position Level created successfully']);
     }
@@ -41,7 +45,11 @@ class PositionLevelController extends Controller
 
         $positionLevel = PositionLevel::findOrFail($id);
 
-        $positionLevel->update($request->only(['level_name', 'abbreviation', 'level_rank']));
+        $positionLevel->update([
+            'level_name'   => strtoupper(trim($request->level_name)),
+            'abbreviation' => strtoupper(trim($request->abbreviation ?? '')),
+            'level_rank'   => $request->level_rank,
+        ]);
 
         return response()->json(['message' => 'Position Level updated successfully']);
     }
@@ -52,7 +60,6 @@ class PositionLevelController extends Controller
         try {
             $positionLevel = PositionLevel::findOrFail($id);
 
-            // Optional: Check if this level is used by any position before deleting
             if ($positionLevel->positions()->exists()) {
                 return response()->json([
                     'message' => 'Cannot delete. This level is assigned to one or more positions.'
