@@ -154,7 +154,7 @@
         {
           "url": "welfare/dashboardwelfare",
           "name": "Dashboard",
-          "slug": "ui-carousel"
+          "slug": "dashboardwelfare"
         },
         {
           "url": "welfare/memorandum",
@@ -162,24 +162,24 @@
           "slug": "memorandum"
         },
         {
-          "url": "layouts/container",
+          "url": "welfare/awardees",
           "name": "Hall of Awardees",
-          "slug": "container"
+          "slug": "awardees"
         },
         {
-          "url": "layouts/fluid",
+          "url": "welfare/overview",
           "name": "DSWD Rewards Program Overview and Committee",
-          "slug": "fluid"
+          "slug": "overview"
         },
         {
-          "url": "layouts/blank",
+          "url": "welfare/character",
           "name": "Character Building Program",
-          "slug": "blank"
+          "slug": "character"
         },
         {
-          "url": "layouts/fluid",
+          "url": "welfare/monitoring",
           "name": "Monitoring and Evaluation of the Awardee",
-          "slug": "fluid"
+          "slug": "monitoring"
         }
       ]
     },
