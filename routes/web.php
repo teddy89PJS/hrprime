@@ -128,6 +128,10 @@ Route::prefix('/planning/salary-grade')->group(function () {
   Route::post('/{id}/delete', [SalaryGradeController::class, 'destroy'])->name('salary-grade.delete');
 });
 
+Route::get('/employee/{id}/edit', [UserController::class, 'edit'])->name('employee.edit');
+Route::put('/employee/{id}/update', [UserController::class, 'update'])->name('employee.update');
+
+
 Route::prefix('planning/position')->group(function () {
   Route::get('/', [App\Http\Controllers\Planning\PositionController::class, 'index'])->name('position.index');
   Route::post('/store', [App\Http\Controllers\Planning\PositionController::class, 'store'])->name('position.store');

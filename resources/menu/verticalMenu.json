@@ -17,11 +17,33 @@
       "icon": "menu-icon tf-icons ri-layout-2-line",
       "slug": "planning",
       "submenu": [
+    {
+      "name": "Employees",
+      "slug": "employees",
+      "submenu": [
         {
           "url": "planning/list-of-employee",
-          "name": "Employees",
+          "name": "All Employees",
           "slug": "list-of-employee"
         },
+        {
+          "url": "planning/active-employees",
+          "name": "Active Employees",
+          "slug": "active-employees"
+        },
+        {
+          "url": "planning/retired employees",
+          "name": "Retired Employees",
+          "slug": "retired-employees"
+        }
+        ,
+        {
+          "url": "planning/resigned employees",
+          "name": "Resigned Employees",
+          "slug": "resigned-employees"
+        }
+      ]
+    },
         {
           "url": "planning/office-location",
           "name": "Office Locations",

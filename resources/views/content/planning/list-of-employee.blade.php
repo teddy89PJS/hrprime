@@ -30,6 +30,7 @@
           <th>Section</th>
           <th>Division</th>
           <th>Username</th>
+          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -48,6 +49,7 @@
           <td>{{ Str::upper($employee->section->abbreviation ?? '') }}</td>
           <td>{{ Str::upper($employee->division->abbreviation ?? '') }}</td>
           <td>{{ Str::lower($employee->username) }}</td>
+          <td class="text-capitalize">{{ $employee->status }}</td>
           <td>
             <div class="d-flex gap-1">
               <a href="{{ route('employee.show-view', $employee->id) }}" class="btn btn-sm btn-primary">View</a>

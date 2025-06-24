@@ -9,163 +9,158 @@ use App\Models\User;
 use App\Models\EmploymentStatus;
 use App\Models\Division;
 use App\Models\Section;
-use App\Models\SalaryGrade;
-use App\Models\Position;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $employees = User::with(['division', 'section', 'employmentStatus'])->get();
-        return view('content.planning.list-of-employee', compact('employees'));
-    }
+  public function index()
+  {
+    $employees = User::with(['division', 'section', 'employmentStatus'])->get();
 
-    public function create()
-    {
-        // Auto-generate unique employee ID like 11-0001
-        $latestUser = User::where('employee_id', 'like', '11-%')->orderByDesc('id')->first();
+    return view('content.planning.list-of-employee', compact('employees'));
+  }
+public function create()
+{
+    // Generate the next employee ID
+    $latestUser = User::where('employee_id', 'like', '11-%')
+                      ->orderByDesc('id')
+                      ->first();
+
+    if ($latestUser && preg_match('/11-(\d+)/', $latestUser->employee_id, $matches)) {
+        $number = intval($matches[1]) + 1;
+    } else {
         $number = 1;
-
-        if ($latestUser && preg_match('/11-(\d+)/', $latestUser->employee_id, $matches)) {
-            $number = intval($matches[1]) + 1;
-        }
-
-        $generatedEmployeeId = '11-' . str_pad($number, 4, '0', STR_PAD_LEFT);
-
-        $employmentStatuses = EmploymentStatus::all();
-        $divisions = Division::all();
-        $salaryGrades = SalaryGrade::all();
-        $positions = Position::all();
-
-        return view('content.planning.registration-form', compact(
-            'generatedEmployeeId',
-            'employmentStatuses',
-            'divisions',
-            'salaryGrades',
-            'positions'
-        ));
     }
 
-    public function getSections(Request $request)
-    {
-        $sections = Section::where('division_id', $request->division_id)->get();
-        return response()->json($sections);
-    }
+    $generatedEmployeeId = '11-' . str_pad($number, 4, '0', STR_PAD_LEFT);
 
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'employee_id' => 'required|unique:users,employee_id',
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:6',
-        ]);
+    // Load needed data for dropdowns (example models)
+    $employmentStatuses = \App\Models\EmploymentStatus::all();
+    $divisions = \App\Models\Division::all();
+    $salaryGrades = \App\Models\SalaryGrade::all();
+    $positions = \App\Models\Position::all();
 
-        $firstName = strtoupper(trim($validatedData['first_name']));
-        $middleName = strtoupper(trim($request->input('middle_name')));
-        $lastName = strtoupper(trim($validatedData['last_name']));
-        $extensionName = strtoupper(trim($request->input('extension_name')));
-        $employeeId = $validatedData['employee_id'];
+    return view('content.planning.registration-form', compact(
+        'generatedEmployeeId',
+        'employmentStatuses',
+        'divisions',
+        'salaryGrades',
+        'positions'
+    ));
+}
+  public function getSections(Request $request)
+  {
+    $divisionId = $request->division_id;
+    $sections = Section::where('division_id', $divisionId)->get();
 
-        // Generate username using initials + last 4 digits of employee ID
-        $middleInitial = $middleName ? substr($middleName, 0, 1) : '';
-        $empIdLast4 = substr($employeeId, -4);
-        $username = strtolower(substr($firstName, 0, 1) . $middleInitial . $lastName . $empIdLast4);
+    return response()->json($sections);
+  }
 
-        // Ensure username is unique
-        $originalUsername = $username;
-        $counter = 1;
-        while (User::where('username', $username)->exists()) {
-            $username = $originalUsername . $counter;
-            $counter++;
-        }
+  public function store(Request $request)
+{
+  $request->validate([
+    'employee_id' => 'required|unique:users,employee_id',
+    'first_name' => 'required',
+    'last_name' => 'required',
+    'employment_status' => 'required|exists:employment_statuses,id',
+    'division' => 'required|exists:divisions,id',
+    'section' => 'required|exists:sections,id',
+    'password' => 'required|confirmed|min:6',
+  ]);
 
-        $user = new User();
-        $user->employee_id = $employeeId;
-        $user->first_name = $firstName;
-        $user->middle_name = $middleName;
-        $user->last_name = $lastName;
-        $user->extension_name = $extensionName;
-        $user->email = strtolower($validatedData['email']);
-        $user->username = $username;
-        $user->password = Hash::make($validatedData['password']);
-        $user->division_id = $request->input('division');
-        $user->section_id = $request->input('section');
-        $user->employment_status_id = $request->input('employment_status');
-        $user->save();
+  // Capitalize inputs
+  $firstName = ucwords(strtolower(trim($request->first_name)));
+  $middleName = ucwords(strtolower(trim($request->middle_name)));
+  $lastName = ucwords(strtolower(trim($request->last_name)));
+  $extensionName = ucwords(strtolower(trim($request->extension_name)));
 
-        return redirect()->route('employee.view-blade')->with('success', 'Employee registered successfully!');
-    }
+  // Username generation
+  $middleInitial = substr($middleName, 0, 1);
+  $empIdLast4 = substr($request->employee_id, -4);
+  $username = strtolower(substr($firstName, 0, 1) . $middleInitial . $lastName . $empIdLast4);
 
-    public function show($id)
-    {
-        $employee = User::with(['division', 'section', 'employmentStatus'])->findOrFail($id);
-        return view('content.planning.employee-view', compact('employee'));
-    }
+  // Create the user with capitalized fields
+  User::create([
+    'employee_id' => $request->employee_id,
+    'first_name' => $firstName,
+    'middle_name' => $middleName,
+    'last_name' => $lastName,
+    'extension_name' => $extensionName,
+    'employment_status_id' => $request->employment_status,
+    'division_id' => $request->division,
+    'section_id' => $request->section,
+    'username' => $username,
+    'email' => strtolower($request->email),
+    'password' => Hash::make($request->password),
+  ]);
 
-    public function edit($id)
-    {
-        $employee = User::findOrFail($id);
-        $divisions = Division::all();
-        $sections = Section::where('division_id', $employee->division_id)->get();
-        $employmentStatuses = EmploymentStatus::all();
+  return redirect()->route('employee.registration-form')->with('success', 'Employee registered successfully!');
+}
 
-        return view('content.planning.employee-edit', compact('employee', 'divisions', 'sections', 'employmentStatuses'));
-    }
+  public function show($id)
+  {
+    $employee = User::with(['division', 'section', 'employmentStatus'])->findOrFail($id);
+    return view('content.planning.employee-view', compact('employee'));
+  }
+  public function edit($id)
+  {
+    $employee = User::findOrFail($id);
+    $divisions = Division::all();
+    $sections = Section::where('division_id', $employee->division_id)->get();
+    $employmentStatuses = EmploymentStatus::all();
 
-    public function update(Request $request, $id)
-    {
-        $employee = User::findOrFail($id);
+    return view('content.planning.employee-edit', compact('employee', 'divisions', 'sections', 'employmentStatuses'));
+  }
+ public function update(Request $request, $id)
+{
+  $employee = User::findOrFail($id);
 
-        $request->validate([
-            'employee_id' => 'required|unique:users,employee_id,' . $employee->id,
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'employment_status' => 'required',
-            'division' => 'required',
-            'section' => 'required',
-            'password' => 'nullable|min:6',
-        ]);
+  $request->validate([
+    'employee_id' => 'required|unique:users,employee_id,' . $employee->id,
+    'first_name' => 'required',
+    'last_name' => 'required',
+    'employment_status' => 'required',
+    'division' => 'required',
+    'section' => 'required',
+    'password' => 'nullable|min:6',
+  ]);
 
-        $firstName = ucwords(strtolower(trim($request->first_name)));
-        $middleName = ucwords(strtolower(trim($request->middle_name)));
-        $lastName = ucwords(strtolower(trim($request->last_name)));
-        $extensionName = ucwords(strtolower(trim($request->extension_name)));
+  // Capitalize inputs
+  $firstName = ucwords(strtolower(trim($request->first_name)));
+  $middleName = ucwords(strtolower(trim($request->middle_name)));
+  $lastName = ucwords(strtolower(trim($request->last_name)));
+  $extensionName = ucwords(strtolower(trim($request->extension_name)));
 
-        if ($employee->employee_id !== $request->employee_id) {
-            $middleInitial = $middleName ? substr($middleName, 0, 1) : '';
-            $empIdLast4 = substr($request->employee_id, -4);
-            $newUsername = strtolower(substr($firstName, 0, 1) . $middleInitial . $lastName . $empIdLast4);
+  // Regenerate username if employee_id changed
+  if ($employee->employee_id != $request->employee_id) {
+    $middleInitial = substr($middleName, 0, 1);
+    $empIdLast4 = substr($request->employee_id, -4);
+    $username = strtolower(substr($firstName, 0, 1) . $middleInitial . $lastName . $empIdLast4);
+  } else {
+    $username = $employee->username;
+  }
 
-            $originalUsername = $newUsername;
-            $counter = 1;
-            while (User::where('username', $newUsername)->where('id', '!=', $employee->id)->exists()) {
-                $newUsername = $originalUsername . $counter;
-                $counter++;
-            }
+  // Update the user with capitalized values
+  $employee->update([
+    'employee_id' => $request->employee_id,
+    'first_name' => $firstName,
+    'middle_name' => $middleName,
+    'last_name' => $lastName,
+    'extension_name' => $extensionName,
+    'employment_status_id' => $request->employment_status,
+    'division_id' => $request->division,
+    'section_id' => $request->section,
+    'username' => $username,
+    'email' => strtolower($request->email),
+  ]);
 
-            $employee->username = $newUsername;
-        }
+  if (!empty($request->password)) {
+    $employee->update([
+      'password' => Hash::make($request->password)
+    ]);
+  }
 
-        $employee->update([
-            'employee_id' => $request->employee_id,
-            'first_name' => $firstName,
-            'middle_name' => $middleName,
-            'last_name' => $lastName,
-            'extension_name' => $extensionName,
-            'employment_status_id' => $request->employment_status,
-            'division_id' => $request->division,
-            'section_id' => $request->section,
-            'email' => strtolower($request->email),
-        ]);
+  return redirect()->route('employee.list-of-employee')->with('success', 'Employee updated successfully!');
+}
 
-        if (!empty($request->password)) {
-            $employee->update([
-                'password' => Hash::make($request->password),
-            ]);
-        }
 
-        return redirect()->route('employee.list-of-employee')->with('success', 'Employee updated successfully!');
-    }
 }

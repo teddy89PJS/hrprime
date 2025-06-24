@@ -7,7 +7,8 @@
   <div class="card p-4 shadow-sm">
     <h4 class="mb-4">Edit Employee</h4>
 
-    <form method="POST" action="{{ url('/users/' . $employee->id) }}">
+    <form method="POST" action="{{ route('employee.update', $employee->id) }}">
+
       @csrf
       @method('PUT')
 
@@ -37,12 +38,12 @@
           <input type="text" name="last_name" id="last_name" class="form-control" value="{{ $employee->last_name }}" readonly>
         </div>
 
-        <div class="col-md-6 mb-3">
+        <div class="col-md-3 mb-3">
           <label for="extension_name" class="form-label">Extension</label>
           <input type="text" name="extension_name" id="extension_name" class="form-control" value="{{ $employee->extension_name }}" readonly>
         </div>
 
-        <div class="col-md-4 mb-3">
+        <div class="col-md-3 mb-3">
           <label for="employment_status_id" class="form-label">Employment Status</label>
           <select name="employment_status_id" id="employment_status_id" class="form-select">
             <option value="">-- Select Status --</option>
@@ -77,6 +78,19 @@
             @endforeach
           </select>
         </div>
+
+        <!-- ✅ STATUS DROPDOWN ADDED HERE -->
+        <div class="col-md-4 mb-3">
+          <label for="status" class="form-label">Status</label>
+          <select name="status" id="status" class="form-select" required>
+            <option value="">-- Select Status --</option>
+            @foreach(['active', 'resigned', 'retired'] as $status)
+              <option value="{{ $status }}" {{ $employee->status === $status ? 'selected' : '' }}>
+                {{ ucfirst($status) }}
+              </option>
+            @endforeach
+          </select>
+        </div>
       </div>
 
       <div class="mt-3">
@@ -86,6 +100,7 @@
     </form>
   </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $('#division_id').on('change', function() {
@@ -95,7 +110,7 @@
 
     if (divisionId) {
       $.ajax({
-        url: `/division/${divisionId}/sections`, // ✅ Route should match web.php or api.php
+        url: `/division/${divisionId}/sections`,
         type: 'GET',
         success: function(sections) {
           let options = '<option value="">-- Select Section --</option>';
@@ -105,7 +120,7 @@
           $('#section_id').html(options);
         },
         error: function(xhr, status, error) {
-          console.error('AJAX Error:', error); // Log detailed error
+          console.error('AJAX Error:', error);
           $('#section_id').html('<option value="">-- Error Loading Section --</option>');
           alert('Error loading sections. Please check console or route.');
         }
