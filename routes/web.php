@@ -56,6 +56,7 @@ use App\Http\Controllers\learning\ScholarshipController;
 use App\Http\Controllers\planning\ListofEmployee;
 use App\Http\Controllers\planning\RegistrationForm;
 use App\Http\Controllers\planning\ListofPosition;
+use App\Http\Controllers\planning\VacantPositionController;
 use App\Http\Controllers\planning\OfficeLocation;
 use App\Http\Controllers\planning\DivisionController;
 use App\Http\Controllers\planning\SectionController;
@@ -153,6 +154,8 @@ Route::prefix('/planning/parenthetical-title')->group(function () {
   Route::post('/{id}/update', [ParentheticalTitleController::class, 'update'])->name('parenthetical-title.update');
   Route::post('/{id}/delete', [ParentheticalTitleController::class, 'destroy'])->name('parenthetical-title.delete');
 });
+//vacant position 
+Route::get('/planning/vacant-position', [VacantPositionController::class, 'index'])->name('vacant.position');
 
 
 // ✅ This should be above any wildcard routes like /{id}

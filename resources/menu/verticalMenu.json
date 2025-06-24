@@ -13,10 +13,10 @@
       ]
     },
     {
-      "name": "Planning",
-      "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "planning",
-      "submenu": [
+  "name": "Planning",
+  "icon": "menu-icon tf-icons ri-layout-2-line",
+  "slug": "planning",
+  "submenu": [
     {
       "name": "Employees",
       "slug": "employees",
@@ -35,8 +35,7 @@
           "url": "planning/retired-employees",
           "name": "Retired Employees",
           "slug": "retired-employees"
-        }
-        ,
+        },
         {
           "url": "planning/resigned-employees",
           "name": "Resigned Employees",
@@ -44,39 +43,43 @@
         }
       ]
     },
-        {
-          "url": "planning/office-location",
-          "name": "Office Locations",
-          "slug": "office-location"
-        },
-        {
-          "url": "planning/division",
-          "name": "Divisions",
-          "slug": "division"
-        },
-        {
-          "url": "planning/section",
-          "name": "Sections",
-          "slug": "section"
-        },
-        {
-          "url": "planning/unit",
-          "name": "Units",
-          "slug": "unit"
-        },
-        {
-          "url": "planning/employment-status",
-          "name": "Employment Status",
-          "slug": "employment-status"
-        },
-        {
-          "url": "planning/salary-grade",
-          "name": "Salary Grade",
-          "slug": "salary-grade"
-        },
+    {
+      "url": "planning/office-location",
+      "name": "Office Locations",
+      "slug": "office-location"
+    },
+    {
+      "url": "planning/division",
+      "name": "Divisions",
+      "slug": "division"
+    },
+    {
+      "url": "planning/section",
+      "name": "Sections",
+      "slug": "section"
+    },
+    {
+      "url": "planning/unit",
+      "name": "Units",
+      "slug": "unit"
+    },
+    {
+      "url": "planning/employment-status",
+      "name": "Employment Status",
+      "slug": "employment-status"
+    },
+    {
+      "url": "planning/salary-grade",
+      "name": "Salary Grade",
+      "slug": "salary-grade"
+    },
+    {
+      "name": "Positions",
+      "slug": "position",
+      "submenu": [
         {
           "url": "planning/position",
-          "name": "Positions",
+          "name": "Position Titles",
           "slug": "position"
         },
         {
@@ -90,17 +93,24 @@
           "slug": "parenthetical-title"
         },
         {
-          "url": "planning/jo-requests",
-          "name": "Requests",
-          "slug": "jo_requests"
-        },
-        {
-          "url": "planning/report",
-          "name": "Reports",
-          "slug": "report"
+          "url": "planning/vacant-position",
+          "name": "Vacant Positions",
+          "slug": "vacant-position"
         }
       ]
     },
+    {
+      "url": "planning/jo-requests",
+      "name": "Requests",
+      "slug": "jo_requests"
+    },
+    {
+      "url": "planning/report",
+      "name": "Reports",
+      "slug": "report"
+    }
+  ]
+},
     {
       "name": "PAS",
       "icon": "menu-icon tf-icons ri-layout-2-line",
