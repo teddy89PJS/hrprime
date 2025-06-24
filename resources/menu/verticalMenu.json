@@ -32,13 +32,13 @@
           "slug": "active-employees"
         },
         {
-          "url": "planning/retired employees",
+          "url": "planning/retired-employees",
           "name": "Retired Employees",
           "slug": "retired-employees"
         }
         ,
         {
-          "url": "planning/resigned employees",
+          "url": "planning/resigned-employees",
           "name": "Resigned Employees",
           "slug": "resigned-employees"
         }

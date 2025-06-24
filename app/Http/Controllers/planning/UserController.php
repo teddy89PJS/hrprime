@@ -46,14 +46,35 @@ public function create()
         'salaryGrades',
         'positions'
     ));
+    
 }
-  public function getSections(Request $request)
-  {
-    $divisionId = $request->division_id;
-    $sections = Section::where('division_id', $divisionId)->get();
+            public function active()
+        {
+            $employees = User::where('status', 'Active')
+                ->with(['division', 'section', 'employmentStatus'])
+                ->get();
 
-    return response()->json($sections);
-  }
+            return view('content.planning.list-of-employee', compact('employees'));
+        }
+
+        public function retired()
+        {
+            $employees = User::where('status', 'Retired')
+                ->with(['division', 'section', 'employmentStatus'])
+                ->get();
+
+            return view('content.planning.list-of-employee', compact('employees'));
+        }
+
+        public function resigned()
+        {
+            $employees = User::where('status', 'Resigned')
+                ->with(['division', 'section', 'employmentStatus'])
+                ->get();
+
+            return view('content.planning.list-of-employee', compact('employees'));
+        }
+
 
   public function store(Request $request)
 {

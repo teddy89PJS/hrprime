@@ -169,6 +169,12 @@ Route::get('/planning/list-of-employee/{id}/view', [UserController::class, 'show
 Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])
   ->name('employee.view');
 
+// Employee Filters by Status
+Route::get('/planning/active-employees', [\App\Http\Controllers\Planning\UserController::class, 'active'])->name('employee.active');
+Route::get('/planning/retired-employees', [\App\Http\Controllers\Planning\UserController::class, 'retired'])->name('employee.retired');
+Route::get('/planning/resigned-employees', [\App\Http\Controllers\Planning\UserController::class, 'resigned'])->name('employee.resigned');
+
+
 Route::get('/division/{id}/sections', [DivisionController::class, 'getSections']);
 
 
