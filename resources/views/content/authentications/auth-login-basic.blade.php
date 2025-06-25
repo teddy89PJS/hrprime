@@ -1,6 +1,6 @@
 @extends('layouts/blankLayout')
 
-@section('title', 'Login Page Hrwelfare')
+@section('title', 'Login Page')
 
 @section('page-style')
 @vite([
