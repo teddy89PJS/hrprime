@@ -1,11 +1,17 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<aside id="layout-menu" class="layout-menu menu-vertical menu" 
+  style="background-image: url('{{ asset('assets/img/dswd-bg.png') }}'); 
+         background-size: cover; 
+         background-repeat: no-repeat; 
+         color: #fff;">
+
 
   <!-- ! Hide app brand if navbar-full -->
-  <div class="app-brand demo">
+ <div class="app-brand demo mt-4">
     <a href="{{url('dashboard')}}" class="app-brand-link">
       <span class="app-brand-logo demo me-1">
 
-        <img src="{{ asset('assets/img/logo-dswd.png') }}" alt="DSWD Logo" height="50" style="background: #fff;" />
+        <img src="{{ asset('assets/img/logo-dswd.png') }}" alt="DSWD Logo" height="68" style="margin: 30px 0 30px 0;" />
+
       </span>
     </a>
 
@@ -74,3 +80,15 @@
   </ul>
 
 </aside>
+<style>
+  .layout-menu .menu-inner .menu-item a,
+  .layout-menu .menu-inner .menu-header-text,
+  .layout-menu .menu-inner .menu-item i {
+    color: #ffffff !important;
+  }
+
+  .layout-menu .menu-inner .menu-item a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff !important;
+  }
+</style>

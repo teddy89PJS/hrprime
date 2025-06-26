@@ -182,4 +182,10 @@ public function create()
 
   return redirect()->route('employee.list-of-employee')->with('success', 'Employee updated successfully!');
 }
+public function getSections(Request $request)
+{
+    $divisionId = $request->division_id;
+    $sections = Section::where('division_id', $divisionId)->get();
+    return response()->json($sections);
+}
 }

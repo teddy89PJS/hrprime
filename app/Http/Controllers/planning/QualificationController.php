@@ -15,21 +15,41 @@ class QualificationController extends Controller
     }
 
         public function store(Request $request)
-        {
-            $request->validate([
-                'title' => 'required|string|unique:qualifications,title'
-            ]);
+            {
+                $request->validate([
+                    'title' => 'required|string|unique:qualifications,title',
+                    'description' => 'nullable|string',
+                ]);
 
-            Qualification::create([
-                'title' => $request->title
-            ]);
+                Qualification::create([
+                    'title' => strtoupper($request->title),
+                    'description' => strtoupper($request->description),
+                ]);
 
-            return redirect()->back()->with('success', 'Qualification added.');
-        }
+                return redirect()->back()->with('success', 'Qualification added.');
+            }
 
-    public function destroy($id)
-    {
-        Qualification::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Qualification deleted.');
-    }
+
+            public function destroy($id)
+            {
+                Qualification::findOrFail($id)->delete();
+                return response()->json(['success' => true]);
+            }
+            
+                    public function update(Request $request, $id)
+            {
+                $request->validate([
+                    'title' => 'required|string|unique:qualifications,title,' . $id,
+                    'description' => 'nullable|string',
+                ]);
+
+                $qualification = Qualification::findOrFail($id);
+                $qualification->update([
+                    'title' => strtoupper($request->title),
+                    'description' => strtoupper($request->description),
+                ]);
+
+                return response()->json(['success' => true]);
+            }
+
 }

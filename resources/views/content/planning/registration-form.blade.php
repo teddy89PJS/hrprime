@@ -93,8 +93,8 @@
 
           <div class="col-md-4">
             <label>Section</label>
-            <select class="form-select" name="section" id="sectionSelect" required>
-              <option value="">Choose division first...</option>
+           <select class="form-select" name="section" id="sectionSelect" required>
+              <option value="" disabled selected>Choose...</option>
             </select>
           </div>
 
