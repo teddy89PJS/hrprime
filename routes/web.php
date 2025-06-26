@@ -62,6 +62,7 @@ use App\Http\Controllers\planning\DivisionController;
 use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
+use App\Http\Controllers\Planning\QualificationController ;
 use App\Http\Controllers\Planning\SalaryGradeController;
 use App\Http\Controllers\Planning\PositionLevelController;
 use App\Http\Controllers\Planning\ParentheticalTitleController;
@@ -122,6 +123,10 @@ Route::prefix('/planning/office-location')->group(function () {
   Route::post('/{id}/delete', [OfficeLocationController::class, 'destroy'])->name('office-location.delete');
 });
 
+Route::get('planning/qualification', [QualificationController::class, 'index'])->name('qualifications.index');
+Route::post('planning/qualification/store', [QualificationController::class, 'store'])->name('qualifications.store');
+Route::delete('planning/qualification/{id}', [QualificationController::class, 'destroy'])->name('qualifications.destroy');
+
 Route::prefix('/planning/salary-grade')->group(function () {
   Route::get('/', [SalaryGradeController::class, 'index'])->name('salary-grade.index');
   Route::post('/store', [SalaryGradeController::class, 'store'])->name('salary-grade.store');
@@ -156,6 +161,7 @@ Route::prefix('/planning/parenthetical-title')->group(function () {
 });
 //vacant position 
 Route::get('/planning/vacant-position', [VacantPositionController::class, 'index'])->name('vacant.position');
+Route::post('/planning/vacant-positions/store', [VacantPositionController::class, 'store'])->name('vacant.positions.store');
 
 
 // ✅ This should be above any wildcard routes like /{id}

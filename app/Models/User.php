@@ -40,9 +40,8 @@ class User extends Authenticatable
   {
     return $this->belongsTo(EmploymentStatus::class, 'employment_status_id');
   }
-    public function qualification()
+  public function qualification()
   {
       return $this->belongsTo(Qualification::class);
   }
-
 }

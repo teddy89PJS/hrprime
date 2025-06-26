@@ -182,6 +182,4 @@ public function create()
 
   return redirect()->route('employee.list-of-employee')->with('success', 'Employee updated successfully!');
 }
-
-
 }

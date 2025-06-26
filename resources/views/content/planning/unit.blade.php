@@ -18,15 +18,12 @@
     <div class="table-responsive">
       <table id="unitTable" class="table">
         <thead class="table-light">
-          <tr>
             <th>No.</th>
             <th>Division</th>
             <th>Section</th>
             <th>Unit Name</th>
             <th>Abbreviation</th>
             <th>Actions</th>
-          </tr>
-        </thead>
         <tbody>
           @foreach($units as $index => $unit)
           <tr>

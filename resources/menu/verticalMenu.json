@@ -64,6 +64,11 @@
       "slug": "unit"
     },
     {
+      "url": "planning/qualification",
+      "name": "Qualification",
+      "slug": "qualification"
+    },
+    {
       "url": "planning/employment-status",
       "name": "Employment Status",
       "slug": "employment-status"

@@ -41,13 +41,9 @@ class Position extends Model
   {
       return $this->belongsTo(PositionLevel::class);
 }
-  public function qualification()
-  {
-      return $this->belongsTo(Qualification::class);
-  }
+    public function qualifications()
+    {
+        return $this->belongsToMany(Qualification::class, 'position_qualification');
+    }
 
-  public function qualifiedStaff()
-  {
-      return $this->hasMany(User::class, 'qualification_id', 'qualification_id');
-  }
 }

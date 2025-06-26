@@ -7,68 +7,82 @@ use Illuminate\Http\Request;
 use App\Models\Position;
 use App\Models\SalaryGrade;
 use App\Models\EmploymentStatus;
+use App\Models\Qualification;
 
 class PositionController extends Controller
 {
-  public function index()
-  {
-    $positions = Position::with(['salaryGrade', 'employmentStatus'])->get();
-    $salaryGrades = SalaryGrade::all();
-    $employmentStatuses = EmploymentStatus::all();
 
-    return view('content.planning.position', compact('positions', 'salaryGrades', 'employmentStatuses'));
-  }
+        public function index()
+        {
+            $positions = Position::with(['salaryGrade', 'employmentStatus'])->get();
+            $salaryGrades = SalaryGrade::all();
+            $employmentStatuses = EmploymentStatus::all();
+            $qualifications = Qualification::all(); // ✅ required
 
-  public function store(Request $request)
-  {
-    $validated = $request->validate([
-      'position_name' => 'required|string|max:255',
-      'abbreviation' => 'required|string|max:50',
-      'item_no' => 'required|string|max:50',
-      'salary_grade_id' => 'required|exists:salary_grades,id',
-      'employment_status_id' => 'required|exists:employment_statuses,id',
-      'status' => 'required|in:active,inactive',
-    ]);
+            return view('content.planning.position', compact(
+                'positions', 'salaryGrades', 'employmentStatuses', 'qualifications'
+            ));
+        }
 
 
-  $validated['position_name'] = strtoupper($validated['position_name']);
-  $validated['abbreviation'] = strtoupper($validated['abbreviation']);
-  $validated['item_no'] = strtoupper($validated['item_no']);
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'position_name' => 'required|string|max:255',
+            'abbreviation' => 'required|string|max:50',
+            'item_no' => 'required|string|max:50',
+            'salary_grade_id' => 'required|exists:salary_grades,id',
+            'employment_status_id' => 'required|exists:employment_statuses,id',
+            'status' => 'required|in:active,inactive',
+            'qualifications' => 'nullable|array',
+            'qualifications.*' => 'exists:qualifications,id',
+        ]);
 
+        $validated['position_name'] = strtoupper($validated['position_name']);
+        $validated['abbreviation'] = strtoupper($validated['abbreviation']);
+        $validated['item_no'] = strtoupper($validated['item_no']);
 
-    Position::create($validated);
-    return response()->json(['success' => true]);
-  }
+        $position = Position::create($validated);
 
-  public function update(Request $request, $id)
-  {
-    $validated = $request->validate([
-      'position_name' => 'required|string|max:255',
-      'abbreviation' => 'required|string|max:50',
-      'item_no' => 'required|string|max:50',
-      'salary_grade_id' => 'required|exists:salary_grades,id',
-      'employment_status_id' => 'required|exists:employment_statuses,id',
-      'status' => 'required|in:active,inactive',
-    ]);
-      $validated['position_name'] = strtoupper($validated['position_name']);
-      $validated['abbreviation'] = strtoupper($validated['abbreviation']);
-      $validated['item_no'] = strtoupper($validated['item_no']);
+        if ($request->has('qualifications')) {
+            $position->qualifications()->sync($request->qualifications);
+        }
 
-      $position = Position::findOrFail($id);
-      $position->update($validated);
-    
-    $position = Position::findOrFail($id);
-    $position->update($validated);
+        return response()->json(['success' => true]);
+    }
 
-    return response()->json(['success' => true]);
-  }
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'position_name' => 'required|string|max:255',
+            'abbreviation' => 'required|string|max:50',
+            'item_no' => 'required|string|max:50',
+            'salary_grade_id' => 'required|exists:salary_grades,id',
+            'employment_status_id' => 'required|exists:employment_statuses,id',
+            'status' => 'required|in:active,inactive',
+            'qualifications' => 'nullable|array',
+            'qualifications.*' => 'exists:qualifications,id',
+        ]);
 
-  public function destroy($id)
-  {
-    $position = Position::findOrFail($id);
-    $position->delete();
+        $validated['position_name'] = strtoupper($validated['position_name']);
+        $validated['abbreviation'] = strtoupper($validated['abbreviation']);
+        $validated['item_no'] = strtoupper($validated['item_no']);
 
-    return response()->json(['success' => true]);
-  }
-    
+        $position = Position::findOrFail($id);
+        $position->update($validated);
+
+        if ($request->has('qualifications')) {
+            $position->qualifications()->sync($request->qualifications);
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function destroy($id)
+    {
+        $position = Position::findOrFail($id);
+        $position->delete();
+
+        return response()->json(['success' => true]);
+    }
 }

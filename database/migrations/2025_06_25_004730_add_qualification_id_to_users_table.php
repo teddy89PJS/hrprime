@@ -12,4 +12,12 @@ return new class extends Migration
             $table->foreignId('qualification_id')->nullable()->constrained()->nullOnDelete();
         });
     }
+
+    public function down()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['qualification_id']);
+            $table->dropColumn('qualification_id');
+        });
+    }
 };
