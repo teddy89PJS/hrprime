@@ -1,5 +1,6 @@
 <?php
 
+// Section.php (Clean)
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,14 +10,15 @@ class Section extends Model
 {
   use HasFactory;
 
-  protected $fillable = [
-    'division_id',
-    'name',
-    'abbreviation'
-  ];
+  protected $fillable = ['division_id', 'name', 'abbreviation'];
 
   public function division()
   {
     return $this->belongsTo(Division::class);
+  }
+
+  public function units()
+  {
+    return $this->hasMany(Unit::class);
   }
 }

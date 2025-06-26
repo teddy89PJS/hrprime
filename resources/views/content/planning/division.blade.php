@@ -29,8 +29,8 @@
           @foreach($divisions as $index => $division)
           <tr data-id="{{ $division->id }}">
             <td>{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td>
-            <td>{{ $division->name }}</td>
-            <td>{{ $division->abbreviation }}</td>
+            <td>{{ Str::upper($division->name) }}</td>
+            <td>{{ Str::upper($division->abbreviation) }}</td>
             <td>
               <button
                 class="btn btn-sm btn-primary edit-btn"
@@ -58,11 +58,11 @@
         <div class="modal-body">
           <div class="mb-3">
             <label>Division Name</label>
-            <input type="text" name="name" class="form-control" required>
+            <input type="text" name="name" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Abbreviation</label>
-            <input type="text" name="abbreviation" class="form-control" required>
+            <input type="text" name="abbreviation" class="form-control text-uppercase" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -86,11 +86,11 @@
           <input type="hidden" name="id" id="editDivisionId">
           <div class="mb-3">
             <label>Division Name</label>
-            <input type="text" name="name" id="editDivisionName" class="form-control" required>
+            <input type="text" name="name" id="editDivisionName" class="form-control text-uppercase" required>
           </div>
           <div class="mb-3">
             <label>Abbreviation</label>
-            <input type="text" name="abbreviation" id="editDivisionAbbreviation" class="form-control" required>
+            <input type="text" name="abbreviation" id="editDivisionAbbreviation" class="form-control text-uppercase" required>
           </div>
         </div>
         <div class="modal-footer">

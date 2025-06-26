@@ -1,16 +1,16 @@
 <div class="mb-3">
   <label>Position Name</label>
-  <input type="text" name="position_name" id="edit_position_name" class="form-control" required>
+  <input type="text" name="position_name" id="edit_position_name" class="form-control  text-uppercase" required>
 </div>
 
 <div class="mb-3">
   <label>Abbreviation</label>
-  <input type="text" name="abbreviation" id="edit_abbreviation" class="form-control" required>
+  <input type="text" name="abbreviation" id="edit_abbreviation" class="form-control  text-uppercase" required>
 </div>
 
 <div class="mb-3">
   <label>Item No</label>
-  <input type="text" name="item_no" id="edit_item_no" class="form-control" required>
+  <input type="text" name="item_no" id="edit_item_no" class="form-control  text-uppercase" required>
 </div>
 
 <div class="mb-3">

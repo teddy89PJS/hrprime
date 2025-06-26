@@ -78,7 +78,7 @@
             @endif
           </form>
 
-          <p class="text-center mb-5">
+          <p hidden class="text-center mb-5">
             <span>New on our platform?</span>
             <a href="{{url('auth/register-basic')}}">
               <span>Create an account</span>

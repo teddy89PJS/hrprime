@@ -19,6 +19,7 @@ class User extends Authenticatable
     'division_id',
     'section_id',
     'username',
+    'email',
     'password',
   ];
 
@@ -27,12 +28,12 @@ class User extends Authenticatable
   ];
   public function division()
   {
-    return $this->belongsTo(Division::class, 'division_id');
+    return $this->belongsTo(Division::class);
   }
 
   public function section()
   {
-    return $this->belongsTo(Section::class, 'section_id');
+    return $this->belongsTo(Section::class);
   }
 
   public function employmentStatus()
@@ -40,10 +41,10 @@ class User extends Authenticatable
     return $this->belongsTo(EmploymentStatus::class, 'employment_status_id');
   }
 
-  public function employeesList()
-{
-    return $this->belongsTo(EmployeesList::class, 'employee_id');
-}
+
+
+
+
 
 
 }
