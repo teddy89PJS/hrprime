@@ -45,8 +45,8 @@ use App\Http\Controllers\pas\TaxController;
 use App\Http\Controllers\pas\EmployeesListController;
 
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Planning\UserController as PlanningUserController;
-use App\Models\Section;
+use App\Http\Controllers\pas\ImportPayrollController;
+use App\Models\ImportPayroll;
 // Login Page
 // Redirect root URL to login page
 Route::get('/', function () {
@@ -186,10 +186,10 @@ Route::resource('/pas/payroll', PayrollController::class);
 Route::resource('/pas/employeeslist', EmployeesListController::class);
 Route::resource('/pas/leavecredits', PayrollController::class);
 
+// Route::get('pas/importpayroll', [ImportPayroll::class, 'importpayroll'])->name('importpayroll');
 
 
-
-
+Route::resource('/pas/importpayroll', ImportPayrollController::class);
 
 
 

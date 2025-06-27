@@ -95,9 +95,9 @@
           "slug": "without-menu",
           "submenu": [
             {
-              "url": "pas/import_payroll",
+              "url": "pas/importpayroll",
               "name": "Import Payroll",
-              "slug": "import_payroll"
+              "slug": "importpayroll"
             },
             {
               "url": "pas/summary_of_lates",
