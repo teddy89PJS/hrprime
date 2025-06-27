@@ -13,48 +13,83 @@
       ]
     },
     {
-      "name": "Planning",
-      "icon": "menu-icon tf-icons ri-layout-2-line",
-      "slug": "planning",
+  "name": "Planning",
+  "icon": "menu-icon tf-icons ri-layout-2-line",
+  "slug": "planning",
+  "submenu": [
+    {
+      "url": "planning/dashboard",
+      "name": "Dashboard",
+      "slug": "dashboard"
+    },
+    {
+      "name": "Employees",
+      "slug": "employees",
       "submenu": [
         {
           "url": "planning/list-of-employee",
-          "name": "Employees",
+          "name": "All Employees",
           "slug": "list-of-employee"
         },
         {
-          "url": "planning/office-location",
-          "name": "Office Locations",
-          "slug": "office-location"
+          "url": "planning/active-employees",
+          "name": "Active Employees",
+          "slug": "active-employees"
         },
         {
-          "url": "planning/division",
-          "name": "Divisions",
-          "slug": "division"
+          "url": "planning/retired-employees",
+          "name": "Retired Employees",
+          "slug": "retired-employees"
         },
         {
-          "url": "planning/section",
-          "name": "Sections",
-          "slug": "section"
-        },
-        {
-          "url": "planning/unit",
-          "name": "Units",
-          "slug": "unit"
-        },
-        {
-          "url": "planning/employment-status",
-          "name": "Employment Status",
-          "slug": "employment-status"
-        },
-        {
-          "url": "planning/salary-grade",
-          "name": "Salary Grade",
-          "slug": "salary-grade"
-        },
+          "url": "planning/resigned-employees",
+          "name": "Resigned Employees",
+          "slug": "resigned-employees"
+        }
+      ]
+    },
+    {
+      "url": "planning/office-location",
+      "name": "Office Locations",
+      "slug": "office-location"
+    },
+    {
+      "url": "planning/division",
+      "name": "Divisions",
+      "slug": "division"
+    },
+    {
+      "url": "planning/section",
+      "name": "Sections",
+      "slug": "section"
+    },
+    {
+      "url": "planning/unit",
+      "name": "Units",
+      "slug": "unit"
+    },
+    {
+      "url": "planning/qualification",
+      "name": "Qualification",
+      "slug": "qualification"
+    },
+    {
+      "url": "planning/employment-status",
+      "name": "Employment Status",
+      "slug": "employment-status"
+    },
+    {
+      "url": "planning/salary-grade",
+      "name": "Salary Grade",
+      "slug": "salary-grade"
+    },
+    {
+      "name": "Positions",
+      "slug": "position",
+      "submenu": [
         {
           "url": "planning/position",
-          "name": "Positions",
+          "name": "Position Titles",
           "slug": "position"
         },
         {
@@ -68,17 +103,24 @@
           "slug": "parenthetical-title"
         },
         {
-          "url": "planning/jo-requests",
-          "name": "Requests",
-          "slug": "jo_requests"
-        },
-        {
-          "url": "planning/report",
-          "name": "Reports",
-          "slug": "report"
+          "url": "planning/vacant-position",
+          "name": "Vacant Positions",
+          "slug": "vacant-position"
         }
       ]
     },
+    {
+      "url": "planning/jo-requests",
+      "name": "Requests",
+      "slug": "jo_requests"
+    },
+    {
+      "url": "planning/report",
+      "name": "Reports",
+      "slug": "report"
+    }
+  ]
+},
     {
       "name": "PAS",
       "icon": "menu-icon tf-icons ri-layout-2-line",
@@ -177,24 +219,28 @@
         },
         {
           "url": "layouts/without-navbar",
-          "name": "Without navbar",
+          "name": "Archive of Memorandum",
           "slug": "without-navbar"
         },
         {
           "url": "layouts/container",
-          "name": "Container",
+          "name": "Hall of Awardees",
           "slug": "container"
         },
         {
           "url": "layouts/fluid",
-          "name": "Fluid",
+          "name": "Rewards Program Overview and Committee",
           "slug": "fluid"
         },
         {
           "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "blank",
-          "target": "_blank"
+          "name": "Character Building Program",
+          "slug": "blank"
+        },
+        {
+          "url": "layouts/fluid",
+          "name": "Monitoring and evaluation of the awardee",
+          "slug": "fluid"
         }
       ]
     },

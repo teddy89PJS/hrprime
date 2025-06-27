@@ -15,10 +15,23 @@
 
 <div class="card">
   <div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h4>List of Employees</h4>
-      <a href="{{ url('planning/registration-form') }}" class="btn btn-success">Add New Employee</a>
-    </div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4>
+            @if (Request::is('planning/retired-employees'))
+              Retired Employees
+            @elseif (Request::is('planning/resigned-employees'))
+              Resigned Employees
+            @elseif (Request::is('planning/active-employees'))
+              Active Employees
+            @else
+              List of Employees
+            @endif
+          </h4>
+
+          @unless (Request::is('planning/retired-employees') || Request::is('planning/resigned-employees'))
+            <a href="{{ url('planning/registration-form') }}" class="btn btn-success">Add New Employee</a>
+          @endunless
+        </div>
     <div class="table-responsive">
       <table id="empTable" class="table">
       <thead class="table-light">
@@ -30,6 +43,7 @@
           <th>Section</th>
           <th>Division</th>
           <th>Username</th>
+          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -48,6 +62,7 @@
           <td>{{ Str::upper($employee->section->abbreviation ?? '') }}</td>
           <td>{{ Str::upper($employee->division->abbreviation ?? '') }}</td>
           <td>{{ Str::lower($employee->username) }}</td>
+          <td class="text-capitalize">{{ $employee->status }}</td>
           <td>
             <div class="d-flex gap-1">
               <a href="{{ route('employee.show-view', $employee->id) }}" class="btn btn-sm btn-primary">View</a>

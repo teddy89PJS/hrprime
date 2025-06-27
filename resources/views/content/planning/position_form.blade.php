@@ -18,7 +18,7 @@
   <select name="salary_grade_id" class="form-control text-uppercase" required>
     <option disabled selected>CHOOSE SALARY GRADE</option>
     @foreach($salaryGrades as $grade)
-    <option value="{{ $grade->id }}">{{ Str::upper($grade->sg_num) }}</option>
+      <option value="{{ $grade->id }}">{{ Str::upper($grade->sg_num) }}</option>
     @endforeach
   </select>
 </div>
@@ -28,7 +28,7 @@
   <select name="employment_status_id" class="form-control text-uppercase" required>
     <option disabled selected>CHOOSE EMPLOYMENT STATUS</option>
     @foreach($employmentStatuses as $status)
-    <option value="{{ $status->id }}">{{ Str::upper($status->name) }}</option>
+      <option value="{{ $status->id }}">{{ Str::upper($status->name) }}</option>
     @endforeach
   </select>
 </div>
@@ -40,3 +40,27 @@
     <option value="inactive">INACTIVE</option>
   </select>
 </div>
+
+<div class="mb-3">
+  <label>Qualifications</label>
+  <select name="qualifications[]" class="form-control select2" multiple required>
+    @foreach($qualifications as $qualification)
+      <option value="{{ $qualification->id }}">{{ $qualification->title }}</option>
+    @endforeach
+  </select>
+</div>
+
+@push('scripts')
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {{-- ✅ jQuery added --}}
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.select2').select2({
+        placeholder: "Select qualifications",
+        allowClear: true,
+        width: '100%'
+      });
+    });
+  </script>
+@endpush

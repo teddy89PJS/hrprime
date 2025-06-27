@@ -24,7 +24,7 @@
         </div>
       @endif
 
-      <form action="{{ route('employee.store') }}" method="POST">
+      <form action="{{ route('employee.store') }}" method="POST" autocomplete="off">
         @csrf
 
         <div class="row mb-3">
@@ -93,28 +93,28 @@
 
           <div class="col-md-4">
             <label>Section</label>
-            <select class="form-select" name="section" id="sectionSelect" required>
-              <option value="">Choose division first...</option>
+           <select class="form-select" name="section" id="sectionSelect" required>
+              <option value="" disabled selected>Choose...</option>
             </select>
           </div>
 
           <div class="col-md-4">
             <label>Email Address</label>
             <input type="email" class="form-control" name="email"
-                   value="{{ old('email') }}" required>
+                   value="{{ old('email') }}" required autocomplete="off">
           </div>
         </div>
 
         <div class="row mb-3">
           <div class="col-md-4">
             <label>Password</label>
-            <input type="password" class="form-control" name="password" required autocomplete="off">
+            <input type="password" class="form-control" name="password" required autocomplete="new-password">
             <small class="text-muted">Min: 6 characters</small>
           </div>
 
           <div class="col-md-4">
             <label>Confirm Password</label>
-            <input type="password" class="form-control" name="password_confirmation" required autocomplete="off">
+            <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
           </div>
         </div>
 

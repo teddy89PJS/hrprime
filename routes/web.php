@@ -29,12 +29,17 @@ use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
 
-
-
+use App\Http\Controllers\planning\ListofEmployee;
+use App\Http\Controllers\planning\RegistrationForm;
+use App\Http\Controllers\planning\ListofPosition;
+use App\Http\Controllers\planning\VacantPositionController;
+use App\Http\Controllers\planning\OfficeLocation;
 use App\Http\Controllers\planning\DivisionController;
+use App\Http\Controllers\planning\UnitController;
 use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
+use App\Http\Controllers\Planning\QualificationController ;
 use App\Http\Controllers\Planning\SalaryGradeController;
 use App\Http\Controllers\Planning\PositionLevelController;
 use App\Http\Controllers\Planning\ParentheticalTitleController;
@@ -84,6 +89,14 @@ Route::prefix('/planning/section')->group(function () {
   Route::post('/{id}/delete', [SectionController::class, 'destroy'])->name('section.delete');
 });
 
+Route::prefix('planning/unit')->name('unit.')->group(function () {
+    Route::get('/', [UnitController::class, 'index'])->name('index');
+    Route::post('/', [UnitController::class, 'store'])->name('store');
+    Route::put('/{id}', [UnitController::class, 'update'])->name('update');
+    Route::delete('/{id}', [UnitController::class, 'destroy'])->name('destroy');
+    Route::get('/sections/by-division/{id}', [UnitController::class, 'getSectionsByDivision']);
+});
+
 Route::prefix('/planning/employment-status')->group(function () {
   Route::get('/', [EmploymentStatusController::class, 'index'])->name('employment-status.index');
   Route::post('/store', [EmploymentStatusController::class, 'store'])->name('employment-status.store');
@@ -98,6 +111,13 @@ Route::prefix('/planning/office-location')->group(function () {
   Route::post('/{id}/delete', [OfficeLocationController::class, 'destroy'])->name('office-location.delete');
 });
 
+Route::prefix('planning/qualification')->name('qualifications.')->group(function () {
+    Route::get('/', [QualificationController::class, 'index'])->name('index');
+    Route::post('/', [QualificationController::class, 'store'])->name('store');
+    Route::put('/{id}', [QualificationController::class, 'update'])->name('update');
+    Route::delete('/{id}', [QualificationController::class, 'destroy'])->name('destroy');
+});
+
 Route::prefix('/planning/salary-grade')->group(function () {
   Route::get('/', [SalaryGradeController::class, 'index'])->name('salary-grade.index');
   Route::post('/store', [SalaryGradeController::class, 'store'])->name('salary-grade.store');
@@ -105,12 +125,18 @@ Route::prefix('/planning/salary-grade')->group(function () {
   Route::post('/{id}/delete', [SalaryGradeController::class, 'destroy'])->name('salary-grade.delete');
 });
 
+Route::get('/employee/{id}/edit', [UserController::class, 'edit'])->name('employee.edit');
+Route::put('/employee/{id}/update', [UserController::class, 'update'])->name('employee.update');
+Route::get('/employee/sections', [UserController::class, 'getSections'])->name('employee.sections');
+
+
 Route::prefix('planning/position')->group(function () {
   Route::get('/', [App\Http\Controllers\Planning\PositionController::class, 'index'])->name('position.index');
   Route::post('/store', [App\Http\Controllers\Planning\PositionController::class, 'store'])->name('position.store');
   Route::post('/{id}/update', [App\Http\Controllers\Planning\PositionController::class, 'update'])->name('position.update');
   Route::post('/{id}/delete', [App\Http\Controllers\Planning\PositionController::class, 'destroy'])->name('position.delete');
 });
+
 
 Route::prefix('/planning/position-level')->group(function () {
   Route::get('/', [PositionLevelController::class, 'index'])->name('position-level.index');
@@ -127,6 +153,9 @@ Route::prefix('/planning/parenthetical-title')->group(function () {
   Route::post('/{id}/update', [ParentheticalTitleController::class, 'update'])->name('parenthetical-title.update');
   Route::post('/{id}/delete', [ParentheticalTitleController::class, 'destroy'])->name('parenthetical-title.delete');
 });
+//vacant position
+Route::get('/planning/vacant-position', [VacantPositionController::class, 'index'])->name('vacant.position');
+Route::post('/planning/vacant-positions/store', [VacantPositionController::class, 'store'])->name('vacant.positions.store');
 
 
 // ✅ This should be above any wildcard routes like /{id}
@@ -142,6 +171,12 @@ Route::get('/planning/list-of-employee/{id}/view', [UserController::class, 'show
 // For raw JSON (AJAX/API)
 Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])
   ->name('employee.view');
+
+// Employee Filters by Status
+Route::get('/planning/active-employees', [\App\Http\Controllers\Planning\UserController::class, 'active'])->name('employee.active');
+Route::get('/planning/retired-employees', [\App\Http\Controllers\Planning\UserController::class, 'retired'])->name('employee.retired');
+Route::get('/planning/resigned-employees', [\App\Http\Controllers\Planning\UserController::class, 'resigned'])->name('employee.resigned');
+
 
 Route::get('/division/{id}/sections', [DivisionController::class, 'getSections']);
 
@@ -226,9 +261,9 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-
-// welfare
-Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
+Route::middleware(['auth'])->group(function () {
+  Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
+});
 
 Route::get('/portfolio', [Analytics::class, 'index'])->name('portfolio');
 
@@ -288,3 +323,25 @@ Route::post('/events/{id}/status', [EventsController::class, 'updateStatus'])->n
 Route::get('/learning/trainings', [CourseController::class, 'index']);
 Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
 Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+
+
+//PAS
+
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+// Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
+
+// Route::get('/pas/import_payroll', [ImportPayroll::class, 'index'])->name('import_payroll');
+// Route::get('/pas/summary_of_lates', [SummaryofLates::class, 'index'])->name('summary_of_lates');
+// Route::get('/pas/payroll', [Payroll::class, 'index'])->name('payroll');
+// Route::get('/pas/tax', [Tax::class, 'index'])->name('tax');
+// Route::get('/pas/deductions', [Deductions::class, 'index'])->name('deductions');
+// Route::get('/pas/leavecredits', [LeaveCredits::class, 'index'])->name('leavecredits');
+// Route::get('/pas/reports', [Reports::class, 'index'])->name('reports');
+
+Route::prefix('pas')->group(function () {
+  Route::resource('fundsource', FundSourceController::class);
+});
+
+
+// HR WELFAREEEE - FRANS
+Route::get('/welfare', [Analytics::class, 'index'])->name('listofnomination');
