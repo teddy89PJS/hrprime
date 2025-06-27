@@ -1,6 +1,7 @@
 <?php
 
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\pages\AccountSettingsAccount;
@@ -29,6 +30,7 @@ use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
 
 
+
 use App\Http\Controllers\planning\DivisionController;
 use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
@@ -42,6 +44,7 @@ use App\Http\Controllers\Planning\JoRequestController;
 use App\Http\Controllers\pas\FundSourceController;
 use App\Http\Controllers\pas\PayrollController;
 use App\Http\Controllers\pas\TaxController;
+use App\Http\Controllers\pas\EmployeesListController;
 use App\Http\Controllers\pas\EmployeesListController;
 
 use App\Http\Controllers\Api\UserController;
@@ -114,6 +117,7 @@ Route::prefix('/planning/position-level')->group(function () {
   Route::post('/store', [PositionLevelController::class, 'store'])->name('position-level.store');
   Route::post('/{id}/update', [PositionLevelController::class, 'update'])->name('position-level.update');
   Route::post('/{id}/delete', [PositionLevelController::class, 'destroy'])->name('position-level.delete');
+
 
 });
 
