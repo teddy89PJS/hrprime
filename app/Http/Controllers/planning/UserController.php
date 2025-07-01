@@ -46,7 +46,7 @@ public function create()
         'salaryGrades',
         'positions'
     ));
-    
+
 }
             public function active()
         {

@@ -38,7 +38,7 @@
         <tr>
           <th style="width: 0;">ID No.</th>
           <th>Employee Name</th>
-          <th>Email</th> <!-- NEW -->
+          <th>Email</th>
           <th>Employment Status</th>
           <th>Section</th>
           <th>Division</th>

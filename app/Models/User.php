@@ -44,4 +44,10 @@ class User extends Authenticatable
   {
       return $this->belongsTo(Qualification::class);
   }
+
+ public function leaveCredits()
+{
+    return $this->hasMany(LeaveCredits::class, 'employee_id' , 'employee_name_id');
+}
+
 }
