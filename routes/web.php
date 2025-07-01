@@ -66,7 +66,11 @@ use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\SalaryGradeController;
 use App\Http\Controllers\Planning\UserController;
 
+
 //Welfare
+use App\Http\Controllers\Welfare\MemorandumController;
+
+
 
 
 // Redirect root URL to login page
@@ -246,13 +250,21 @@ Route::prefix('pas')->group(function () {
 });
 
 
-// HR WELFAREEEE - FRANS
 Route::prefix('welfare')->group(function () {
-    Route::view('/dashboard', 'content.welfare.dashboardwelfare')->name('welfare.dashboard');
-    Route::view('/memorandum', 'content.welfare.memorandum')->name('welfare.memorandum');
+    Route::view('/dashboardwelfare', 'content.welfare.dashboardwelfare')->name('welfare.dashboard');
+
+    // Memorandum routes
+    Route::get('/memorandum', [MemorandumController::class, 'index'])->name('welfare.memorandum');
+    Route::get('/memorandum/{id}', [MemorandumController::class, 'show'])->name('memorandums.show');
+    Route::put('/memorandum/{id}', [MemorandumController::class, 'update'])->name('memorandum.update');
+    Route::post('/memorandum', [MemorandumController::class, 'store'])->name('memorandums.store');
+    Route::delete('/memorandum/{id}', [MemorandumController::class, 'destroy'])->name('memorandums.destroy');
+
+    // Other pages
     Route::view('/awardees', 'content.welfare.awardees')->name('welfare.awardees');
     Route::view('/overview', 'content.welfare.overview')->name('welfare.overview');
-    Route::view('/character-program', 'content.welfare.character')->name('welfare.character');
+    Route::view('/character', 'content.welfare.character')->name('welfare.character');
     Route::view('/monitoring', 'content.welfare.monitoring')->name('welfare.monitoring');
 });
+
 
