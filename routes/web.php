@@ -54,6 +54,7 @@ use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
 
+use App\Http\Controllers\planning\DashboardController;
 use App\Http\Controllers\planning\ListofEmployee;
 use App\Http\Controllers\planning\RegistrationForm;
 use App\Http\Controllers\planning\ListofPosition;
@@ -90,6 +91,21 @@ Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics
 
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard/dashboards-analytics', [Analytics::class, 'index'])->name('dashboards-analytics');
+
+//PLANNING
+
+Route::get('/planning/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/planning/list-of-employee', [UserController::class, 'bladeIndex'])->name('employee.view-blade');
+Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])->name('employee.view');
+Route::get('/planning/list-of-employee/{id}/view', [UserController::class, 'showEmployeeView'])
+  ->name('employee.show-view');
+Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])
+  ->name('employee.view');
+Route::get('/planning/active-employees', [\App\Http\Controllers\Planning\UserController::class, 'active'])->name('employee.active');
+Route::get('/planning/retired-employees', [\App\Http\Controllers\Planning\UserController::class, 'retired'])->name('employee.retired');
+Route::get('/planning/resigned-employees', [\App\Http\Controllers\Planning\UserController::class, 'resigned'])->name('employee.resigned');
+
 
 Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Planning\UserController::class, 'create'])->name('registration-form');
@@ -177,26 +193,6 @@ Route::prefix('/planning/parenthetical-title')->group(function () {
 //vacant position 
 Route::get('/planning/vacant-position', [VacantPositionController::class, 'index'])->name('vacant.position');
 Route::post('/planning/vacant-positions/store', [VacantPositionController::class, 'store'])->name('vacant.positions.store');
-
-
-// ✅ This should be above any wildcard routes like /{id}
-Route::get('/planning/list-of-employee', [UserController::class, 'bladeIndex'])->name('employee.view-blade');
-
-// 👇 Move this BELOW to avoid catching the above route
-Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])->name('employee.view');
-
-// For the Blade view
-Route::get('/planning/list-of-employee/{id}/view', [UserController::class, 'showEmployeeView'])
-  ->name('employee.show-view');
-
-// For raw JSON (AJAX/API)
-Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])
-  ->name('employee.view');
-
-// Employee Filters by Status
-Route::get('/planning/active-employees', [\App\Http\Controllers\Planning\UserController::class, 'active'])->name('employee.active');
-Route::get('/planning/retired-employees', [\App\Http\Controllers\Planning\UserController::class, 'retired'])->name('employee.retired');
-Route::get('/planning/resigned-employees', [\App\Http\Controllers\Planning\UserController::class, 'resigned'])->name('employee.resigned');
 
 
 Route::get('/division/{id}/sections', [DivisionController::class, 'getSections']);
