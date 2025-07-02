@@ -250,6 +250,9 @@ Route::prefix('pas')->group(function () {
 });
 
 
+
+
+//HR FRANS WELFARE
 Route::prefix('welfare')->group(function () {
     Route::view('/dashboardwelfare', 'content.welfare.dashboardwelfare')->name('welfare.dashboard');
 
