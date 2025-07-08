@@ -1,11 +1,22 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<!-- image-background -->
+<aside id="layout-menu" class="layout-menu menu-vertical menu" 
+  style="background-image: url('{{ asset('assets/img/dswd-bg.png') }}'); 
+         background-size: cover; 
+         background-repeat: no-repeat; 
+         color: #fff;">
+
+<!-- colored-background -->
+<!-- <aside id="layout-menu" class="layout-menu menu-vertical menu" style="background: linear-gradient(180deg,rgb(26, 26, 152),rgb(130, 41, 5)); color: #fff;"> -->
+
+
 
   <!-- ! Hide app brand if navbar-full -->
-  <div class="app-brand demo">
+ <div class="app-brand demo mt-4">
     <a href="{{url('dashboard')}}" class="app-brand-link">
       <span class="app-brand-logo demo me-1">
 
-        <img src="{{ asset('assets/img/logo-dswd.png') }}" alt="DSWD Logo" height="50" style="background: #fff;" />
+        <img src="{{ asset('assets/img/logo-dswd.png') }}" alt="DSWD Logo" height="68" style="margin: 30px 0 30px 0;" />
+
       </span>
     </a>
 
@@ -74,3 +85,41 @@
   </ul>
 
 </aside>
+<style>
+  .layout-menu .menu-inner .menu-item a,
+  .layout-menu .menu-inner .menu-header-text,
+  .layout-menu .menu-inner .menu-item i {
+    color: #ffffff !important;
+  }
+
+  .layout-menu .menu-inner .menu-item a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff !important;
+  }
+    /* Change color of bullet (menu indicator or dot if any) */
+    .layout-menu .menu-item::before {
+      color: #ffffff !important;
+    }
+
+    /* Change color of the dropdown toggle arrow */
+    .layout-menu .menu-toggle::after {
+      color: #ffffff !important;
+    }
+    .layout-menu .menu-item::before {
+      color: #ffffff !important; /* Already present in your code, good */
+      background-color: #ffffff !important; /* Add this if it's a dot or square */
+    }
+
+    /* Example 2: For vertical line indicators on the left of active/open menu */
+    .layout-menu .menu-item.active::before,
+    .layout-menu .menu-item.open::before {
+      background-color: #ffffff !important;
+    }
+
+    .layout-menu .menu-item .menu-link::before {
+      background-color: #ffffff !important;
+    }
+    .layout-menu .menu-item.active {
+      border-left: 3px solid #ffffff !important;
+    }
+</style>

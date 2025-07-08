@@ -13,14 +13,12 @@ $containerFooter = !empty($containerNav) ? $containerNav : 'container-fluid';
 <footer class="content-footer footer bg-footer-theme text-center">
   <div class="{{ $containerFooter }}">
     <div class="footer-container py-4 d-flex flex-column flex-md-row align-items-center justify-content-center gap-2">
-      <div class="text-body">
-         <span class="text-black">Department of Social Welfare and Development © 
-           <script>document.write(new Date().getFullYear())</script>
-      
-      
-        </span>
-
-        </script>
+      <div class="text-body text-black">
+      <div class="text-primary">HR PRIME</div>  
+      <div>Department of Social Welfare and Development © 
+          <script>document.write(new Date().getFullYear())</script>
+        </div>
+        
       </div>
     </div>
   </div>

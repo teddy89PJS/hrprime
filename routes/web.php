@@ -8,7 +8,6 @@
 // use App\Http\Controllers\layouts\Deductions;
 // use App\Http\Controllers\layouts\LeaveCredits;
 use App\Http\Controllers\layouts\Reports;
-use App\Http\Controllers\pas\FundSourceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\pages\AccountSettingsAccount;
@@ -55,17 +54,31 @@ use App\Http\Controllers\learning\CalendarController;
 use App\Http\Controllers\learning\EventsController;
 use App\Http\Controllers\learning\ScholarshipController;
 
+use App\Http\Controllers\planning\DashboardController;
 use App\Http\Controllers\planning\ListofEmployee;
 use App\Http\Controllers\planning\RegistrationForm;
 use App\Http\Controllers\planning\ListofPosition;
+use App\Http\Controllers\planning\VacantPositionController;
 use App\Http\Controllers\planning\OfficeLocation;
 use App\Http\Controllers\planning\DivisionController;
+use App\Http\Controllers\planning\UnitController;
 use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
+use App\Http\Controllers\Planning\QualificationController ;
 use App\Http\Controllers\Planning\SalaryGradeController;
-use App\Http\Controllers\Planning\UserController;
+use App\Http\Controllers\Planning\PositionLevelController;
+use App\Http\Controllers\Planning\ParentheticalTitleController;
+use App\Http\Controllers\Planning\ReportController;
+use App\Http\Controllers\Planning\JoRequestController;
+//PAS
+use App\Http\Controllers\pas\FundSourceController;
+use App\Http\Controllers\pas\PayrollController;
+use App\Http\Controllers\pas\TaxController;
 
+use App\Http\Controllers\Api\UserController;
+use App\Models\Section;
+// Login Page
 
 //Welfare
 use App\Http\Controllers\Welfare\MemorandumController;
@@ -77,16 +90,35 @@ use App\Http\Controllers\Welfare\MemorandumController;
 Route::get('/', function () {
   return redirect()->route('auth-login-basic');
 });
-// Login Page
+
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
 
 // Dashboard (you can protect this later with auth middleware)
 Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-Route::get('/planning/list-of-employee', [ListofEmployee::class, 'index'])->name('list-of-employee');
-Route::get('/planning/registration-form', [RegistrationForm::class, 'index'])->name('registration-form');
-Route::get('/planning/list-of-position', [ListofPosition::class, 'index'])->name('list-of-position');
-Route::get('/planning/office-location', [OfficeLocation::class, 'index'])->name('office-location');
+// Dashboard (you can protect this later with auth middleware)
+Route::get('/dashboard/dashboards-analytics', [Analytics::class, 'index'])->name('dashboards-analytics');
+
+//PLANNING
+
+Route::get('/planning/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/planning/list-of-employee', [UserController::class, 'bladeIndex'])->name('employee.view-blade');
+Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])->name('employee.view');
+Route::get('/planning/list-of-employee/{id}/view', [UserController::class, 'showEmployeeView'])
+  ->name('employee.show-view');
+Route::get('/planning/list-of-employee/{id}', [UserController::class, 'show'])
+  ->name('employee.view');
+Route::get('/planning/active-employees', [\App\Http\Controllers\Planning\UserController::class, 'active'])->name('employee.active');
+Route::get('/planning/retired-employees', [\App\Http\Controllers\Planning\UserController::class, 'retired'])->name('employee.retired');
+Route::get('/planning/resigned-employees', [\App\Http\Controllers\Planning\UserController::class, 'resigned'])->name('employee.resigned');
+
+
+Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Planning\UserController::class, 'create'])->name('registration-form');
+    Route::post('/store', [\App\Http\Controllers\Planning\UserController::class, 'store'])->name('store');
+    Route::get('/get-sections', [\App\Http\Controllers\Planning\UserController::class, 'getSections'])->name('sections');
+});
 
 Route::prefix('/planning/division')->group(function () {
   Route::get('/', [DivisionController::class, 'index'])->name('division.index');
@@ -100,6 +132,14 @@ Route::prefix('/planning/section')->group(function () {
   Route::post('/store', [SectionController::class, 'store'])->name('section.store');
   Route::post('/{id}/update', [SectionController::class, 'update'])->name('section.update');
   Route::post('/{id}/delete', [SectionController::class, 'destroy'])->name('section.delete');
+});
+
+Route::prefix('planning/unit')->name('unit.')->group(function () {
+    Route::get('/', [UnitController::class, 'index'])->name('index');
+    Route::post('/', [UnitController::class, 'store'])->name('store');
+    Route::put('/{id}', [UnitController::class, 'update'])->name('update');
+    Route::delete('/{id}', [UnitController::class, 'destroy'])->name('destroy');
+    Route::get('/sections/by-division/{id}', [UnitController::class, 'getSectionsByDivision']);
 });
 
 Route::prefix('/planning/employment-status')->group(function () {
@@ -116,12 +156,24 @@ Route::prefix('/planning/office-location')->group(function () {
   Route::post('/{id}/delete', [OfficeLocationController::class, 'destroy'])->name('office-location.delete');
 });
 
+Route::prefix('planning/qualification')->name('qualifications.')->group(function () {
+    Route::get('/', [QualificationController::class, 'index'])->name('index');
+    Route::post('/', [QualificationController::class, 'store'])->name('store');
+    Route::put('/{id}', [QualificationController::class, 'update'])->name('update');
+    Route::delete('/{id}', [QualificationController::class, 'destroy'])->name('destroy');
+});
+
 Route::prefix('/planning/salary-grade')->group(function () {
   Route::get('/', [SalaryGradeController::class, 'index'])->name('salary-grade.index');
   Route::post('/store', [SalaryGradeController::class, 'store'])->name('salary-grade.store');
   Route::post('/{id}/update', [SalaryGradeController::class, 'update'])->name('salary-grade.update');
   Route::post('/{id}/delete', [SalaryGradeController::class, 'destroy'])->name('salary-grade.delete');
 });
+
+Route::get('/employee/{id}/edit', [UserController::class, 'edit'])->name('employee.edit');
+Route::put('/employee/{id}/update', [UserController::class, 'update'])->name('employee.update');
+Route::get('/employee/sections', [UserController::class, 'getSections'])->name('employee.sections');
+
 
 Route::prefix('planning/position')->group(function () {
   Route::get('/', [App\Http\Controllers\Planning\PositionController::class, 'index'])->name('position.index');
@@ -131,18 +183,69 @@ Route::prefix('planning/position')->group(function () {
 });
 
 
-Route::prefix('/planning/registration-form')->name('employee.')->group(function () {
-  Route::get('/', [UserController::class, 'create'])->name('registration-form');
-  Route::post('/store', [UserController::class, 'store'])->name('store');
-  Route::get('/get-sections', [UserController::class, 'getSections'])->name('sections');
+Route::prefix('/planning/position-level')->group(function () {
+  Route::get('/', [PositionLevelController::class, 'index'])->name('position-level.index');
+  Route::post('/store', [PositionLevelController::class, 'store'])->name('position-level.store');
+  Route::post('/{id}/update', [PositionLevelController::class, 'update'])->name('position-level.update');
+  Route::post('/{id}/delete', [PositionLevelController::class, 'destroy'])->name('position-level.delete');
+  
 });
+
+Route::prefix('/planning/parenthetical-title')->group(function () {
+  Route::get('/', [ParentheticalTitleController::class, 'index'])->name('parenthetical-title.index');
+  Route::post('/store', [ParentheticalTitleController::class, 'store'])->name('parenthetical-title.store');
+  Route::post('/{id}/update', [ParentheticalTitleController::class, 'update'])->name('parenthetical-title.update');
+  Route::post('/{id}/delete', [ParentheticalTitleController::class, 'destroy'])->name('parenthetical-title.delete');
+});
+//vacant position 
+Route::get('/planning/vacant-position', [VacantPositionController::class, 'index'])->name('vacant.position');
+Route::post('/planning/vacant-positions/store', [VacantPositionController::class, 'store'])->name('vacant.positions.store');
+
+
+Route::get('/division/{id}/sections', [DivisionController::class, 'getSections']);
+
+
+Route::get('/employee/{id}/edit', [UserController::class, 'edit'])->name('employee.edit');
 Route::prefix('/planning/list-of-employee')->name('employee.')->group(function () {
-  Route::get('/', [UserController::class, 'index'])->name('list-of-employee');
-  Route::get('/{id}', [UserController::class, 'show'])->name('view');
-  Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
-  Route::put('/{id}', [UserController::class, 'update'])->name('update');
   Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
 });
+
+//Report Generation
+Route::prefix('planning')->group(function () {
+  Route::get('/report', [ReportController::class, 'index'])->name('planning.reports');
+});
+Route::get('/reports/export', [ReportController::class, 'export'])->name('planning.reports.export');
+
+Route::get('/planning/reports', [ReportController::class, 'index'])
+  ->name('planning.reports');
+
+Route::prefix('planning')->name('planning.')->group(function () {
+  Route::get('jo-requests', [JoRequestController::class, 'index'])->name('jo-requests.index');
+  Route::post('jo-requests', [JoRequestController::class, 'store'])->name('jo-requests.store');
+  Route::get('jo-requests/{joRequest}/edit', [JoRequestController::class, 'edit'])->name('jo-requests.edit');
+  Route::patch('jo-requests/{joRequest}', [JoRequestController::class, 'update'])->name('jo-requests.update');
+  Route::patch('jo-requests/{joRequest}/approve', [JoRequestController::class, 'approve'])->name('jo-requests.approve');
+  Route::patch('jo-requests/{joRequest}/disapprove', [JoRequestController::class, 'disapprove'])->name('jo-requests.disapprove');
+  Route::get('jo-requests/{joRequest}/print', [JoRequestController::class, 'print'])->name('jo-requests.print');
+});
+
+
+//PAS
+Route::prefix('/pas/fundsource')->group(function () {
+  Route::get('/', [FundSourceController::class, 'index'])->name('fundsource.index');
+  Route::post('/store', [FundSourceController::class, 'store'])->name('fundsource.store');
+  Route::post('/{id}/update', [FundSourceController::class, 'update'])->name('fundsource.update');
+  Route::post('/{id}/delete', [FundSourceController::class, 'destroy'])->name('fundsource.delete');
+});
+
+Route::prefix('/pas/tax')->group(function () {
+  Route::get('/', [TaxController::class, 'index'])->name('tax.index');
+  Route::post('/store', [TaxController::class, 'store'])->name('tax.store');
+  Route::post('/{id}/update', [TaxController::class, 'update'])->name('tax.update');
+  Route::post('/{id}/delete', [TaxController::class, 'destroy'])->name('tax.delete');
+});
+
+Route::resource('/pas/payroll', PayrollController::class);
 
 // pages
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
@@ -160,7 +263,6 @@ Route::post('/auth/login-basic', [LoginBasic::class, 'store'])->name('login.stor
 Route::get('/auth/otp', [LoginBasic::class, 'showOtpForm'])->name('otp.form');
 Route::post('/auth/otp', [LoginBasic::class, 'verifyOtp'])->name('otp.verify');
 
-
 // Forgot Password
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -173,30 +275,31 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 });
 
+Route::get('/portfolio', [Analytics::class, 'index'])->name('portfolio');
 
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
 
 // User Interface
-Route::get('/ui/accordion', [Accordion::class, 'index'])->name('ui-accordion');
-Route::get('/ui/alerts', [Alerts::class, 'index'])->name('ui-alerts');
-Route::get('/ui/badges', [Badges::class, 'index'])->name('ui-badges');
-Route::get('/ui/buttons', [Buttons::class, 'index'])->name('ui-buttons');
-Route::get('/ui/carousel', [Carousel::class, 'index'])->name('ui-carousel');
-Route::get('/ui/collapse', [Collapse::class, 'index'])->name('ui-collapse');
-Route::get('/ui/dropdowns', [Dropdowns::class, 'index'])->name('ui-dropdowns');
-Route::get('/ui/footer', [Footer::class, 'index'])->name('ui-footer');
-Route::get('/ui/list-groups', [ListGroups::class, 'index'])->name('ui-list-groups');
-Route::get('/ui/modals', [Modals::class, 'index'])->name('ui-modals');
-Route::get('/ui/navbar', [Navbar::class, 'index'])->name('ui-navbar');
-Route::get('/ui/offcanvas', [Offcanvas::class, 'index'])->name('ui-offcanvas');
-Route::get('/ui/pagination-breadcrumbs', [PaginationBreadcrumbs::class, 'index'])->name('ui-pagination-breadcrumbs');
-Route::get('/ui/progress', [Progress::class, 'index'])->name('ui-progress');
-Route::get('/ui/spinners', [Spinners::class, 'index'])->name('ui-spinners');
-Route::get('/ui/tabs-pills', [TabsPills::class, 'index'])->name('ui-tabs-pills');
-Route::get('/ui/toasts', [Toasts::class, 'index'])->name('ui-toasts');
-Route::get('/ui/tooltips-popovers', [TooltipsPopovers::class, 'index'])->name('ui-tooltips-popovers');
-Route::get('/ui/typography', [Typography::class, 'index'])->name('ui-typography');
+// Route::get('/ui/accordion', [Accordion::class, 'index'])->name('ui-accordion');
+// Route::get('/ui/alerts', [Alerts::class, 'index'])->name('ui-alerts');
+// Route::get('/ui/badges', [Badges::class, 'index'])->name('ui-badges');
+// Route::get('/ui/buttons', [Buttons::class, 'index'])->name('ui-buttons');
+// Route::get('/ui/carousel', [Carousel::class, 'index'])->name('ui-carousel');
+// Route::get('/ui/collapse', [Collapse::class, 'index'])->name('ui-collapse');
+// Route::get('/ui/dropdowns', [Dropdowns::class, 'index'])->name('ui-dropdowns');
+// Route::get('/ui/footer', [Footer::class, 'index'])->name('ui-footer');
+// Route::get('/ui/list-groups', [ListGroups::class, 'index'])->name('ui-list-groups');
+// Route::get('/ui/modals', [Modals::class, 'index'])->name('ui-modals');
+// Route::get('/ui/navbar', [Navbar::class, 'index'])->name('ui-navbar');
+// Route::get('/ui/offcanvas', [Offcanvas::class, 'index'])->name('ui-offcanvas');
+// Route::get('/ui/pagination-breadcrumbs', [PaginationBreadcrumbs::class, 'index'])->name('ui-pagination-breadcrumbs');
+// Route::get('/ui/progress', [Progress::class, 'index'])->name('ui-progress');
+// Route::get('/ui/spinners', [Spinners::class, 'index'])->name('ui-spinners');
+// Route::get('/ui/tabs-pills', [TabsPills::class, 'index'])->name('ui-tabs-pills');
+// Route::get('/ui/toasts', [Toasts::class, 'index'])->name('ui-toasts');
+// Route::get('/ui/tooltips-popovers', [TooltipsPopovers::class, 'index'])->name('ui-tooltips-popovers');
+// Route::get('/ui/typography', [Typography::class, 'index'])->name('ui-typography');
 
 // extended ui
 Route::get('/extended/ui-perfect-scrollbar', [PerfectScrollbar::class, 'index'])->name('extended-ui-perfect-scrollbar');

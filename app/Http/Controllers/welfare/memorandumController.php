@@ -29,57 +29,45 @@ class MemorandumController extends Controller
             $query->where('award_type', $request->award_type);
         }
 
-        // Date range
-        if ($request->has('start_date') && $request->has('end_date')) {
-            $query->whereBetween('date_of_issuance', [$request->start_date, $request->end_date]);
-        }
-        if (!empty($request->start_date) && !empty($request->end_date)) {
-        $query->whereBetween('date_of_issuance', [$request->start_date, $request->end_date]);
-        }
-
 
         $memorandums = $query->latest()->paginate(10);
 
-        if ($request->ajax()) {
-        try {
-            return view('partials.welfare.memorandum_table', compact('memorandums'))->render();
-        } catch (\Throwable $e) {
-            Log::error('AJAX view error:', ['error' => $e->getMessage()]);
-            return response()->json(['error' => 'Failed to render table.'], 500);
-        }
-}
+        // 👇 Add the search and award_type to the view data
+        $search = $request->search ?? '';
+        $award_type = $request->award_type ?? 'all';
+        $award_types = ['all' => 'All', 'character' => 'Character', 'praise' => 'Praise'];
 
 
         return view('content.welfare.memorandum', compact('memorandums'));
     }
 
     public function store(Request $request)
-        {
-            $validated = $request->validate([
-                'issuance_number' => 'required|string|max:255',
-                'subject' => 'required|string',
-                'award_type' => 'required|in:character,praise',
-                'date_of_issuance' => 'required|date',
-                'file' => 'required|file|mimes:pdf|max:10240',
-                'notes' => 'nullable|string'
-            ]);
+    {
+        $validated = $request->validate([
+            'issuance_number' => 'required|string|max:255', 
+            'subject' => 'required|string',
+            'award_type' => 'required|in:character,praise',
+            'date_of_issuance' => 'required|date',
+            'file' => 'required|file|mimes:pdf|max:10240',
+            'notes' => 'nullable|string'
+        ]);
 
-            // 👇 Custom filename logic
-            $filename = time() . '_' . $request->file('file')->getClientOriginalName();
-            $path = $request->file('file')->storeAs('memorandums', $filename, 'public');
+        // Store with original filename only
+        $originalName = $request->file('file')->getClientOriginalName();
+        $path = $request->file('file')->storeAs('memorandums', $originalName, 'public');
 
-            Memorandum::create([
-                'issuance_number' => $validated['issuance_number'],
-                'subject' => $validated['subject'],
-                'award_type' => $validated['award_type'],
-                'date_of_issuance' => $validated['date_of_issuance'],
-                'file_path' => $path,
-                'file_version' => '1.0',
-                'notes' => $validated['notes'] ?? null,
-            ]);
+        Memorandum::create([
+            'issuance_number' => $validated['issuance_number'],
+            'subject' => $validated['subject'],
+            'award_type' => $validated['award_type'],
+            'date_of_issuance' => $validated['date_of_issuance'],
+            'file_path' => $path,
+            'file_version' => '1.0',
+            'notes' => $validated['notes'] ?? null,
+        ]);
 
-            return redirect()->route('welfare.memorandum')->with('success', 'Memorandum Added Successfully.');
-        }
+        return redirect()->route('welfare.memorandum')->with('success', 'Memorandum Added Successfully.');
+    }
 
 
     // ✅ Add the update() method here

@@ -39,17 +39,24 @@
             <td>{{ $position->salaryGrade->sg_num ?? '' }}</td>
             <td>{{ $position->employmentStatus->name ?? '' }}</td>
             <td>{{ ucfirst($position->status) }}</td>
-            <td>
-              <button class="btn btn-sm btn-primary edit-btn"
-                data-id="{{ $position->id }}"
-                data-position_name="{{ $position->position_name }}"
-                data-abbreviation="{{ $position->abbreviation }}"
-                data-item_no="{{ $position->item_no }}"
-                data-salary_grade_id="{{ $position->salary_grade_id }}"
-                data-employment_status_id="{{ $position->employment_status_id }}"
-                data-status="{{ $position->status }}">Edit</button>
+            <td class="text-nowrap">
+              <div class="d-inline-flex gap-1">
+                <button class="btn btn-sm btn-primary edit-btn"
+                  data-id="{{ $position->id }}"
+                  data-position_name="{{ $position->position_name }}"
+                  data-abbreviation="{{ $position->abbreviation }}"
+                  data-item_no="{{ $position->item_no }}"
+                  data-salary_grade_id="{{ $position->salary_grade_id }}"
+                  data-employment_status_id="{{ $position->employment_status_id }}"
+                  data-status="{{ $position->status }}">
+                  Edit
+                </button>
 
-              <button class="btn btn-sm btn-danger delete-btn" data-id="{{ $position->id }}">Delete</button>
+                <button class="btn btn-sm btn-danger delete-btn"
+                  data-id="{{ $position->id }}">
+                  Delete
+                </button>
+              </div>
             </td>
           </tr>
           @endforeach

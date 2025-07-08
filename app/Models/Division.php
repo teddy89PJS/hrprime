@@ -13,4 +13,16 @@ class Division extends Model
     'name',
     'abbreviation'
   ];
+
+  // ✅ A division has many sections
+  public function sections()
+  {
+    return $this->hasMany(Section::class);
+  }
+
+  // ✅ If you want units directly related via sections, this is optional
+  public function units()
+  {
+    return $this->hasManyThrough(Unit::class, Section::class);
+  }
 }

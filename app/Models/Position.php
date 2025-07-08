@@ -23,8 +23,27 @@ class Position extends Model
     return $this->belongsTo(SalaryGrade::class);
   }
 
-  public function employmentStatus()
+  public function division()
   {
-    return $this->belongsTo(EmploymentStatus::class);
+    return $this->belongsTo(Division::class);
   }
+
+  public function section()
+  {
+    return $this->belongsTo(Section::class);
+  }
+
+    public function employmentStatus()
+    {
+      return $this->belongsTo(EmploymentStatus::class, 'employment_status_id');
+    }
+    public function positionLevel()
+  {
+      return $this->belongsTo(PositionLevel::class);
+}
+    public function qualifications()
+    {
+        return $this->belongsToMany(Qualification::class, 'position_qualification');
+    }
+
 }

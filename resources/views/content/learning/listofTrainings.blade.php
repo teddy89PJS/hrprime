@@ -1,6 +1,6 @@
 @extends('layouts/contentNavbarLayout')
 
-@section('title', 'List of Trainings - Trainings')
+@section('title', 'Tables - Basic Tables')
 
 {{-- Page-specific CSS for DataTables --}}
 @section('vendor-style')
