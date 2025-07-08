@@ -47,9 +47,9 @@
           "slug": "resigned-employees"
         },
         {
-         "url": "planning/import-employee",
+         "url": "planning/import-form",
           "name": "Import Employees",
-          "slug": "import-employee"
+          "slug": "import-form"
         }
       ]
     },

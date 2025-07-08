@@ -45,5 +45,13 @@ protected $fillable = [
   {
       return $this->belongsTo(Qualification::class);
   }
-  
+  public function model(array $row)
+{
+    // Dump the row to test if import reads it
+    \Log::info('IMPORTING ROW: ', $row);
+
+    if (strtolower($row[0]) === 'username') return null;
+
+    // ... rest of logic
+}
 }

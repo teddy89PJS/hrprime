@@ -18,10 +18,6 @@ return new class extends Migration
       $table->string('subject'); // e.g. “Request for Extension”
       $table->enum('type', ['CMF', 'DR']);
 
-      // Office foreign key (assuming 'offices' table)
-      $table->unsignedBigInteger('section_id');
-      $table->foreign('section_id')->references('id')->on('offices')->onDelete('cascade');
-
       $table->string('position_name');
       $table->unsignedInteger('no_of_position'); // number of positions
       $table->date('effectivity_of_position');
