@@ -72,39 +72,51 @@ class MemorandumController extends Controller
 
     // ✅ Add the update() method here
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'issuance_number' => 'required|string|max:255',
-            'subject' => 'required|string|max:255',
-            'award_type' => 'required|string',
-            'date_of_issuance' => 'required|date',
-            'notes' => 'nullable|string',
-            'file' => 'nullable|file|mimes:pdf|max:10240',
-        ]);
+            {
+                $request->validate([
+                    'issuance_number' => 'required|string|max:255',
+                    'subject' => 'required|string|max:255',
+                    'award_type' => 'required|string',
+                    'date_of_issuance' => 'required|date',
+                    'notes' => 'nullable|string',
+                    'file' => 'nullable|file|mimes:pdf|max:10240',
+                ]);
 
-        $memorandum = Memorandum::findOrFail($id);
+                $memorandum = Memorandum::findOrFail($id);
 
-        $memorandum->issuance_number = $request->issuance_number;
-        $memorandum->subject = $request->subject;
-        $memorandum->award_type = $request->award_type;
-        $memorandum->date_of_issuance = $request->date_of_issuance;
-        $memorandum->notes = $request->notes;
+                // Store original values for comparison
+                $originalData = $memorandum->toArray();
 
-        if ($request->hasFile('file')) {
-            if ($memorandum->file_path && Storage::disk('public')->exists($memorandum->file_path)) {
-                Storage::disk('public')->delete($memorandum->file_path);
+                // Update fields
+                $memorandum->issuance_number = $request->issuance_number;
+                $memorandum->subject = $request->subject;
+                $memorandum->award_type = $request->award_type;
+                $memorandum->date_of_issuance = $request->date_of_issuance;
+                $memorandum->notes = $request->notes;
+
+                $fileChanged = false;
+
+                if ($request->hasFile('file')) {
+                    if ($memorandum->file_path && Storage::disk('public')->exists($memorandum->file_path)) {
+                        Storage::disk('public')->delete($memorandum->file_path);
+                    }
+
+                    $filename = time() . '_' . $request->file('file')->getClientOriginalName();
+                    $path = $request->file('file')->storeAs('memorandums', $filename, 'public');
+                    $memorandum->file_path = $path;
+                    $fileChanged = true;
+                }
+
+                // Check if anything has changed
+                if (!$memorandum->isDirty() && !$fileChanged) {
+                    return redirect()->back()->with('warning', 'No changes detected.');
+                }
+
+                $memorandum->save();
+
+                return redirect()->route('welfare.memorandum')->with('success', 'Memorandum Updated Successfully.');
             }
 
-            $filename = time() . '_' . $request->file('file')->getClientOriginalName();
-            $path = $request->file('file')->storeAs('memorandums', $filename, 'public');
-            $memorandum->file_path = $path;
-
-        }
-
-        $memorandum->save();
-
-        return redirect()->route('welfare.memorandum')->with('success', 'Memorandum Updated Successfully.');
-    }
 
     public function destroy($id)
     {

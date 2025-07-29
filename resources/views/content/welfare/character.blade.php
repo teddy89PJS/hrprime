@@ -7,17 +7,25 @@
    <!-- Toastr CSS -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<div class="container my-25">
 
 
     <!-- Header Section -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 font-bold">Character Building Program</h1>
+        <div class="flex items-center space-x-6">
+                <a href="#" class="hover:text-blue-200" onclick="showTab('overview')">Overview</a>
+                <a href="#" class="hover:text-blue-200" onclick="showTab('nominate')">Nominate</a>
+                <a href="#" class="hover:text-blue-200" onclick="showTab('manage')">Manage</a>
+                <div class="flex items-center space-x-2">
+                </div>
+            </div>
     </div>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         .nomination-writeup {
             min-height: 120px;
@@ -44,26 +52,16 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-blue-800 text-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
             </div>
-            <div class="flex items-center space-x-6">
-                <a href="#" class="hover:text-blue-200" onclick="showTab('overview')">Overview</a>
-                <a href="#" class="hover:text-blue-200" onclick="showTab('nominate')">Nominate</a>
-                <a href="#" class="hover:text-blue-200" onclick="showTab('manage')">Manage</a>
-                <div class="flex items-center space-x-2">
-                </div>
-            </div>
         </div>
-    </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
         <!-- Overview Tab -->
         <div id="overview-tab" class="tab-content active">
             <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-blue-800 mb-4">Character Building Program Overview</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <div class="bg-blue-50 p-6 rounded-lg character-card">
