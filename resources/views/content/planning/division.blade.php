@@ -12,8 +12,8 @@
 <div class="card">
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h4>List of Divisions</h4>
-      <button id="openModalBtn" class="btn btn-success">+ Add New Division</button>
+      <h4 style="color: #1d4bb2;">List of Divisions</h4>
+      <button id="openModalBtn" class="btn btn-success">Add New Division</button>
     </div>
 
     <div class="table-responsive">
@@ -30,8 +30,8 @@
           @foreach($divisions as $index => $division)
           <tr data-id="{{ $division->id }}">
             <td>{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td>
-            <td>{{ Str::upper($division->name) }}</td>
-            <td>{{ Str::upper($division->abbreviation) }}</td>
+            <td>{{ \Illuminate\Support\Str::upper($division->name) }}</td>
+            <td>{{ \Illuminate\Support\Str::upper($division->abbreviation) }}</td>
             <td>
               <button
                 class="btn btn-sm btn-primary edit-btn"

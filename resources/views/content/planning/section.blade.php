@@ -11,8 +11,8 @@
 <div class="card">
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h4>List of Sections</h4>
-      <button id="openModalBtn" class="btn btn-success">+ Add New Section</button>
+      <h4 style="color: #1d4bb2;">List of Sections</h4>
+      <button id="openModalBtn" class="btn btn-success">Add New Section</button>
     </div>
 
     <div class="table-responsive">
@@ -31,22 +31,23 @@
           <tr data-id="{{ $section->id }}">
             <td>{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td>
             <td>{{ $section->division->name }}</td>
-            <td>{{ Str::upper($section->name) }}</td>
-            <td>{{ Str::upper($section->abbreviation) }}</td>
-          <td>
-            <div class="d-flex gap-1">
-              <button class="btn btn-sm btn-primary edit-btn"
-                data-id="{{ $section->id }}"
-                data-division_id="{{ $section->division_id }}"
-                data-name="{{ $section->name }}"
-                data-abbreviation="{{ $section->abbreviation }}">
-                Edit
-              </button>
-              <button class="btn btn-sm btn-danger delete-btn" data-id="{{ $section->id }}">
-                Delete
-              </button>
-            </div>
-          </td>
+            <td>{{ \Illuminate\Support\Str::upper($section->name) }}</td>
+            <td>{{ \Illuminate\Support\Str::upper($section->abbreviation) }}</td>
+
+            <td>
+              <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-primary edit-btn"
+                  data-id="{{ $section->id }}"
+                  data-division_id="{{ $section->division_id }}"
+                  data-name="{{ $section->name }}"
+                  data-abbreviation="{{ $section->abbreviation }}">
+                  Edit
+                </button>
+                <button class="btn btn-sm btn-danger delete-btn" data-id="{{ $section->id }}">
+                  Delete
+                </button>
+              </div>
+            </td>
           </tr>
           @endforeach
         </tbody>

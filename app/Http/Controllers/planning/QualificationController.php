@@ -8,48 +8,66 @@ use App\Models\Qualification;
 
 class QualificationController extends Controller
 {
-    public function index()
-    {
-        $qualifications = Qualification::all();
-        return view('content.planning.qualification', compact('qualifications'));
+  /**
+   * Display all qualifications (or filter by position).
+   */
+  public function index(Request $request)
+  {
+    if ($request->has('position_id')) {
+      $qualifications = Qualification::where('position_id', $request->position_id)->get();
+    } else {
+      $qualifications = Qualification::all();
     }
 
-        public function store(Request $request)
-            {
-                $request->validate([
-                    'title' => 'required|string|unique:qualifications,title',
-                    'description' => 'nullable|string',
-                ]);
+    return view('content.planning.qualification', compact('qualifications'));
+  }
 
-                Qualification::create([
-                    'title' => strtoupper($request->title),
-                    'description' => strtoupper($request->description),
-                ]);
+  /**
+   * Store a new qualification.
+   */
+  public function store(Request $request)
+  {
+    $request->validate([
+      'position_id' => 'required|exists:positions,id',
+      'title'       => 'required|string|max:255|unique:qualifications,title',
+      'description' => 'nullable|string',
+    ]);
 
-                return redirect()->back()->with('success', 'Qualification added.');
-            }
+    Qualification::create([
+      'position_id' => $request->position_id,
+      'title'       => strtoupper($request->title),
+      'description' => $request->description ? strtoupper($request->description) : null,
+    ]);
 
+    return redirect()->back()->with('success', 'Qualification added.');
+  }
 
-            public function destroy($id)
-            {
-                Qualification::findOrFail($id)->delete();
-                return response()->json(['success' => true]);
-            }
-            
-                    public function update(Request $request, $id)
-            {
-                $request->validate([
-                    'title' => 'required|string|unique:qualifications,title,' . $id,
-                    'description' => 'nullable|string',
-                ]);
+  /**
+   * Update an existing qualification.
+   */
+  public function update(Request $request, $id)
+  {
+    $request->validate([
+      'title'       => 'required|string|max:255|unique:qualifications,title,' . $id,
+      'description' => 'nullable|string',
+    ]);
 
-                $qualification = Qualification::findOrFail($id);
-                $qualification->update([
-                    'title' => strtoupper($request->title),
-                    'description' => strtoupper($request->description),
-                ]);
+    $qualification = Qualification::findOrFail($id);
 
-                return response()->json(['success' => true]);
-            }
+    $qualification->update([
+      'title'       => strtoupper($request->title),
+      'description' => $request->description ? strtoupper($request->description) : null,
+    ]);
 
+    return response()->json(['success' => true]);
+  }
+
+  /**
+   * Delete a qualification.
+   */
+  public function destroy($id)
+  {
+    Qualification::findOrFail($id)->delete();
+    return response()->json(['success' => true]);
+  }
 }

@@ -1,0 +1,144 @@
+[33m886782a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mhrPlanning[m[33m)[m HEAD@{0}: reset: moving to HEAD
+[33m886782a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mhrPlanning[m[33m)[m HEAD@{1}: reset: moving to HEAD~2
+[33m3dd7ac3[m HEAD@{2}: reset: moving to HEAD~1
+[33mc999283[m[33m ([m[1;31morigin/hrPlanning[m[33m)[m HEAD@{3}: pull: Fast-forward
+[33m4307d83[m HEAD@{4}: checkout: moving from hrPlanning to hrPlanning
+[33m4307d83[m HEAD@{5}: checkout: moving from hrPlanning to hrPlanning
+[33m4307d83[m HEAD@{6}: checkout: moving from hrlearningDev to hrPlanning
+[33m738be01[m[33m ([m[1;32mhrlearningDev[m[33m)[m HEAD@{7}: commit (merge): Recruitment
+[33mdc2f01a[m HEAD@{8}: commit: COme back
+[33mea11764[m[33m ([m[1;31morigin/hrlearningDev[m[33m)[m HEAD@{9}: commit: hrleanringDevUnitDev
+[33ma74a501[m HEAD@{10}: commit (merge): hrleanringDevUnit
+[33m9f0daa1[m HEAD@{11}: checkout: moving from main to hrlearningDev
+[33m68b2ba6[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: checkout: moving from hrlearningDev to main
+[33m9f0daa1[m HEAD@{13}: commit: hrlearningDev8
+[33m6e64df9[m HEAD@{14}: commit: hrlearningDev7
+[33mba8e77e[m HEAD@{15}: commit (merge): hrlearningDev6
+[33mbd40c64[m HEAD@{16}: commit (merge): hrLearningDev6
+[33m649858e[m HEAD@{17}: commit (merge): hrLearningDev5
+[33md574fe2[m HEAD@{18}: commit: hrlearningDev5
+[33m0128f2d[m HEAD@{19}: commit: hrlearniongDev4
+[33m68b2ba6[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{20}: pull origin main: Fast-forward
+[33m7ff88e4[m[33m ([m[1;31morigin/staging[m[33m)[m HEAD@{21}: checkout: moving from main to hrlearningDev
+[33m68b2ba6[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{22}: commit (merge): hrlearningDev1
+[33m6b15668[m HEAD@{23}: checkout: moving from hrplanning to main
+[33m4307d83[m HEAD@{24}: pull origin main: Fast-forward
+[33m58c2267[m HEAD@{25}: checkout: moving from main to hrplanning
+[33m6b15668[m HEAD@{26}: commit: hrplanningv3
+[33m7ff88e4[m[33m ([m[1;31morigin/staging[m[33m)[m HEAD@{27}: merge hrlearningDev: Fast-forward
+[33m228b584[m HEAD@{28}: checkout: moving from hrlearningDev to main
+[33m7ff88e4[m[33m ([m[1;31morigin/staging[m[33m)[m HEAD@{29}: commit (merge): hrplanningv1
+[33m7d46d94[m HEAD@{30}: commit (merge): hrlearningv4
+[33m3920446[m HEAD@{31}: commit: hrlearningv3
+[33m3a95dc7[m HEAD@{32}: checkout: moving from main to hrlearningDev
+[33m228b584[m HEAD@{33}: commit (merge): hrlearningv2
+[33ma7d00e8[m HEAD@{34}: commit (merge): hrlearningv1
+[33m4bc482e[m HEAD@{35}: checkout: moving from hrplanning to main
+[33m58c2267[m HEAD@{36}: checkout: moving from main to hrplanning
+[33m4bc482e[m HEAD@{37}: checkout: moving from hrlearningDev to main
+[33m3a95dc7[m HEAD@{38}: checkout: moving from hrpas to hrlearningDev
+[33mc8deaf9[m[33m ([m[1;32mhrPas[m[33m)[m HEAD@{39}: checkout: moving from hrplanning to hrpas
+[33m58c2267[m HEAD@{40}: checkout: moving from main to hrplanning
+[33m4bc482e[m HEAD@{41}: commit: Save local changes before switching branch
+[33m41b4126[m HEAD@{42}: checkout: moving from hrlearningDev to main
+[33m3a95dc7[m HEAD@{43}: checkout: moving from main to hrlearningDev
+[33m41b4126[m HEAD@{44}: checkout: moving from hrlearningDev to main
+[33m3a95dc7[m HEAD@{45}: checkout: moving from hrplanning to hrlearningDev
+[33m58c2267[m HEAD@{46}: checkout: moving from hrlearningDev to hrplanning
+[33m3a95dc7[m HEAD@{47}: commit (merge): Merge branch 'hrPlanning' into current branch
+[33m8f28900[m HEAD@{48}: checkout: moving from main to hrlearningDev
+[33m41b4126[m HEAD@{49}: checkout: moving from hrlearningDev to main
+[33m8f28900[m HEAD@{50}: commit (merge): Resolved merge conflicts
+[33m5b96abd[m HEAD@{51}: checkout: moving from main to hrlearningDev
+[33m41b4126[m HEAD@{52}: commit (merge): Finished merge: resolved conflicts
+[33m077f6db[m HEAD@{53}: checkout: moving from hrlearningDev to main
+[33m5b96abd[m HEAD@{54}: commit (merge): hrplanningv1
+[33m061fb21[m HEAD@{55}: checkout: moving from main to hrlearningDev
+[33m077f6db[m HEAD@{56}: commit: kn951
+[33m855d84a[m HEAD@{57}: commit (merge): kn95
+[33m2bbdc91[m HEAD@{58}: commit: hrpas202050616
+[33mf92dd2c[m HEAD@{59}: checkout: moving from hrlearningDev to main
+[33m061fb21[m HEAD@{60}: commit (merge): 20250616
+[33m8b00d29[m HEAD@{61}: checkout: moving from main to hrlearningDev
+[33mf92dd2c[m HEAD@{62}: commit (merge): hrPas
+[33m5078e33[m HEAD@{63}: checkout: moving from hrlearningDev to main
+[33m8b00d29[m HEAD@{64}: checkout: moving from main to hrlearningDev
+[33m5078e33[m HEAD@{65}: reset: moving to HEAD
+[33m5078e33[m HEAD@{66}: commit (merge): envld2
+[33m0333e76[m HEAD@{67}: commit: envld
+[33m0a75e61[m HEAD@{68}: checkout: moving from hrlearningDev to main
+[33m8b00d29[m HEAD@{69}: pull origin hrPlanning: Fast-forward
+[33mece032c[m HEAD@{70}: checkout: moving from hrlearningDev to hrlearningDev
+[33mece032c[m HEAD@{71}: checkout: moving from main to hrlearningDev
+[33m0a75e61[m HEAD@{72}: commit (merge): WIP: changes in web.php
+[33m65ab705[m HEAD@{73}: reset: moving to HEAD
+[33m65ab705[m HEAD@{74}: commit: hrldv3
+[33mece032c[m HEAD@{75}: checkout: moving from hrlearningDev to main
+[33mece032c[m HEAD@{76}: pull origin main: Fast-forward
+[33mc0c0d6c[m HEAD@{77}: checkout: moving from main to hrlearningDev
+[33mece032c[m HEAD@{78}: checkout: moving from hrlearningDev to main
+[33mc0c0d6c[m HEAD@{79}: checkout: moving from main to hrlearningDev
+[33mece032c[m HEAD@{80}: commit: hrlearning 06092025
+[33mc0c0d6c[m HEAD@{81}: checkout: moving from hrlearningDev to main
+[33mc0c0d6c[m HEAD@{82}: checkout: moving from main to hrlearningDev
+[33mc0c0d6c[m HEAD@{83}: pull origin hrlearningDev: Fast-forward
+[33md35859f[m HEAD@{84}: checkout: moving from hrlearningDev to main
+[33mc0c0d6c[m HEAD@{85}: checkout: moving from main to hrlearningDev
+[33md35859f[m HEAD@{86}: checkout: moving from hrlearningDev to main
+[33mc0c0d6c[m HEAD@{87}: commit: main v2
+[33m269dd14[m HEAD@{88}: checkout: moving from hrlearningDev to hrlearningDev
+[33m269dd14[m HEAD@{89}: checkout: moving from hrwelfare to hrlearningDev
+[33mabf816d[m[33m ([m[1;32mhrWelfare[m[33m)[m HEAD@{90}: checkout: moving from hrlearningDev to hrwelfare
+[33m269dd14[m HEAD@{91}: pull: Merge made by the 'ort' strategy.
+[33m35e3bff[m HEAD@{92}: checkout: moving from hrPas to hrlearningDev
+[33mc8deaf9[m[33m ([m[1;32mhrPas[m[33m)[m HEAD@{93}: commit: Updated routes/web.php
+[33mbbb2c1b[m HEAD@{94}: checkout: moving from hrlearningDev to hrPas
+[33m35e3bff[m HEAD@{95}: checkout: moving from hrPas to hrlearningDev
+[33mbbb2c1b[m HEAD@{96}: checkout: moving from hrPas to hrPas
+[33mbbb2c1b[m HEAD@{97}: checkout: moving from hrlearningDev to hrPas
+[33m35e3bff[m HEAD@{98}: checkout: moving from hrPas to hrlearningDev
+[33mbbb2c1b[m HEAD@{99}: checkout: moving from hrPas to hrPas
+[33mbbb2c1b[m HEAD@{100}: commit (merge): Merge branch 'hrPas' of https://github.com/teddy89PJS/hrprime into hrPas
+[33m375151e[m HEAD@{101}: checkout: moving from hrPas to hrPas
+[33m375151e[m HEAD@{102}: rebase (finish): returning to refs/heads/hrPas
+[33m375151e[m HEAD@{103}: rebase (pick): char lang
+[33m8cef62a[m HEAD@{104}: rebase (continue): Update README.md
+[33m4cc877e[m HEAD@{105}: pull --tags -r origin hrPas (start): checkout 4cc877e7abcbd599ed87bd2aa4a6d5fea5fcd812
+[33m0ad6076[m HEAD@{106}: checkout: moving from hrWelfare to hrPas
+[33mabf816d[m[33m ([m[1;32mhrWelfare[m[33m)[m HEAD@{107}: commit: Resolved merge conflicts between hrlearningDev and hrWelfare
+[33mcf159df[m HEAD@{108}: checkout: moving from hrPas to hrWelfare
+[33m0ad6076[m HEAD@{109}: commit (merge): Resolved merge conflicts between hrlearningDev and hrWelfare
+[33m4cc877e[m HEAD@{110}: checkout: moving from hrPlanning to hrPas
+[33m58c2267[m HEAD@{111}: commit: Updated .env file
+[33m432f2ea[m HEAD@{112}: checkout: moving from hrPlanning to hrPlanning
+[33m432f2ea[m HEAD@{113}: merge hrLearningDev: Merge made by the 'ort' strategy.
+[33m54772d1[m HEAD@{114}: checkout: moving from hrWelfare to hrPlanning
+[33mcf159df[m HEAD@{115}: checkout: moving from hrWelfare to hrWelfare
+[33mcf159df[m HEAD@{116}: merge hrlearningDev: Merge made by the 'ort' strategy.
+[33m70652fb[m HEAD@{117}: checkout: moving from hrlearningDev to hrWelfare
+[33m35e3bff[m HEAD@{118}: pull origin main --rebase (finish): returning to refs/heads/hrlearningDev
+[33m35e3bff[m HEAD@{119}: pull origin main --rebase (pick): char lang
+[33md35859f[m HEAD@{120}: pull origin main --rebase (start): checkout d35859fc07d10fe6d72cfba95e63b70d8eac4a6d
+[33m6672f04[m HEAD@{121}: checkout: moving from hrWelfare to hrlearningDev
+[33m70652fb[m HEAD@{122}: pull origin hrWelfare --rebase (finish): returning to refs/heads/hrWelfare
+[33m70652fb[m HEAD@{123}: pull origin hrWelfare --rebase (pick): planning
+[33m2647ef2[m HEAD@{124}: pull origin hrWelfare --rebase (pick): char lang
+[33m49432a2[m HEAD@{125}: pull origin hrWelfare --rebase (start): checkout 49432a2ff12cf42f923ade638b5299b19c238cdc
+[33m2258ef5[m HEAD@{126}: checkout: moving from hrWelfare to hrWelfare
+[33m2258ef5[m HEAD@{127}: rebase (finish): returning to refs/heads/hrWelfare
+[33m2258ef5[m HEAD@{128}: rebase (pick): planning
+[33m6672f04[m HEAD@{129}: rebase (start): checkout hrlearningDev
+[33m5e60c47[m HEAD@{130}: checkout: moving from hrWelfare to hrWelfare
+[33m5e60c47[m HEAD@{131}: checkout: moving from hrwelfare to hrWelfare
+[33m5e60c47[m HEAD@{132}: checkout: moving from hrwelfare to hrwelfare
+[33m5e60c47[m HEAD@{133}: commit (merge): Merge branch 'hrlearningDev' of https://github.com/teddy89PJS/hrprime into hrwelfare
+[33m49432a2[m HEAD@{134}: checkout: moving from hrlearningDev to hrwelfare
+[33m6672f04[m HEAD@{135}: checkout: moving from hrlearningDev to hrlearningDev
+[33m6672f04[m HEAD@{136}: checkout: moving from main to hrlearningDev
+[33md35859f[m HEAD@{137}: checkout: moving from main to main
+[33md35859f[m HEAD@{138}: checkout: moving from hrlearningDev to main
+[33m6672f04[m HEAD@{139}: commit: char lang
+[33ma02d125[m HEAD@{140}: checkout: moving from main to hrlearningDev
+[33md35859f[m HEAD@{141}: pull --tags -r origin main: Fast-forward
+[33m565b0e1[m HEAD@{142}: Branch: renamed refs/heads/main to refs/heads/main
+[33m565b0e1[m HEAD@{144}: commit (initial): first commit

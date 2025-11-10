@@ -7,43 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
-  use HasFactory;
+  protected $fillable = ['position_name', 'abbreviation'];
 
-  protected $fillable = [
-    'position_name',
-    'abbreviation',
-    'item_no',
-    'salary_grade_id',
-    'employment_status_id',
-    'status',
-  ];
+  public function requirements()
+  {
+    return $this->hasMany(Requirement::class);
+  }
 
   public function salaryGrade()
   {
     return $this->belongsTo(SalaryGrade::class);
   }
 
-  public function division()
+  public function employmentStatus()
   {
-    return $this->belongsTo(Division::class);
+    return $this->belongsTo(EmploymentStatus::class);
   }
-
-  public function section()
+  public function itemNumbers()
   {
-    return $this->belongsTo(Section::class);
+    return $this->hasMany(ItemNumber::class);
   }
-
-    public function employmentStatus()
-    {
-      return $this->belongsTo(EmploymentStatus::class, 'employment_status_id');
-    }
-    public function positionLevel()
-  {
-      return $this->belongsTo(PositionLevel::class);
-}
-    public function qualifications()
-    {
-        return $this->belongsToMany(Qualification::class, 'position_qualification');
-    }
-
 }
