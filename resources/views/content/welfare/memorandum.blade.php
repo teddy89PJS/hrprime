@@ -236,7 +236,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="edit_award_type" class="form-label fw-bold">Award Type</label>
-                        <select name="award_type" id="edit_award_type" class="form-select text-muted" required>
+                        <select name="award_type" id="edit_award_type" class="form-select" required>
                             <option value="" disabled selected>Select Award Type</option>
                             <option value="character" class="text-dark">Character Building</option>
                             <option value="praise" class="text-dark">PRAISE</option>

@@ -375,14 +375,7 @@
             "HR-Welfare"
           ]
         },
-        {
-          "url": "welfare/memorandum",
-          "name": "Archive of Memorandum",
-          "slug": "memorandum",
-          "roles": [
-            "HR-Welfare"
-          ]
-        },
+
         {
           "url": "welfare/awardees",
           "name": "Hall of Awardees",
@@ -411,6 +404,15 @@
           "url": "welfare/monitoring",
           "name": "Monitoring and Evaluation of the Awardee",
           "slug": "monitoring",
+          "roles": [
+            "HR-Welfare"
+          ]
+        },
+
+        {
+          "url": "welfare/memorandum",
+          "name": "Archive of Memorandum",
+          "slug": "memorandum",
           "roles": [
             "HR-Welfare"
           ]
