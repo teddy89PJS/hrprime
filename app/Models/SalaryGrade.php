@@ -9,5 +9,11 @@ class SalaryGrade extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['sg_num', 'step_increment', 'sg_amount'];
+  protected $fillable = [
+    'sg_num',
+    'base_rate',
+    'premium_rate',
+    'premium_amount',
+    'total_amount',
+  ];
 }
