@@ -58,7 +58,6 @@ use App\Http\Controllers\planning\SectionController;
 use App\Http\Controllers\Planning\EmploymentStatusController;
 use App\Http\Controllers\Planning\OfficeLocationController;
 use App\Http\Controllers\Planning\QualificationController;
-use App\Http\Controllers\Planning\SalaryGradeController;
 use App\Http\Controllers\Planning\PositionLevelController;
 use App\Http\Controllers\Planning\ParentheticalTitleController;
 use App\Http\Controllers\Planning\ReportController;
@@ -74,12 +73,7 @@ use App\Http\Controllers\SpecialController;
 
 //PAS
 use App\Http\Controllers\pas\FundSourceController;
-use App\Http\Controllers\pas\PayrollController;
-use App\Http\Controllers\pas\TaxController;
-use App\Http\Controllers\pas\EmployeesListController;
-
-use App\Http\Controllers\pas\ImportPayrollController;
-use App\Http\Controllers\pas\LeaveCreditsController;
+use App\Http\Controllers\pas\SalaryGradeController;
 
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\RequirementController;
@@ -178,11 +172,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('profile/government-ids/update-all', [GovernmentIdController::class, 'updateAll'])->name('profile.government-ids.update-all');
-    Route::get('profile/government-ids', [GovernmentIdController::class, 'index'])->name('profile.government-ids.index');
-    Route::post('profile/government-ids/store', [GovernmentIdController::class, 'store'])->name('profile.government-ids.store');
-    Route::put('profile/government-ids/{id}', [GovernmentIdController::class, 'update'])->name('profile.government-ids.update');
-    Route::delete('profile/government-ids/{id}', [GovernmentIdController::class, 'destroy'])->name('profile.government-ids.destroy');
+  Route::post('profile/government-ids/update-all', [GovernmentIdController::class, 'updateAll'])->name('profile.government-ids.update-all');
+  Route::get('profile/government-ids', [GovernmentIdController::class, 'index'])->name('profile.government-ids.index');
+  Route::post('profile/government-ids/store', [GovernmentIdController::class, 'store'])->name('profile.government-ids.store');
+  Route::put('profile/government-ids/{id}', [GovernmentIdController::class, 'update'])->name('profile.government-ids.update');
+  Route::delete('profile/government-ids/{id}', [GovernmentIdController::class, 'destroy'])->name('profile.government-ids.destroy');
 });
 
 
@@ -541,31 +535,12 @@ Route::prefix('/pas/fundsource')->group(function () {
   Route::post('/{id}/delete', [FundSourceController::class, 'destroy'])->name('fundsource.delete');
 });
 
-Route::prefix('/pas/tax')->group(function () {
-  Route::get('/', [TaxController::class, 'index'])->name('tax.index');
-  Route::post('/store', [TaxController::class, 'store'])->name('tax.store');
-  Route::post('/{id}/update', [TaxController::class, 'update'])->name('tax.update');
-  Route::post('/{id}/delete', [TaxController::class, 'destroy'])->name('tax.delete');
+Route::prefix('/pas/salarygrade')->group(function () {
+  Route::get('/', [SalaryGradeController::class, 'index'])->name('salarygrade.index');
+  Route::post('/store', [SalaryGradeController::class, 'store'])->name('salarygrade.store');
+  Route::post('/{id}/update', [SalaryGradeController::class, 'update'])->name('salarygrade.update');
+  Route::post('/{id}/delete', [SalaryGradeController::class, 'destroy'])->name('salarygrade.delete');
 });
-
-Route::resource('/pas/payroll', PayrollController::class);
-Route::resource('/pas/employeeslist', EmployeesListController::class);
-// Route::resource('/pas/leavecredits', LeaveCreditsController::class);
-
-// Route::get('pas/leavecredits', [LeaveCreditsController::class, 'index'])->name('leavecredits.index');
-// Route::get('pas/leavecredits/auto-generate', [LeaveCreditsController::class, 'autoGenerate'])->name('leavecredits.auto-generate');
-Route::prefix('/pas/leavecredits')->group(function () {
-  Route::get('/', [LeaveCreditsController::class, 'index'])->name('leavecredits.index');
-  Route::get('/leavecredits/auto-generate', [LeaveCreditsController::class, 'autoGenerate'])->name('leavecredits.auto-generate');
-});
-
-
-
-// Route::get('pas/importpayroll', [ImportPayroll::class, 'importpayroll'])->name('importpayroll');
-
-
-Route::resource('/pas/importpayroll', ImportPayrollController::class);
-
 
 Route::get('/employee/sections', [SectionController::class, 'getByDivision'])
   ->name('employee.sections');

@@ -384,7 +384,7 @@ class PdsController extends Controller
 
             $writeAutoFitMultiCell($pdf, 37, 251, 30, 4, $concatText);
             
-            $otherInfo = $employee->otherInformations->first();
+            $employee->otherInformations()->first();
 
             // Third-degree YES/NO coordinates
             $thirdDegreeMap = [
