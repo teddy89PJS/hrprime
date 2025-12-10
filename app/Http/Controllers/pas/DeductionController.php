@@ -62,6 +62,4 @@ class DeductionController extends Controller
       'deduction' => $deductions
     ]);
   }
-
-
 }
