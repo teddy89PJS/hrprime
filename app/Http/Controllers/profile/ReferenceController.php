@@ -19,6 +19,7 @@ class ReferenceController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'ref_address' => 'required|string|max:255',
             'contact_number' => 'nullable|string|max:20',
             'position' => 'nullable|string|max:255',
         ]);
@@ -34,6 +35,7 @@ class ReferenceController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'ref_address' => 'required|string|max:255',
             'contact_number' => 'nullable|string|max:20',
             'position' => 'nullable|string|max:255',
         ]);

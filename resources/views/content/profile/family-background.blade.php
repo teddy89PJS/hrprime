@@ -39,17 +39,21 @@
             @endforeach
           </select>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label class="form-label fw-bold">Occupation</label>
           <input type="text" name="spouse_occupation" class="form-control" value="{{ $family->spouse_occupation ?? '' }}">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label class="form-label fw-bold">Employer/Business Name</label>
           <input type="text" name="spouse_employer" class="form-control" value="{{ $family->spouse_employer ?? '' }}">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label class="form-label fw-bold">Employer/Business Address</label>
           <input type="text" name="spouse_employer_address" class="form-control" value="{{ $family->spouse_employer_address ?? '' }}">
+        </div>
+                <div class="col-md-3">
+          <label class="form-label fw-bold">Telephone</label>
+          <input type="text" name="spouse_employer_telephone" class="form-control" value="{{ $family->spouse_employer_telephone ?? '' }}">
         </div>
       </div>
 
@@ -83,6 +87,10 @@
 
       <hr class="my-4">
       <h5 class="mb-4 fw-bold">Mother Information</h5>
+      <div class="col-md-12">
+          <label class="form-label fw-bold">Mother's Maiden Name</label>
+          <input type="text" name="mother_maiden_name" class="form-control" value="{{ $family->mother_maiden_name ?? '' }}">
+        </div>
       <div class="row g-3">
         <div class="col-md-3">
           <label class="form-label fw-bold">Surname</label>

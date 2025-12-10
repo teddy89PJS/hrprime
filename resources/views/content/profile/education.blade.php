@@ -21,12 +21,11 @@
             <tr>
             <th style="width: 10%;">Level of Education</th>
             <th style="width: 10%;">Name of School</th>
-            <th style="width: 10%;">Degree / Course</th>
+            <th style="width: 14%;">Degree / Course</th>
             <th style="width: 7%;">From</th>
             <th style="width: 7%;">To</th>
             <th style="width: 13%;">Highest Level Earned</th>
             <th style="width: 8%;">Year Graduated</th>
-            <th style="width: 6%;">Scholarship / Honors</th>
             <th style="width: 14%;">Action</th>
             </tr>
         </thead>
@@ -40,7 +39,6 @@
             <td>{{ $edu->to }}</td>
             <td>{{ $edu->highest_level_earned }}</td>
             <td>{{ $edu->year_graduated }}</td>
-            <td>{{ $edu->scholarship_honors }}</td>
             <td>
               <button
                 class="btn btn-sm btn-primary edit-education-btn"
@@ -51,8 +49,7 @@
                 data-from="{{ $edu->from }}"
                 data-to="{{ $edu->to }}"
                 data-level-earned="{{ $edu->highest_level_earned }}"
-                data-year="{{ $edu->year_graduated }}"
-                data-honors="{{ $edu->scholarship_honors }}">
+                data-year="{{ $edu->year_graduated }}">
                 Update
               </button>
               <button class="btn btn-sm btn-danger delete-education-btn" data-id="{{ $edu->id }}">Delete</button>
@@ -79,7 +76,8 @@
               <select name="level_of_education" class="form-select" required>
                 <option value="">Select Level</option>
                 <option value="Elementary">Elementary</option>
-                <option value="High School">High School</option>
+                <option value="Secondary">Secondary</option>
+                <option value="Vocational">Vocational</option>
                 <option value="College">College</option>
                 <option value="Graduate">Graduate</option>
               </select>

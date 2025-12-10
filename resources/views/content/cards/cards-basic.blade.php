@@ -379,7 +379,7 @@
   <div class="col-md-6 col-xl-4">
     <div class="card bg-primary text-white">
       <div class="card-body">
-        <h5 class="card-title text-white">Primary card title</h5>
+        <h5 class="card-title text-white">primary card title</h5>
         <p class="card-text">
           Some quick example text to build on the card title and make up.
         </p>
@@ -443,7 +443,7 @@
   <div class="col-md-6 col-xl-4">
     <div class="card shadow-none bg-transparent border border-primary">
       <div class="card-body">
-        <h5 class="card-title text-primary">Primary card title</h5>
+        <h5 class="card-title text-primary">primary card title</h5>
         <p class="card-text text-primary">
           Some quick example text to build on the card title and make up.
         </p>

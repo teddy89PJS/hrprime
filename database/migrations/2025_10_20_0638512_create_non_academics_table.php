@@ -6,23 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('skills', function (Blueprint $table) {
+        Schema::create('non_academics', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('skill_name');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // link to users
+            $table->string('recognition'); // name of the skill
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('skills');
+        Schema::dropIfExists('non_academics');
     }
 };

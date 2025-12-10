@@ -153,6 +153,25 @@
     </div>
   </div>
 </div>
+<!-- Confirm Delete Modal -->
+<div class="modal fade" id="confirmDeleteEligibilityModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this eligibility record?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="confirmDeleteEligibilityBtn" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -223,21 +242,36 @@
     });
 
 
-  // Delete
-  $(document).on('click', '.delete-eligibility-btn', function() {
-    const id = $(this).data('id');
-    if (!confirm('Are you sure you want to delete this record?')) return;
+  // Delete Modal
+let deleteEligibilityId = null;
+
+$(document).on('click', '.delete-eligibility-btn', function() {
+    deleteEligibilityId = $(this).data('id');
+    const modal = new bootstrap.Modal(document.getElementById('confirmDeleteEligibilityModal'));
+    modal.show();
+});
+
+$('#confirmDeleteEligibilityBtn').click(function() {
+    if (!deleteEligibilityId) return;
+
     $.ajax({
-      url: `/profile/eligibility/delete/${id}`,
-      method: 'POST',
-      data: { _method: 'DELETE' },
-      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-      success: () => {
-        toastr.success('Eligibility deleted successfully!');
-        setTimeout(() => location.reload(), 500);
-      },
-      error: () => toastr.error('Failed to delete eligibility.')
+        url: '{{ route("profile.cs-eligibility.destroy", ":id") }}'.replace(':id', deleteEligibilityId),
+        method: 'POST', // Laravel DELETE requires _method
+        data: { _method: 'DELETE' },
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function() {
+            toastr.success('Eligibility deleted successfully!');
+            bootstrap.Modal.getInstance(document.getElementById('confirmDeleteEligibilityModal')).hide();
+            deleteEligibilityId = null;
+            setTimeout(() => location.reload(), 500);
+        },
+        error: function(xhr) {
+            console.error(xhr.responseText);
+            toastr.error('Failed to delete eligibility.');
+        }
     });
-  });
+});
+
+
 </script>
 @endpush

@@ -160,7 +160,7 @@
         <small class="text-light fw-medium">Contextual classes</small>
         <div class="demo-inline-spacing mt-4">
           <ul class="list-group">
-            <li class="list-group-item list-group-item-primary">Primary list group item</li>
+            <li class="list-group-item list-group-item-primary">primary list group item</li>
             <li class="list-group-item list-group-item-secondary">Secondary list group item</li>
             <li class="list-group-item list-group-item-success">Success list group item</li>
             <li class="list-group-item list-group-item-danger">Danger list group item</li>

@@ -10,7 +10,7 @@
     <small class="text-light fw-medium">Basic</small>
     <div class="demo-inline-spacing">
       <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Primary</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">primary</button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
           <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
@@ -97,7 +97,7 @@
     <small class="text-light fw-medium">Outline</small>
     <div class="demo-inline-spacing">
       <div class="btn-group">
-        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Primary</button>
+        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">primary</button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
           <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
@@ -182,7 +182,7 @@
     <small class="text-light fw-medium">Split</small>
     <div class="demo-inline-spacing">
       <div class="btn-group">
-        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-primary">primary</button>
         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
           <span class="visually-hidden">Toggle Dropdown</span>
         </button>

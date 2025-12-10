@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payroll extends Model
+class Deduction extends Model
 {
     use HasFactory;
-    protected $table =  'payroll';
-    protected $fillable = ['tranche','selected_month'];
+    protected $fillable = [
+    'deduction_name',
+    'deduction_amount',
+  ];
 
 }
-

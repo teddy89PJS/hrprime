@@ -48,7 +48,7 @@
       <h5 class="card-header">Colors</h5>
       <div class="card-body">
         <div class="divider divider-primary">
-          <div class="divider-text">Primary</div>
+          <div class="divider-text">primary</div>
         </div>
         <div class="divider divider-success">
           <div class="divider-text">Success</div>

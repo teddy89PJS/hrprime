@@ -20,6 +20,7 @@
         <thead class="table-light text-center">
           <tr>
             <th>Name</th>
+            <th>Address</th>
             <th>Contact Number</th>
             <th>Position</th>
             <th>Action</th>
@@ -29,6 +30,7 @@
           @foreach ($references as $r)
           <tr data-id="{{ $r->id }}">
             <td>{{ $r->name }}</td>
+            <td>{{ $r->ref_address }}</td>
             <td>{{ $r->contact_number }}</td>
             <td>{{ $r->position }}</td>
             <td>
@@ -36,6 +38,7 @@
                 class="btn btn-sm btn-primary edit-ref-btn"
                 data-id="{{ $r->id }}"
                 data-name="{{ $r->name }}"
+                data-address="{{ $r->address }}"
                 data-contact="{{ $r->contact_number }}"
                 data-position="{{ $r->position }}">
                 Update
@@ -66,6 +69,10 @@
           <div class="mb-3">
             <label>Name</label>
             <input type="text" name="name" class="form-control uppercase" required>
+          </div>
+            <div class="mb-3">
+            <label>Address</label>
+            <input type="text" name="ref_address" class="form-control">
           </div>
           <div class="mb-3">
             <label>Contact Number</label>
@@ -100,6 +107,10 @@
           <div class="mb-3">
             <label>Name</label>
             <input type="text" name="name" id="editRefName" class="form-control uppercase" required>
+          </div>
+          <div class="mb-3">
+            <label>Address</label>
+            <input type="text" name="ref_address" id="editRefAddress" class="form-control">
           </div>
           <div class="mb-3">
             <label>Contact Number</label>
@@ -155,6 +166,7 @@ $('#openRefModalBtn').click(() => {
 $(document).on('click', '.edit-ref-btn', function() {
     $('#editRefId').val($(this).data('id'));
     $('#editRefName').val($(this).data('name'));
+    $('#editRefAddress').val($(this).data('address')); // this now pulls ref_address
     $('#editRefContact').val($(this).data('contact'));
     $('#editRefPosition').val($(this).data('position'));
     new bootstrap.Modal(document.getElementById('editRefModal')).show();

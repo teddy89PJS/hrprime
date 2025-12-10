@@ -12,7 +12,7 @@
       <div class="card-body">
         <small class="text-light fw-medium">Default</small>
         <div class="demo-inline-spacing">
-          <button type="button" class="btn btn-primary">Primary</button>
+          <button type="button" class="btn btn-primary">primary</button>
           <button type="button" class="btn btn-secondary">Secondary</button>
           <button type="button" class="btn btn-success">Success</button>
           <button type="button" class="btn btn-danger">Danger</button>
@@ -25,7 +25,7 @@
       <div class="card-body">
         <small class="text-light fw-medium">Rounded</small>
         <div class="demo-inline-spacing">
-          <button type="button" class="btn rounded-pill btn-primary">Primary</button>
+          <button type="button" class="btn rounded-pill btn-primary">primary</button>
           <button type="button" class="btn rounded-pill btn-secondary">Secondary</button>
           <button type="button" class="btn rounded-pill btn-success">Success</button>
           <button type="button" class="btn rounded-pill btn-danger">Danger</button>
@@ -45,7 +45,7 @@
       <div class="card-body">
         <small class="text-light fw-medium">Default</small>
         <div class="demo-inline-spacing">
-          <button type="button" class="btn btn-outline-primary">Primary</button>
+          <button type="button" class="btn btn-outline-primary">primary</button>
           <button type="button" class="btn btn-outline-secondary">Secondary</button>
           <button type="button" class="btn btn-outline-success">Success</button>
           <button type="button" class="btn btn-outline-danger">Danger</button>
@@ -58,7 +58,7 @@
       <div class="card-body">
         <small class="text-light fw-medium">Rounded</small>
         <div class="demo-inline-spacing">
-          <button type="button" class="btn rounded-pill btn-outline-primary">Primary</button>
+          <button type="button" class="btn rounded-pill btn-outline-primary">primary</button>
           <button type="button" class="btn rounded-pill btn-outline-secondary">Secondary</button>
           <button type="button" class="btn rounded-pill btn-outline-success">Success</button>
           <button type="button" class="btn rounded-pill btn-outline-danger">Danger</button>
@@ -80,7 +80,7 @@
           <small class="text-light fw-medium">Basic</small>
           <div class="demo-inline-spacing">
             <button type="button" class="btn btn-primary">
-              <span class="tf-icons ri-checkbox-circle-line ri-16px me-1_5"></span>Primary
+              <span class="tf-icons ri-checkbox-circle-line ri-16px me-1_5"></span>primary
             </button>
             <button type="button" class="btn btn-secondary">
               <span class="tf-icons ri-notification-4-line ri-16px me-1_5"></span>Secondary
@@ -88,7 +88,7 @@
           </div>
           <div class="demo-inline-spacing">
             <button type="button" class="btn rounded-pill btn-primary">
-              <span class="tf-icons ri-checkbox-circle-line ri-16px me-1_5"></span>Primary
+              <span class="tf-icons ri-checkbox-circle-line ri-16px me-1_5"></span>primary
             </button>
             <button type="button" class="btn rounded-pill btn-secondary">
               <span class="tf-icons ri-notification-4-line ri-16px me-1_5"></span>Secondary
@@ -99,7 +99,7 @@
           <small class="text-light fw-medium">Outline</small>
           <div class="demo-inline-spacing">
             <button type="button" class="btn btn-outline-primary">
-              <span class="tf-icons ri-checkbox-circle-line ri-16px me-1_5"></span>Primary
+              <span class="tf-icons ri-checkbox-circle-line ri-16px me-1_5"></span>primary
             </button>
             <button type="button" class="btn btn-outline-secondary">
               <span class="tf-icons ri-notification-4-line ri-16px me-1_5"></span>Secondary
@@ -107,7 +107,7 @@
           </div>
           <div class="demo-inline-spacing">
             <button type="button" class="btn rounded-pill btn-outline-primary">
-              <span class="tf-icons ri-checkbox-circle-line ri-16px me-1_5"></span>Primary
+              <span class="tf-icons ri-checkbox-circle-line ri-16px me-1_5"></span>primary
             </button>
             <button type="button" class="btn rounded-pill btn-outline-secondary">
               <span class="tf-icons ri-notification-4-line ri-16px me-1_5"></span>Secondary

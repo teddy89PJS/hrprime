@@ -12,6 +12,7 @@ class Reference extends Model
     protected $fillable = [
         'user_id',
         'name',
+        'ref_address',
         'contact_number',
         'position',
     ];

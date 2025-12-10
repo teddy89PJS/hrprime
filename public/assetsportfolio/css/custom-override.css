@@ -1,0 +1,18 @@
+:root {
+  --bs-primary: #1d4bb2 !important; /* Example: pinkish */
+  --bs-primary-rgb: 214, 51, 132;
+}
+
+/* Force all .btn-primary colors */
+.btn-primary {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  color: #fff !important;
+}
+
+/* Optional: hover and active states */
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: rgba(var(--bs-primary-rgb), 0.85) !important;
+  border-color: rgba(var(--bs-primary-rgb), 0.85) !important;
+}

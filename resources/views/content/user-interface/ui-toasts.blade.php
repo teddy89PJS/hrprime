@@ -30,7 +30,7 @@
       <div class="col-md-3">
         <label for="selectTypeOpt" class="form-label">Type</label>
         <select id="selectTypeOpt" class="form-select form-select-sm color-dropdown">
-          <option value="text-primary" selected>Primary</option>
+          <option value="text-primary" selected>primary</option>
           <option value="text-secondary">Secondary</option>
           <option value="text-success">Success</option>
           <option value="text-danger">Danger</option>

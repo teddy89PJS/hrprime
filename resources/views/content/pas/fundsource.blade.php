@@ -1,4 +1,3 @@
-
 @php
 $container = 'container-fluid';
 $containerNav = 'container-fluid';
@@ -25,28 +24,28 @@ $containerNav = 'container-fluid';
       <table id="fundsourceTable" class="table">
         <thead class="table-light">
           <tr>
-            <th>No.</th>
-            <th>Fund Source</th>
-            <th>Description</th>
-            <th>Action</th>
+            <th class="text-wrap text-center">No.</th>
+            <th class="text-wrap text-center">Fund Source</th>
+            <th class="text-wrap text-center">Description</th>
+            <th class="text-wrap text-center">Action</th>
           </tr>
         </thead>
         <tbody>
           @foreach($fundsources as $index => $fundsource)
           <tr data-id="{{ $fundsource->id }}">
-            <td>{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td>
-            <td>{{ $fundsource->fund_source }}</td>
-            <td>{{ $fundsource->description }}</td>
-            <td>
+            <td class="text-wrap text-center">{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td>
+            <td class="text-wrap text-center">{{ $fundsource->fund_source }}</td>
+            <td class="text-wrap text-center">{{ $fundsource->description }}</td>
+            <td class="text-wrap text-center">
               <button
-                class="btn btn-sm btn-primary edit-btn"
+                class="btn btn-sm btn-primary edit-btn "
                 data-id="{{ $fundsource->id }}"
                 data-fund_source="{{ $fundsource->fund_source }}"
                 data-description="{{ $fundsource->description }}">
                 Edit
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="{{ $fundsource->id }}">Delete</button>
-            </td>
+              </tdte>
           </tr>
           @endforeach
         </tbody>

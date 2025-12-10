@@ -11,7 +11,7 @@
       <div class="card-body">
         <div class="text-light small fw-medium">Default</div>
         <div class="demo-inline-spacing">
-          <span class="badge bg-primary">Primary</span>
+          <span class="badge bg-primary">primary</span>
           <span class="badge bg-secondary">Secondary</span>
           <span class="badge bg-success">Success</span>
           <span class="badge bg-danger">Danger</span>
@@ -25,7 +25,7 @@
         <div class="text-light small fw-medium">Pills</div>
 
         <div class="demo-inline-spacing">
-          <span class="badge rounded-pill bg-primary">Primary</span>
+          <span class="badge rounded-pill bg-primary">primary</span>
           <span class="badge rounded-pill bg-secondary">Secondary</span>
           <span class="badge rounded-pill bg-success">Success</span>
           <span class="badge rounded-pill bg-danger">Danger</span>
@@ -45,7 +45,7 @@
         <div class="text-light small fw-medium">Label Default</div>
 
         <div class="demo-inline-spacing">
-          <span class="badge bg-label-primary">Primary</span>
+          <span class="badge bg-label-primary">primary</span>
           <span class="badge bg-label-secondary">Secondary</span>
           <span class="badge bg-label-success">Success</span>
           <span class="badge bg-label-danger">Danger</span>
@@ -59,7 +59,7 @@
         <div class="text-light small fw-medium">Label Pills</div>
 
         <div class="demo-inline-spacing">
-          <span class="badge rounded-pill bg-label-primary">Primary</span>
+          <span class="badge rounded-pill bg-label-primary">primary</span>
           <span class="badge rounded-pill bg-label-secondary">Secondary</span>
           <span class="badge rounded-pill bg-label-success">Success</span>
           <span class="badge rounded-pill bg-label-danger">Danger</span>

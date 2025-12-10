@@ -26,6 +26,7 @@
     },
     {
       "name": "User Profile",
+      "icon": "menu-icon tf-icons ri-user-line",
       "slug": "profile",
       "roles": [
         "HR-Planning",
@@ -103,6 +104,7 @@
     },
     {
       "name": "Forms",
+      "icon": "menu-icon tf-icons ri-file-list-3-line",
       "slug": "profile",
       "roles": [
         "HR-Planning",
@@ -196,6 +198,7 @@
     },
     {
       "name": "SALN",
+      "icon": "menu-icon tf-icons ri-file-shield-line",
       "slug": "profile",
       "roles": [
         "HR-Planning",
@@ -238,6 +241,7 @@
     },
     {
       "name": "History",
+      "icon": "menu-icon tf-icons ri-history-line",
       "slug": "profile",
       "roles": [
         "HR-Planning",
@@ -380,65 +384,25 @@
       ],
       "submenu": [
         {
-          "url": "pas/employeeslist",
-          "name": "List of Employees",
-          "slug": "employeeslist",
+          "url": "pas/dashboard",
+          "name": "Dashboard",
+          "slug": "dashboard",
           "roles": [
             "HR-PAS"
           ]
         },
         {
-          "url": "layouts/without-menu",
+          "url": "pas/payroll",
           "name": "Payroll",
-          "slug": "without-menu",
+          "slug": "payroll",
           "roles": [
             "HR-PAS"
           ],
           "submenu": [
             {
-              "url": "pas/importpayroll",
-              "name": "Import Payroll",
-              "slug": "importpayroll",
-              "roles": [
-                "HR-PAS"
-              ]
-            },
-            {
-              "url": "pas/summary_of_lates",
-              "name": "Summary of Lates",
-              "slug": "summary_of_lates",
-              "roles": [
-                "HR-PAS"
-              ]
-            },
-            {
               "url": "pas/payroll",
-              "name": "Payroll",
+              "name": "Payroll Generation",
               "slug": "payroll",
-              "roles": [
-                "HR-PAS"
-              ]
-            },
-            {
-              "url": "pas/tax",
-              "name": "Tax",
-              "slug": "tax",
-              "roles": [
-                "HR-PAS"
-              ]
-            },
-            {
-              "url": "pas/deductions",
-              "name": "Deductions",
-              "slug": "deductions",
-              "roles": [
-                "HR-PAS"
-              ]
-            },
-            {
-              "url": "pas/leavecredits",
-              "name": "Leave Credits",
-              "slug": "leavecredits",
               "roles": [
                 "HR-PAS"
               ]
@@ -452,51 +416,17 @@
               ]
             },
             {
-              "url": "pas/reports",
-              "name": "Reports",
-              "slug": "reports",
-              "roles": [
-                "HR-PAS"
-              ]
-            }
-          ]
-        },
-        {
-          "url": "layouts/without-menu",
-          "name": "Requests",
-          "slug": "without-menu",
-          "roles": [
-            "HR-PAS"
-          ],
-          "submenu": [
-            {
-              "url": "layouts/without-menu",
-              "name": "Leave",
-              "slug": "without-menu",
+              "url": "pas/deductions",
+              "name": "Deductions",
+              "slug": "deductions",
               "roles": [
                 "HR-PAS"
               ]
             },
             {
-              "url": "layouts/without-menu",
-              "name": "Outslip",
-              "slug": "without-menu",
-              "roles": [
-                "HR-PAS"
-              ]
-            },
-            {
-              "url": "layouts/without-menu",
-              "name": "Payslip",
-              "slug": "without-menu",
-              "roles": [
-                "HR-PAS"
-              ]
-            },
-            {
-              "url": "layouts/without-menu",
-              "name": "Certificates",
-              "slug": "without-menu",
+              "url": "pas/salarygrade",
+              "name": "Salary Grade",
+              "slug": "salarygrade",
               "roles": [
                 "HR-PAS"
               ]

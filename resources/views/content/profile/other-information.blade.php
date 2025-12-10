@@ -5,11 +5,29 @@
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<style>
+  #otherInformationForm input[type="text"],
+  #otherInformationForm input[type="date"],
+  #otherInformationForm textarea {
+      background-color: #eeeeeeff; /* light gray */
+      color: #495057; /* slightly darker gray for text */
+      border: 1px solid #676869ff; /* optional: keep borders subtle */
+  }
+
+  /* Optional: on focus, make it slightly brighter */
+  #otherInformationForm input[type="text"]:focus,
+  #otherInformationForm input[type="date"]:focus,
+  #otherInformationForm textarea:focus {
+      background-color: #e9ecef;
+      color: #212529;
+  }
+</style>
+
 {{-- Toastr --}}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<div class="card shadow-sm p-4">
+<div class="card shadow-sm p-10">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h4 style="color: #1d4bb2;">Other Information</h4>
   </div>
@@ -96,7 +114,7 @@
                {{ old('criminally_charged', $other->criminally_charged ?? 'No') == 'No' ? 'checked' : '' }}>
         <label class="form-check-label">No</label>
       </div>
-      <div class="criminal_fields" style="display:none;">
+      <div class="criminal_fields">
         <label for="criminal_date_filed fw-bold">Date Filed</label>
         <input type="date" class="form-control mt-2" id="criminal_date_filed" name="criminal_date_filed"
                value="{{ $other->criminal_date_filed ?? '' }}">

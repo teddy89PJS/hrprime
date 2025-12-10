@@ -23,8 +23,8 @@ class FamilyBackgroundController extends Controller
     // Update family background
     $data = $request->only([
         'spouse_surname','spouse_first_name','spouse_middle_name','spouse_extension_name',
-        'spouse_occupation','spouse_employer','spouse_employer_address',
-        'father_surname','father_first_name','father_middle_name','father_extension_name',
+        'spouse_occupation','spouse_employer','spouse_employer_address', 'spouse_employer_telephone',
+        'father_surname','father_first_name','father_middle_name','father_extension_name', 'mother_maiden_name',
         'mother_surname','mother_first_name','mother_middle_name','mother_extension_name',
     ]);
 
