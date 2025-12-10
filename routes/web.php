@@ -74,6 +74,7 @@ use App\Http\Controllers\SpecialController;
 //PAS
 use App\Http\Controllers\pas\FundSourceController;
 use App\Http\Controllers\pas\SalaryGradeController;
+use App\Http\Controllers\pas\DeductionController;
 
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\RequirementController;
@@ -534,7 +535,12 @@ Route::prefix('/pas/fundsource')->group(function () {
   Route::post('/{id}/update', [FundSourceController::class, 'update'])->name('fundsource.update');
   Route::post('/{id}/delete', [FundSourceController::class, 'destroy'])->name('fundsource.delete');
 });
-
+Route::prefix('/pas/deductions')->group(function () {
+  Route::get('/', [DeductionController::class, 'index'])->name('deductions.index');
+  Route::post('/store', [DeductionController::class, 'store'])->name('deductions.store');
+  Route::post('/{id}/update', [DeductionController::class, 'update'])->name('deductions.update');
+  Route::post('/{id}/delete', [DeductionController::class, 'destroy'])->name('deductions.delete');
+});
 Route::prefix('/pas/salarygrade')->group(function () {
   Route::get('/', [SalaryGradeController::class, 'index'])->name('salarygrade.index');
   Route::post('/store', [SalaryGradeController::class, 'store'])->name('salarygrade.store');

@@ -384,25 +384,41 @@
       ],
       "submenu": [
         {
-          "url": "pas/employeeslist",
-          "name": "List of Employees",
-          "slug": "employeeslist",
+          "url": "pas/dashboard",
+          "name": "Dashboard",
+          "slug": "dashboard",
           "roles": [
             "HR-PAS"
           ]
         },
         {
-          "url": "layouts/without-menu",
+          "url": "pas/payroll",
           "name": "Payroll",
-          "slug": "without-menu",
+          "slug": "payroll",
           "roles": [
             "HR-PAS"
           ],
           "submenu": [
             {
+              "url": "pas/payroll",
+              "name": "Payroll Generation",
+              "slug": "payroll",
+              "roles": [
+                "HR-PAS"
+              ]
+            },
+            {
               "url": "pas/fundsource",
               "name": "Fund Source",
               "slug": "fundsource",
+              "roles": [
+                "HR-PAS"
+              ]
+            },
+            {
+              "url": "pas/deductions",
+              "name": "Deductions",
+              "slug": "deductions",
               "roles": [
                 "HR-PAS"
               ]

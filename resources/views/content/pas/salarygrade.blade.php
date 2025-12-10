@@ -37,26 +37,26 @@ $containerNav = 'container-fluid';
         </thead>
         <tbody>
           @foreach($salarygrades as $index => $salarygrades)
-            <tr data-id="{{ $salarygrades->id }}" >
-              <!-- <td class="text-center">{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td> -->
-              <td class="text-center">{{ $salarygrades->sg_num }}</td>
-              <td class="text-center">₱ {{ number_format($salarygrades->base_rate, 2) }}</td>
-              <td class="text-center">{{ $salarygrades->premium_rate }}%</td>
-              <td class="text-center">₱ {{ number_format($salarygrades->premium_amount, 2) }}</td>
-              <td class="text-center">₱ {{ number_format($salarygrades->total_amount, 2) }}</td>
+          <tr data-id="{{ $salarygrades->id }}">
+            <!-- <td class="text-center">{{ str_pad($index + 1, 3, '0', STR_PAD_LEFT) }}</td> -->
+            <td class="text-center">{{ $salarygrades->sg_num }}</td>
+            <td class="text-center">₱ {{ number_format($salarygrades->base_rate, 2) }}</td>
+            <td class="text-center">{{ $salarygrades->premium_rate }}%</td>
+            <td class="text-center">₱ {{ number_format($salarygrades->premium_amount, 2) }}</td>
+            <td class="text-center">₱ {{ number_format($salarygrades->total_amount, 2) }}</td>
 
-                <td class=" text-center mx-auto">
-                  <button
-                    class="m-1 btn btn-sm btn-primary edit-btn"
-                    data-id="{{ $salarygrades->id }}"
-                    data-sg_num="{{ $salarygrades->sg_num }}"
-                    data-base_rate="{{ $salarygrades->base_rate }}"
-                    data-premium_rate="{{ $salarygrades->premium_rate }}">
-                    Edit
-                  </button>
-                  <button class="m-1 btn btn-sm btn-danger delete-btn" data-id="{{ $salarygrades->id }}">Delete</button>
-                </td>
-            </tr>
+            <td class=" text-center text-wrap">
+              <button
+                class="m-1 btn btn-sm btn-primary edit-btn"
+                data-id="{{ $salarygrades->id }}"
+                data-sg_num="{{ $salarygrades->sg_num }}"
+                data-base_rate="{{ $salarygrades->base_rate }}"
+                data-premium_rate="{{ $salarygrades->premium_rate }}">
+                Edit
+              </button>
+              <button class="m-1 btn btn-sm btn-danger delete-btn" data-id="{{ $salarygrades->id }}">Delete</button>
+            </td>
+          </tr>
           @endforeach
         </tbody>
       </table>
@@ -78,7 +78,7 @@ $containerNav = 'container-fluid';
           </div>
           <div class="mb-3">
             <label>Cost of Service Base Rate</label>
-            <input type="number" name="base_rate" class="form-control" placeholder="e.g. 99,999"  value="{{ old('base_rate') }}" required>
+            <input type="number" name="base_rate" class="form-control" placeholder="e.g. 99,999" value="{{ old('base_rate') }}" required>
           </div>
           <div class="mb-3">
             <label>Premium Rate in Percent</label>
@@ -107,7 +107,7 @@ $containerNav = 'container-fluid';
         </div>
         <div class="modal-body">
           <input type="hidden" name="id" id="editsalarygradeId">
-           <div class="mb-3">
+          <div class="mb-3">
             <label>Salary Grade</label>
             <input type="number" name="sg_num" id="editsalarygrade" class="form-control" value="{{ old('sg_num') }}" required>
           </div>
@@ -157,11 +157,11 @@ $containerNav = 'container-fluid';
 
 <script>
   $('#openModalBtn').click(function() {
-      $('#salarygradeForm')[0].reset();
-      var modal = new bootstrap.Modal(document.getElementById('salarygradeModal'));
-      modal.show();
+    $('#salarygradeForm')[0].reset();
+    var modal = new bootstrap.Modal(document.getElementById('salarygradeModal'));
+    modal.show();
   });
-    $('#salarygradeForm').submit(function(e) {
+  $('#salarygradeForm').submit(function(e) {
     e.preventDefault();
 
     $.ajax({
@@ -189,7 +189,7 @@ $containerNav = 'container-fluid';
       }
     });
   });
-$(document).on('click', '.edit-btn', function() {
+  $(document).on('click', '.edit-btn', function() {
     const id = $(this).data('id');
     const sg_num = $(this).data('sg_num');
     const base_rate = $(this).data('base_rate');
@@ -200,7 +200,7 @@ $(document).on('click', '.edit-btn', function() {
     $('#editcostofservicerate').val(base_rate);
     $('#editpremiumrate').val(premium_rate);
 
-     // Update readonly Premium Amount display
+    // Update readonly Premium Amount display
     const premium_amount = (base_rate * premium_rate) / 100;
     $('#editpremiumamount').val(premium_amount);
 
@@ -273,7 +273,6 @@ $(document).on('click', '.edit-btn', function() {
       }
     });
   });
-
 </script>
 
 <script>
@@ -286,5 +285,4 @@ $(document).on('click', '.edit-btn', function() {
   });
 </script>
 
- @endpush
-
+@endpush
