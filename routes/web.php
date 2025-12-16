@@ -84,8 +84,7 @@ use App\Http\Controllers\UnfilledPositionsController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\OutSlipController;
 use App\Http\Controllers\LeaveController;
-
-
+use App\Http\Controllers\pas\PayrollController;
 // Login Page
 
 //Welfare
@@ -529,6 +528,13 @@ Route::get('/item-numbers/{id}/print', [ItemNumberController::class, 'print'])->
 
 
 //PAS
+Route::prefix('/pas/payroll')->group(function () {
+  Route::get('/', [PayrollController::class, 'index'])->name('payroll.index');
+  Route::post('/store', [PayrollController::class, 'store'])->name('payroll.store');
+  Route::post('/{id}/update', [PayrollController::class, 'update'])->name('payroll.update');
+  Route::post('/{id}/delete', [PayrollController::class, 'destroy'])->name('payroll.delete');
+});
+
 Route::prefix('/pas/fundsource')->group(function () {
   Route::get('/', [FundSourceController::class, 'index'])->name('fundsource.index');
   Route::post('/store', [FundSourceController::class, 'store'])->name('fundsource.store');
